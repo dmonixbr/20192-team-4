@@ -1,5 +1,6 @@
 #include "../../include/db/db.hpp"
 
+
 Database::Database(const char* _caminho){
 	int status = 0; 
     status = sqlite3_open(_caminho, &banco); 
@@ -86,7 +87,7 @@ void Database::deletarDados(std::string tabela, std::string condicao){
 	}
 }
 
-std::list<std::string> Database::verDados(std::string tabela, std::string condicao){
+void Database::verDados(std::string tabela, std::string condicao){
 	std::string sql = "SELECT * FROM " + tabela + " WHERE " + condicao + " ;";
 	
 	char* messageError;

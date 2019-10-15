@@ -10,12 +10,11 @@ while [ $appRunning == 1 ]; do
 		echo Compiling and then running
 		g++ -c src/*.cpp -std=c++14 -Werror
 		g++ *.o -o bin/Creche -l sqlite3
-#		g++ *.o -o bin/Creche -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lsfml-network
 		./bin/Creche
 	elif [[ $user == 2 ]]; then
 		echo Compiling...
 		g++ -c src/*.cpp -std=c++14 -Werror
-		g++ *.o -o bin/Creche -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lsfml-network
+		g++ *.o -o bin/Creche -l sqlite3
 	elif [[ $user == 3 ]]; then
 		exit
 	fi

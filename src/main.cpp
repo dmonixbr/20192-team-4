@@ -3,6 +3,7 @@
 #include "usuario/usuario.cpp"
 #include <list>
 
+
 	
 
 int main(int argc, char** argv){
@@ -17,19 +18,24 @@ int main(int argc, char** argv){
 	Usuario user;
 	std::string nome, cpf, senha;
 
-	int a = 314159265;
+	int a = 1;
 
 	std::map<std::string, std::string> mapa;
-	mapa.insert({"username", "Beatriz"});
+	mapa.insert({"username", "Clara"});
 	mapa.insert({"senha", "654321"});
-	mapa.insert({"cpf", "74699530211"});
-	std::string cond = "1=1";
+	mapa.insert({"cpf", "16495320288"});
+	std::string cond = "cpf='16495320288'";
 
 	db.verDados("usuario", cond);
 
-	std::list<std::string> listinha = db.lista;
 
-	std::cout << db.lista.size() << std::endl;
+	std::list<std::string>::iterator it;
+
+	for(it = Database::lista.begin(); it != Database::lista.end(); ++it){
+        std::cout << "\n " << a << "-\t" << *it; 
+   		a++;
+   	}
+    std::cout << '\n'; 
 
 
 /*	while (a != 0){
