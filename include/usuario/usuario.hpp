@@ -1,7 +1,6 @@
 #ifndef USUARIO_H
 #define USUARIO_H
 #include <iostream>
-#include "../../src/db/db.cpp"
 
 class Usuario{
 private:
@@ -18,10 +17,6 @@ public:
 	void set_senha(std::string _senha);
 
 
-	void inserirUsuario(std::string, std::string, std::string, sqlite3*);
-	void editarUsuario(std::string, std::string, std::string, sqlite3*);
-	std::string verUsuario(std::string, sqlite3*);
-	void deletarUsuario(std::string, sqlite3*);
 };
 
 

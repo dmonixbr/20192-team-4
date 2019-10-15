@@ -1,8 +1,14 @@
 #include <iostream> 
 #include "db/db.cpp"
 #include "usuario/usuario.cpp"
-  
+#include <list>
+
+	
+
 int main(int argc, char** argv){
+
+	
+	
 
 	const std::string resetText("\033[0m"), redText("\033[0;31m"), greenText("\033[0;32m"), blueText("\033[0;34m"), cyanText("\033[0;36m"), byellowText("\033[0;93m");
 	const char* dbPath = "creche.db" ;
@@ -13,8 +19,20 @@ int main(int argc, char** argv){
 
 	int a = 314159265;
 
+	std::map<std::string, std::string> mapa;
+	mapa.insert({"username", "Beatriz"});
+	mapa.insert({"senha", "654321"});
+	mapa.insert({"cpf", "74699530211"});
+	std::string cond = "1=1";
 
-	while (a != 0){
+	db.verDados("usuario", cond);
+
+	std::list<std::string> listinha = db.lista;
+
+	std::cout << db.lista.size() << std::endl;
+
+
+/*	while (a != 0){
 	std::cout << byellowText << "\nSelecione uma opção:" << cyanText << " \n1- Deletar usuários\n2- Ver Usuários\n3- Adicionar Usuários\n4- Atualizar Usuários\n0- Sair" << resetText << std::endl;
 	std::cin >> a;
 
@@ -69,6 +87,7 @@ int main(int argc, char** argv){
 		}
 	}
 
-
+	std::cout << redText << info.size() << std::endl;
+*/
 	return 0;
 } 

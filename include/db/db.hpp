@@ -2,42 +2,37 @@
 #define BANCO_H
 #include <iostream>
 #include <sqlite3.h>
+#include <list>
+#include <map> 
 
-static int callback(void* data, int argc, char** argv, char** azColName) { 
-    int i; 
-    fprintf(stderr, "%s\n", (const char*)data); 
-  
-    for (i = 0; i < argc; i++) { 
-        printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL"); 
-    } 
-  
-    printf("\n"); 
-    return 0; 
-} 
 
 class Database{
 public:
 	std::string caminho;
-	sqlite3* banco; 
+	sqlite3* banco;
 
+	std::list<std::string> lista; 
 
-	Database(const char* _caminho){
-	    int status = 0; 
-	    status = sqlite3_open(_caminho, &banco); 
-	  
-	    if (status) { 
-	        std::cerr << "Error open DB " << sqlite3_errmsg(banco) << std::endl; 
-	    } 
-	};
+static int callback(void* data, int argc, char** argv, char** azColName) { 
+    int i; 
+    fprintf(stderr, "%s\n", (const char*)data); 
+	std::list<std::string> lista;
 
-	~Database(){
-		sqlite3_close(banco);
-	}
+    for (i = 0; i < argc; i++) { 
+    //    printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL" ); 
+        lista.push_back(argv[i] ? argv[i] : "NULL");
+    } 
+  
+ 	return 0;
+} 
 
-	sqlite3* getBanco(){
-		return banco;
-	}
-	
+	Database(const char*);
+	~Database();
+	sqlite3* getBanco();
+	void inserirDados(std::string, std::map<std::string, std::string>);
+	std::list<std::string> verDados(std::string, std::string);
+	void editarDados(std::string, std::string, std::map<std::string, std::string>);
+	void deletarDados(std::string, std::string);	
 };
 
 #endif
