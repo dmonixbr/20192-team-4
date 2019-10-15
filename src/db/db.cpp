@@ -1,6 +1,6 @@
 #include "../../include/db/db.hpp"
 
-
+// Abre a conexão com o banco de dados
 Database::Database(const char* _caminho){
 	int status = 0; 
     status = sqlite3_open(_caminho, &banco); 
@@ -10,14 +10,20 @@ Database::Database(const char* _caminho){
     } 
 }
 
+//Fecha a Conexão com o banco de dados
 Database::~Database(){
 	sqlite3_close(banco);
 }
 
+//Retorna o objeto do banco de dados
 sqlite3* Database::getBanco(){
 	return banco;
 }
 
+/* Recebe o nome da tabela(string) e um mapa com a coluna(string) e o dado(strin), respectivamente e 
+insere esses dados nas colunas da tabela passada.
+Os elementos do mapa devem ser coluna e dado, necessáriamente.
+*/
 void Database::inserirDados(std::string tabela, std::map<std::string, std::string> insert){
 	std::map<std::string, std::string>::iterator itr;
 
@@ -44,6 +50,10 @@ void Database::inserirDados(std::string tabela, std::map<std::string, std::strin
 	}
 }
 
+/* Recebe o nome de uma tabela(string), uma condição(string) e um mapa
+com os dados a serem adicionados.
+O mapa, assim como na função de inserir, deve ter coluna e dado, necessáriamente nessa ordem
+*/
 void Database::editarDados(std::string tabela, std::string condicao, std::map<std::string, std::string> insert){
 	std::map<std::string, std::string>::iterator itr;
 
@@ -71,6 +81,10 @@ void Database::editarDados(std::string tabela, std::string condicao, std::map<st
 
 }
 
+/*
+Recebe uma tabela(string) e uma condição (string) e deleta os dados da tabela que
+correspondem aquela condição
+*/
 void Database::deletarDados(std::string tabela, std::string condicao){
 	std::string sql = "DELETE FROM " + tabela + " WHERE " + condicao + ";";
 
@@ -87,6 +101,10 @@ void Database::deletarDados(std::string tabela, std::string condicao){
 	}
 }
 
+/* Recebe uma tabela(string) e uma condição (string). Executa uma query na tabela passada
+e procura por dados que atendam a condição. É chamada a função callback, que vai modificar a lista
+estática da classe Database, sendo cada posição da lista um dado, seguindo a ordem da tabela.
+*/
 void Database::verDados(std::string tabela, std::string condicao){
 	std::string sql = "SELECT * FROM " + tabela + " WHERE " + condicao + " ;";
 	

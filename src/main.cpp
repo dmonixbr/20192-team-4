@@ -9,33 +9,18 @@
 int main(int argc, char** argv){
 
 	
-	
+	/*Cada string dessas, ao ser colocada antes de uma string no cout, deixa o texto colorido.
+	Ex:
+	std::cout << redText << "Olá mundo!" << resetText << "Tchau mundo" << std::endl;
+	Aqui, o "Olá mundo!" sai vermelho e o "Tchau mundo" sai normal. O redText deixa o texto sequente
+	vermelho e o resetText deixa o texto sequente normal.
+	*/
 
 	const std::string resetText("\033[0m"), redText("\033[0;31m"), greenText("\033[0;32m"), blueText("\033[0;34m"), cyanText("\033[0;36m"), byellowText("\033[0;93m");
 	const char* dbPath = "creche.db" ;
 
 	Database db(dbPath);
-	Usuario user;
-	std::string nome, cpf, senha;
 
-	int a = 1;
-
-	std::map<std::string, std::string> mapa;
-	mapa.insert({"username", "Clara"});
-	mapa.insert({"senha", "654321"});
-	mapa.insert({"cpf", "16495320288"});
-	std::string cond = "cpf='16495320288'";
-
-	db.verDados("usuario", cond);
-
-
-	std::list<std::string>::iterator it;
-
-	for(it = Database::lista.begin(); it != Database::lista.end(); ++it){
-        std::cout << "\n " << a << "-\t" << *it; 
-   		a++;
-   	}
-    std::cout << '\n'; 
 
 
 /*	while (a != 0){
