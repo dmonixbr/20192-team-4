@@ -10,8 +10,6 @@ class Usuario{
 		std::string	senha;
 
 
-		Usuario(std::string _nome,std::string _cpf,std::string _senha);
-
 		virtual std::string get_cpf() = 0;
 		virtual void set_cpf(std::string)= 0;
 		virtual std::string get_nome() = 0;
