@@ -1,5 +1,6 @@
 #ifndef USUARIO_H
 #define USUARIO_H
+#include <string>
 #include <iostream>
 
 class Usuario{
@@ -9,9 +10,6 @@ class Usuario{
 		std::string nome;
 		std::string	senha;
 
-
-		Usuario(std::string _nome,std::string _cpf,std::string _senha);
-
 		virtual std::string get_cpf() = 0;
 		virtual void set_cpf(std::string)= 0;
 		virtual std::string get_nome() = 0;
@@ -19,7 +17,7 @@ class Usuario{
 		virtual std::string get_senha() = 0;
 		virtual void set_senha(std::string) = 0;
 
-		virtual void login() = 0;
+		virtual void login(std::string, std::string) = 0;
 
 };
 
