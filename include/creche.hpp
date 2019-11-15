@@ -9,6 +9,9 @@ class Creche {
         std::string endereco;
         std::string validade_convenio;
     public:
+
+        Creche(std::string,std::string,std::string,std::string);
+
         void set_nome(std::string);
         std::string get_nome();
         void set_telefone(std::string);
