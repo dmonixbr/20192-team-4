@@ -9,6 +9,9 @@ private:
 	std::string	senha;
 
 public:
+
+	Usuario(std::string,std::string,std::string);
+
 	std::string get_cpf();
 	void set_cpf(std::string);
 	std::string get_nome();
