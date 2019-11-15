@@ -16,6 +16,8 @@ public:
 	std::string get_senha();
 	void set_senha(std::string);
 
+	void login();
+
 };
 
 
