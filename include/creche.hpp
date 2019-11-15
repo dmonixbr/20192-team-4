@@ -1,6 +1,6 @@
 #ifndef CRECHE_H
 #define CRECHE_H
-#include <streamio>
+#include <string>
 
 class Creche {
     private:
