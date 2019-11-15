@@ -17,3 +17,5 @@ class Creche {
         std::string get_endereco();
         void set_validade_convenio(std::string);
 };
+
+#endif
