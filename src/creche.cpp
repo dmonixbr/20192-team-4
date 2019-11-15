@@ -21,11 +21,11 @@ void Creche::set_endereco(std::string _endereco){
 
 //getters
 std::string Creche::get_nome(){
-    std::cout << this->nome << std::endl;
+    return this->nome;
 }
 std::string Creche::get_endereco(){
-    std::cout << this->endereco << std::endl;
+    return this->endereco;
 }
 std::string Creche::get_telefone(){
-    std::cout << this->telefone;
+    return this->get_telefone;
 }
