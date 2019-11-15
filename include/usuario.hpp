@@ -10,11 +10,11 @@ private:
 
 public:
 	std::string get_cpf();
-	void set_cpf(std::string _cpf);
+	void set_cpf(std::string);
 	std::string get_nome();
-	void set_nome(std::string _nome);
+	void set_nome(std::string);
 	std::string get_senha();
-	void set_senha(std::string _senha);
+	void set_senha(std::string);
 
 };
 
