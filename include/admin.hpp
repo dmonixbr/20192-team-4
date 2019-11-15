@@ -2,7 +2,7 @@
 #define ADMIN_H
 #include 'usuario.hpp'
 
-class Admin :: public Usuario{
+class Admin : public Usuario{
 
     private:
 
