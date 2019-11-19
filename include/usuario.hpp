@@ -4,12 +4,13 @@
 #include <iostream>
 
 class Usuario{
-	public:
+	protected:
 
 		std::string cpf;
 		std::string nome;
 		std::string	senha;
-
+		
+	public:
 		virtual std::string get_cpf() = 0;
 		virtual void set_cpf(std::string)= 0;
 		virtual std::string get_nome() = 0;

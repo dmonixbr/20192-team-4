@@ -27,5 +27,5 @@ std::string Creche::get_endereco(){
     return this->endereco;
 }
 std::string Creche::get_telefone(){
-    return this->get_telefone;
+    return this->telefone;
 }
