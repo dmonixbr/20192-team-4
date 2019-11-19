@@ -9,6 +9,7 @@ class Usuario{
 		std::string cpf;
 		std::string nome;
 		std::string	senha;
+		int id;
 		
 	public:
 		virtual std::string get_cpf() = 0;

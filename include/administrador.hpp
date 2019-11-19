@@ -7,7 +7,7 @@
 class Administrador : public Usuario{
 
     public:
-        Administrador(std::string,std::string,std::string);
+        Administrador(std::string,std::string,std::string,int);
 
         std::string get_cpf();
 		void set_cpf(std::string);
@@ -20,7 +20,7 @@ class Administrador : public Usuario{
     private:
 
     
-        void CadastrarCreche ();
+        void CadastrarCreche(std::string,std::string,std::string,std::string);
         void VerCreche ();
         void EditarCreche();
         void DeletarCreche ();

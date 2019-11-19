@@ -1,6 +1,7 @@
 #ifndef CRECHE_H
 #define CRECHE_H
 #include <string>
+#include "gerente.hpp"
 
 class Creche {
     private:
@@ -8,9 +9,11 @@ class Creche {
         std::string telefone;
         std::string endereco;
         std::string validade_convenio;
+        int id_gerente;
+        int id_creche;
     public:
 
-        Creche(std::string,std::string,std::string,std::string);
+        Creche(std::string,std::string,std::string,std::string,int);
 
         void set_nome(std::string);
         std::string get_nome();

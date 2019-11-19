@@ -1,4 +1,3 @@
-#ifndef DOCTEST_CONFIG_IMPLEMENT
 #define DOCTEST_CONFIG_IMPLEMENT
 
 #include "../third_party/doctest.h"
@@ -54,5 +53,3 @@ TEST_CASE("02 - Teste getters e setters Administrador"){
 
     
 }
-
-#endif

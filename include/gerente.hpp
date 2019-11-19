@@ -9,7 +9,7 @@ class Gerente : public Usuario {
         std::string telefone;
     public:
 
-        Gerente(std::string,std::string,std::string,std::string,std::string,std::string);
+        Gerente(std::string,std::string,std::string,std::string,std::string,std::string,int);
 
         void set_periodo_mandato(std::string);
         std::string get_periodo_mandato();
@@ -17,6 +17,7 @@ class Gerente : public Usuario {
         std::string get_endereco();
         void set_telefone(std::string);
         std::string get_telefone();
+    
 };
 
 
