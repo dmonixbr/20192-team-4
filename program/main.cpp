@@ -5,12 +5,11 @@
 #include "../include/usuario.hpp"
 #include "../include/funcoes.hpp"
 
+Administrador A1("Gabriel","12345678","1234",1);
 
 int main(){
     /*-------------Testes do programa----------------*/
-    int aux_id = 1;
-    Administrador A1("Gabroel","12345678","1234",aux_id);
-    aux_id++;
+    
 
     std::cout << A1.get_nome() << std::endl;
     

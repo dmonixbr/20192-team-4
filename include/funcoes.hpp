@@ -8,3 +8,4 @@ extern void CrudUsuario(); //OK
 extern void AuxCrud(int); //OK
 extern void LoginAdmin();
 extern void LoginGerente();
+extern void LoginAux();

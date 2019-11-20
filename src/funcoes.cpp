@@ -20,7 +20,7 @@ void CrudUsuario(){
         std::cin >> aux_acesso;
         try
         {
-            AuxCrud(aux_acesso);
+            AuxCrud(&aux_acesso);
         }
         catch(const char *e)
         {
@@ -37,17 +37,19 @@ void CrudUsuario(){
 }
 
 //funcao auxiliar para crud
-void AuxCrud(int aux_acesso){
-    if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=0){
+void AuxCrud(int *aux_acesso){
+    if(*aux_acesso != 1 && *aux_acesso !=2 && *aux_acesso !=0){
         throw "Ops, voce digitou um numero errado!";
     }else{
-        if(aux_acesso == 1){
+        if(*aux_acesso == 1){
             LoginAdmin();
+            delete aux_acesso;
         }
-        else if(aux_acesso == 2){
+        else if(*aux_acesso == 2){
             LoginGerente();
+            delete aux_acesso;
         }
-        else if(aux_acesso == 0){
+        else if(*aux_acesso == 0){
             std::cout << "Muito Obrigado!!!" << std::endl;
             std::cout << "Tenha um bom dia!!" << std::endl;
             return;
@@ -61,8 +63,20 @@ void AuxCrud(int aux_acesso){
 
 
 void LoginAdmin(){
-    return;
+    std::cout << "Ola admin, seja bem vindo!" << std::endl;
+    try
+    {
+        LoginAux();
+    }
+    catch(const char *e)
+    {
+        std::cerr <<e<< '\n';
+    }
+    
 }
 void LoginGerente(){
+    return;
+}
+void LoginAux(){
     return;
 }
