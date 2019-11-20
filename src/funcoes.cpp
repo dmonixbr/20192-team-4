@@ -35,6 +35,7 @@ void CrudUsuario(){
         return;
     }
 }
+
 //funcao auxiliar para crud
 void AuxCrud(int aux_acesso){
     if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=0){
@@ -47,6 +48,8 @@ void AuxCrud(int aux_acesso){
             LoginGerente();
         }
         else if(aux_acesso == 0){
+            std::cout << "Muito Obrigado!!!" << std::endl;
+            std::cout << "Tenha um bom dia!!" << std::endl;
             return;
         }
         else{
@@ -55,6 +58,8 @@ void AuxCrud(int aux_acesso){
     }
     
 }
+
+
 void LoginAdmin(){
     return;
 }
