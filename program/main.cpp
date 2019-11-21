@@ -5,22 +5,57 @@
 #include "../include/usuario.hpp"
 #include "../include/funcoes.hpp"
 
-Administrador A1("Gabriel","12345678","1234",1);
+
 
 int main(){
     /*-------------Testes do programa----------------*/
     
     
-    std::cout << A1.get_nome() << std::endl;
-    
-
-
     std::cout << "Bem vindo cornos" << std::endl;
     /*---------------Crud Usuarios------------------*/
 
-    int autenticacao = CrudUsuario();
+   //criando o auxiliar de acesso
 
-    MenuPrincipal(autenticacao);
+    std::cout << "------Seja Bem Vindo ao Sistema da creche-------"<<std::endl;
 
+    
+    while(1){
+        std::cout << "Digite o numero da funcao que voce quer fazer:" << std::endl;
+        std::cout << std::endl;
+        std::cout << "1 - Login como Administrador"<<std::endl; 
+        std::cout << "2 - Login como Gerente da creche"<<std::endl;
+        std::cout << "0 - Fechar o programa"<<std::endl;
 
+        try{
+            int aux_acesso;
+            std::cin >> aux_acesso;
+            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=0){
+                throw "Ops, voce digitou um numero errado!";
+            }
+            else{
+                if(aux_acesso == 1){
+                    return 0;
+                }
+                else if(aux_acesso == 2){
+                    return 0;
+                }
+                else if(aux_acesso == 0){
+                    std::cout << "Muito Obrigado!!!" << std::endl;
+                    std::cout << "Tenha um bom dia!!" << std::endl;
+                    return 0;
+                }
+                else{
+                    throw "Ocorreu um erro inesperado, e para a sua seguranca o programa vai desligar";
+                }
+            }
+        }
+        catch(const char *e)
+        {
+            std::cerr << e << '\n';
+        }
+        catch(...){
+            std::cerr << "Erro inesperado" << '\n';
+        }
+        return -1;
+    }
 }
