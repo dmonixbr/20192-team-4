@@ -45,7 +45,6 @@ struct ListaAdmins{
 
     void insere_admin(Administrador);
     Administrador get_admin(int);
-    void remover_admin(int);
     int tamanho();
     void insere_primeiro(Administrador);
 };
@@ -61,6 +60,8 @@ struct ListaCreches{
     void insere_creche(Creche);
     Creche get_creche(int);
     void remover_creche(int);
+    void remover_primeiro();
+    void remover_ultimo();
     int tamanho();
     void insere_primeiro(Creche);
 };
@@ -76,6 +77,8 @@ struct ListaGerentes{
     void insere_gerente(Gerente);
     Gerente get_gerente(int);
     void remover_gerente(int);
+    void remover_primeiro();
+    void remover_ultimo();
     int tamanho();
     void insere_primeiro(Gerente);
 };

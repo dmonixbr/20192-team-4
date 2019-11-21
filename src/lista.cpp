@@ -209,3 +209,169 @@ Gerente ListaGerentes::get_gerente(int n){
     }
     return atual->gerente;
 }
+
+void ListaCreches::remover_primeiro(){
+    if(tamanho()>1){
+        creches *atual;
+        creches *auxiliar;
+        
+        atual = primeiro;
+        auxiliar = atual->proximo;
+        auxiliar->anterior = nullptr;
+
+        delete atual;
+
+        primeiro = auxiliar;
+        numero_de_creches--;
+    }
+    else
+    {
+        creches *atual;
+        atual = primeiro;
+        primeiro = nullptr;
+        ultimo = nullptr;
+
+        delete atual;
+
+        numero_de_creches--;
+    }
+    
+}
+
+
+void ListaGerentes::remover_primeiro(){
+    if(tamanho()>1){
+        gerentes *atual;
+        gerentes *auxiliar;
+        
+        atual = primeiro;
+        auxiliar = atual->proximo;
+        auxiliar->anterior = nullptr;
+
+        delete atual;
+
+        primeiro = auxiliar;
+        numero_de_gerentes--;
+    }
+    else
+    {
+        gerentes *atual;
+        atual = primeiro;
+        primeiro = nullptr;
+        ultimo = nullptr;
+
+        delete atual;
+
+        numero_de_gerentes--;
+    }
+}
+
+void ListaCreches::remover_ultimo(){
+    if(tamanho() == 1){
+        creches *atual;
+        atual = primeiro;
+        primeiro = nullptr;
+        ultimo = nullptr;
+
+        delete atual;
+
+        numero_de_creches--;
+    }
+
+    else if(tamanho() > 1){
+        creches *atual;
+        creches *auxiliar;
+
+        atual = ultimo;
+        auxiliar = atual->anterior;
+
+        delete atual;
+
+        ultimo = auxiliar;
+        ultimo->proximo = nullptr;
+
+        numero_de_creches--;
+    }
+}
+
+void ListaGerentes::remover_ultimo(){
+    if(tamanho() == 1){
+        gerentes *atual;
+        atual = primeiro;
+        primeiro = nullptr;
+        ultimo = nullptr;
+
+        delete atual;
+
+        numero_de_gerentes--;
+    }
+
+    else if(tamanho() > 1){
+        gerentes *atual;
+        gerentes *auxiliar;
+
+        atual = ultimo;
+        auxiliar = atual->anterior;
+
+        delete atual;
+
+        ultimo = auxiliar;
+        ultimo->proximo = nullptr;
+
+        numero_de_gerentes--;
+    }
+}
+
+void ListaCreches::remover_creche(int pos){
+    if(pos == 0)
+        remover_primeiro();
+    else if(pos == tamanho()-1)
+        remover_ultimo();
+    else{
+        creches *atual;
+        atual = primeiro;
+
+        for(int i=0;i<pos;i++){
+            atual = atual->proximo;
+        }
+        creches *antes;
+        creches *depois;
+        
+        antes = atual->anterior;
+        depois = atual->proximo;
+
+        delete atual;
+
+        antes->proximo = depois;
+        depois->anterior = antes;
+
+        numero_de_creches--;
+    }
+}
+
+void ListaGerentes::remover_gerente(int pos){
+    if(pos == 0)
+        remover_primeiro();
+    else if(pos == tamanho()-1)
+        remover_ultimo();
+    else{
+        gerentes *atual;
+        atual = primeiro;
+
+        for(int i=0;i<pos;i++){
+            atual = atual->proximo;
+        }
+        gerentes *antes;
+        gerentes *depois;
+        
+        antes = atual->anterior;
+        depois = atual->proximo;
+
+        delete atual;
+
+        antes->proximo = depois;
+        depois->anterior = antes;
+
+        numero_de_gerentes--;
+    }
+}
