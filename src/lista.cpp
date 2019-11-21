@@ -1,11 +1,11 @@
 #include "../include/lista.hpp"
 
 admins::admins(){}
-
+admins::~admins(){}
 creches::creches(){}
-
+creches::~creches(){}
 gerentes::gerentes(){}
-
+gerentes::~gerentes(){}
 
 ListaAdmins::ListaAdmins(){
     primeiro = nullptr;
