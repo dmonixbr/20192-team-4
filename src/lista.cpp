@@ -1,5 +1,12 @@
 #include "../include/lista.hpp"
 
+admins::admins(){}
+
+creches::creches(){}
+
+gerentes::gerentes(){}
+
+
 ListaAdmins::ListaAdmins(){
     primeiro = nullptr;
     ultimo = nullptr;
