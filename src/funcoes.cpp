@@ -34,7 +34,7 @@ int CrudUsuario(){
         }
         
 
-        return;
+        return 0;
     }
 }
 
@@ -66,7 +66,7 @@ int LoginAdmin(){
     std::cout << "Ola admin, seja bem vindo!" << std::endl;
     try
     {
-        LoginAux();
+        return LoginAux();
     }
     catch(const char *e)
     {
@@ -76,9 +76,9 @@ int LoginAdmin(){
 }
 // Retorna 2 se o gerente logou
 int LoginGerente(){
-    return;
+    return 1;
 }
 
 int LoginAux(){
-    return;
+    return 1;
 }
