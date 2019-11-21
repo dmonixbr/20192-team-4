@@ -1,7 +1,8 @@
 #include "../include/funcoes.hpp"
 #include <stdexcept>
+#include <iostream>
 
-void CrudUsuario(){
+int CrudUsuario(){
 
     //criando o auxiliar de acesso
     int aux_acesso = -1;
@@ -20,7 +21,7 @@ void CrudUsuario(){
         std::cin >> aux_acesso;
         try
         {
-            AuxCrud(&aux_acesso);
+            return AuxCrud(aux_acesso);
         }
         catch(const char *e)
         {
@@ -37,22 +38,20 @@ void CrudUsuario(){
 }
 
 //funcao auxiliar para crud
-void AuxCrud(int *aux_acesso){
-    if(*aux_acesso != 1 && *aux_acesso !=2 && *aux_acesso !=0){
+int AuxCrud(int aux_acesso){
+    if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=0){
         throw "Ops, voce digitou um numero errado!";
     }else{
-        if(*aux_acesso == 1){
-            LoginAdmin();
-            delete aux_acesso;
+        if(aux_acesso == 1){
+            return LoginAdmin();
         }
-        else if(*aux_acesso == 2){
-            LoginGerente();
-            delete aux_acesso;
+        else if(aux_acesso == 2){
+            return LoginGerente();
         }
-        else if(*aux_acesso == 0){
+        else if(aux_acesso == 0){
             std::cout << "Muito Obrigado!!!" << std::endl;
             std::cout << "Tenha um bom dia!!" << std::endl;
-            return;
+            return 0;
         }
         else{
             throw "Ocorreu um erro inesperado, e para a sua seguranca o programa vai desligar";
@@ -62,7 +61,7 @@ void AuxCrud(int *aux_acesso){
 }
 
 
-void LoginAdmin(){
+int LoginAdmin(){
     std::cout << "Ola admin, seja bem vindo!" << std::endl;
     try
     {
@@ -74,9 +73,9 @@ void LoginAdmin(){
     }
     
 }
-void LoginGerente(){
+int LoginGerente(){
     return;
 }
-void LoginAux(){
+int LoginAux(){
     return;
 }
