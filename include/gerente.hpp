@@ -17,7 +17,13 @@ class Gerente : public Usuario {
         std::string get_endereco();
         void set_telefone(std::string);
         std::string get_telefone();
-    
+        std::string get_cpf() override;
+        void set_cpf(std::string) override;
+        std::string get_nome() override;
+        void set_nome(std::string) override;
+        std::string get_senha() override;
+        void set_senha(std::string) override;
+        void login(std::string, std::string) override;
 };
 
 
