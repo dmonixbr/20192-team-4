@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <iostream>
 
+//retorna 1 ou 2 dependendo de quem estiver logado
 int CrudUsuario(){
 
     //criando o auxiliar de acesso
@@ -37,7 +38,7 @@ int CrudUsuario(){
     }
 }
 
-//funcao auxiliar para crud
+//return 2 ou 1 dependendo de quem vai logar
 int AuxCrud(int aux_acesso){
     if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=0){
         throw "Ops, voce digitou um numero errado!";
@@ -60,7 +61,7 @@ int AuxCrud(int aux_acesso){
     
 }
 
-
+//Retorna 1 se o gerente logou
 int LoginAdmin(){
     std::cout << "Ola admin, seja bem vindo!" << std::endl;
     try
@@ -73,9 +74,11 @@ int LoginAdmin(){
     }
     
 }
+// Retorna 2 se o gerente logou
 int LoginGerente(){
     return;
 }
+
 int LoginAux(){
     return;
 }
