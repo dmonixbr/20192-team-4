@@ -9,7 +9,7 @@ class Gerente : public Usuario {
         std::string telefone;
     public:
 
-        Gerente(std::string,std::string,std::string,std::string,std::string,std::string,int);
+        Gerente();
 
         void set_periodo_mandato(std::string);
         std::string get_periodo_mandato();

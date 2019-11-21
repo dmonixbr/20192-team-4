@@ -10,7 +10,7 @@ Administrador A1("Gabriel","12345678","1234",1);
 int main(){
     /*-------------Testes do programa----------------*/
     
-
+    
     std::cout << A1.get_nome() << std::endl;
     
 
@@ -18,7 +18,9 @@ int main(){
     std::cout << "Bem vindo cornos" << std::endl;
     /*---------------Crud Usuarios------------------*/
 
-    CrudUsuario();
+    int autenticacao = CrudUsuario();
+
+    MenuPrincipal(autenticacao);
 
 
 }

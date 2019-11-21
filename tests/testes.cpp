@@ -44,12 +44,10 @@ TEST_CASE("02 - Teste getters e setters Administrador"){
 
     CHECK(Admin3->get_cpf()=="12345678");
     CHECK(Admin3->get_nome()=="Roberto");
-    CHECK(Admin3->get_senha()=="JGG1234");
+    CHECK(Admin3->get_senha()=="jgg1234");
 
     CHECK(Admin2.get_cpf()=="14067737602");
     CHECK(Admin2.get_nome()=="Gabriel");
-    CHECK(Admin2.get_senha()=="14072000");
-
-
-    
+    CHECK(Admin2.get_senha()=="14072000");    
 }
+

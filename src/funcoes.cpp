@@ -6,7 +6,6 @@
 int CrudUsuario(){
 
     //criando o auxiliar de acesso
-    int aux_acesso = -1;
     bool aux_permanencia = true;
 
     std::cout << "------Seja Bem Vindo ao Sistema da creche-------"<<std::endl;
@@ -19,45 +18,42 @@ int CrudUsuario(){
         std::cout << "2 - Login como Gerente da creche"<<std::endl;
         std::cout << "0 - Fechar o programa"<<std::endl;
 
-        std::cin >> aux_acesso;
-        try
-        {
-            return AuxCrud(aux_acesso);
+        try{
+            int aux_acesso;
+            std::cin >> aux_acesso;
+            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=0){
+                throw "Ops, voce digitou um numero errado!";
+            }
+            else{
+                if(aux_acesso == 1){
+                    return LoginAdmin();
+                }
+                else if(aux_acesso == 2){
+                    return LoginGerente();
+                }
+                else if(aux_acesso == 0){
+                    std::cout << "Muito Obrigado!!!" << std::endl;
+                    std::cout << "Tenha um bom dia!!" << std::endl;
+                    return 0;
+                }
+                else{
+                    throw "Ocorreu um erro inesperado, e para a sua seguranca o programa vai desligar";
+                }
+            }
         }
         catch(const char *e)
         {
             std::cerr << e << '\n';
-            CrudUsuario();
         }
         catch(...){
             std::cerr << "Erro inesperado" << '\n';
         }
-        
-
-        return 0;
+        return -1;
     }
 }
 
 //return 2 ou 1 dependendo de quem vai logar
-int AuxCrud(int aux_acesso){
-    if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=0){
-        throw "Ops, voce digitou um numero errado!";
-    }else{
-        if(aux_acesso == 1){
-            return LoginAdmin();
-        }
-        else if(aux_acesso == 2){
-            return LoginGerente();
-        }
-        else if(aux_acesso == 0){
-            std::cout << "Muito Obrigado!!!" << std::endl;
-            std::cout << "Tenha um bom dia!!" << std::endl;
-            return 0;
-        }
-        else{
-            throw "Ocorreu um erro inesperado, e para a sua seguranca o programa vai desligar";
-        }
-    }
+int AuxCrud(){
     
 }
 
@@ -76,9 +72,43 @@ int LoginAdmin(){
 }
 // Retorna 2 se o gerente logou
 int LoginGerente(){
-    return 1;
+    return 2;
 }
 
 int LoginAux(){
     return 1;
+}
+
+
+
+void MenuPrincipal(int autenticacao){
+
+    try
+    {
+        if(autenticacao == 1){
+            MenuAdmin();
+        }else if(autenticacao == 2){
+            MenuGerente();
+        }else if(autenticacao == 0){
+            return;
+        }else{
+            throw "Ocorreu um erro ao se logar, tente novamente";
+            MenuPrincipal(CrudUsuario());
+        }
+    }
+    catch(const char* e)
+    {
+        std::cerr << e << '\n';
+    }
+    
+    
+}
+void MenuGerente(){
+    std::cout << "Bem vindo ao seu menu gerente" << std::endl;
+    return;
+}
+
+void MenuAdmin(){
+    std::cout << "Bem vindo ao seu menu admin" << std::endl;
+    return;
 }

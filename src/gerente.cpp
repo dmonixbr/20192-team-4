@@ -1,13 +1,13 @@
 #include "../include/gerente.hpp"
 
-Gerente::Gerente(std::string _cpf, std::string _nome, std::string _senha ,std::string _periodo_mandato, std::string _endereco, std::string _telefone, int id){
-    this->cpf = _cpf;
-    this->nome = _nome;
-    this->senha = _senha;
-    this->periodo_mandato = _periodo_mandato;
-    this->endereco = _endereco;
-    this->telefone = _telefone;
-    this->id = id;
+Gerente::Gerente(){
+    this->cpf = "";
+    this->nome = "";
+    this->senha = "";
+    this->periodo_mandato = "";
+    this->endereco = "";
+    this->telefone = "";
+    this->id = -1;
 }
 
 
