@@ -10,12 +10,16 @@ ListaAdmins listaA;
 
 
 int main(){
+    /*---------------------Criando Administrador super--------------*/
     Administrador Super = Administrador();
     Administrador *S = & Super;
     Super.set_nome("super");
     Super.set_cpf("00000000000");
     Super.set_senha("super");
     listaA.insere_admin(S);
+    
+    //Administrador Super2("super2","123456789","1234567");
+    //listaA.insere_admin(&Super2);
     /*-------------Testes do programa----------------*/
 
    //criando o auxiliar de acesso

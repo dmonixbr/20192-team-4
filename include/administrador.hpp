@@ -7,6 +7,7 @@ class Administrador : public Usuario{
 
     public:
         Administrador();
+        //Administrador(std::string,std::string,std::string);
 
         std::string get_cpf();
 		void set_cpf(std::string);

@@ -8,7 +8,11 @@ Administrador::Administrador(){
     this->cpf = "";
     this->senha = "";
 }
-    
+/*Administrador::Administrador(std::string nome,std::string cpf,std::string senha){
+    this->nome = nome;
+    this->cpf = cpf;
+    this->senha = senha;
+}*/
 
 //setters
 void Administrador::set_nome(std::string _nome){
