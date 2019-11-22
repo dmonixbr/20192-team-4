@@ -23,16 +23,16 @@ void Gerente::set_telefone(std::string _telefone){
      this->telefone = _telefone;
 }
 
-void Gerente::set_cpf(std::string){
-    
+void Gerente::set_cpf(std::string cpf){
+    this->cpf = cpf;
 }
 
-void Gerente::set_nome(std::string){
-    
+void Gerente::set_nome(std::string nome){
+    this->nome = nome;
 }
 
-void Gerente::set_senha(std::string){
-    
+void Gerente::set_senha(std::string senha){
+    this->senha = senha;
 }
 
 //getters
@@ -49,15 +49,15 @@ std::string Gerente::get_telefone(){
 }
 
 std::string Gerente::get_cpf(){
-    return "ola";
+    return this->cpf;
 }
 
 std::string Gerente::get_nome(){
-    return "mundo";
+    return this->nome;
 }
 
 std::string Gerente::get_senha(){
-    return "!";
+    return this->senha;
 }
 
 

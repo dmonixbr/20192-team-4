@@ -14,15 +14,15 @@
 --------------------- Teste funcoes e construtor administrador--------------------------------
 */
 TEST_CASE("01 - Teste contrutor administrador"){
-    CHECK_NOTHROW(Administrador Admin());
-    CHECK_NOTHROW(Administrador Admin2());
+    CHECK_NOTHROW(Administrador Admin("Joao","14067737602","1234");
+    CHECK_NOTHROW(Administrador Admin2("Lucas", "14234533221", "mjss12332");
 }
 
 TEST_CASE("02 - Teste getters e setters Administrador"){
     //construindo administradores para os testes
-    Administrador *Admin1 = new Administrador();
-    Administrador Admin2("lucas", "12253452341231", "dkkd123142",2);
-    Administrador *Admin3 = new Administrador("gabriel", "1234542224", "sdsdawddwwa",3);
+    Administrador *Admin1 = new Administrador("Luis", "123536345", "1234");
+    Administrador Admin2("lucas", "12253452341231", "dkkd123142");
+    Administrador *Admin3 = new Administrador("gabriel", "1234542224", "sdsdawddwwa");
 
 
     //Getters
@@ -48,6 +48,6 @@ TEST_CASE("02 - Teste getters e setters Administrador"){
 
     CHECK(Admin2.get_cpf()=="14067737602");
     CHECK(Admin2.get_nome()=="Gabriel");
-    CHECK(Admin2.get_senha()=="14072000");    
+    CHECK(Admin2.get_senha()==("14072000");    
 }
 

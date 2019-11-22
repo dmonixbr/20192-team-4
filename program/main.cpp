@@ -17,8 +17,6 @@ int main(){
     Super->set_senha("super");
     listaA.insere_admin(Super);
     
-    //Administrador Super2("super2","123456789","1234567");
-    //listaA.insere_admin(&Super2);
     /*-------------Testes do programa----------------*/
 
    //criando o auxiliar de acesso
