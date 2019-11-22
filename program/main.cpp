@@ -5,7 +5,8 @@
 #include "../include/usuario.hpp"
 #include "../include/funcoes.hpp"
 
-
+ListaGerentes listaG = ListaGerentes();
+ListaAdmins listaA = ListaAdmins();
 
 int main(){
     /*-------------Testes do programa----------------*/

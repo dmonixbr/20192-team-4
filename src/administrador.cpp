@@ -2,10 +2,9 @@
 #include "../include/usuario.hpp"
 
 Administrador::Administrador(std::string _nome, std::string _cpf, std::string _senha, int _id){
-    this->nome = _nome;
-    this->cpf = _cpf;
-    this->senha = _senha;
-    this->id = id;
+    this->nome = "";
+    this->cpf = "";
+    this->senha = "";
 }
     
 
@@ -33,14 +32,29 @@ std::string Administrador::get_senha(){
 }
 
 //funcao para logar no sistema
-void Administrador::login(std::string _cpf, std::string _senha){
-    if(_cpf == this->cpf && _senha == this->senha){
-        std::cout << "Logado com sucesso!" << std::endl;
+void Administrador::Login(std::string _cpf){
+    int i;
+    std::string senha;
+    ListaAdmins *atual = listaA.primeiro;
+    for (i=0; i<listaA.tamanho(); i++){
+        if (atual->admin.cpf == _cpf ){
+            std::cout << "Digite a senha: \n";
+            std::cin << senha;
+            if (atual->admin.senha == senha){
+                // FUNÇÃO DO MENU DO ADMIN 
+            }
+
+        }
+        else if (atual->proximo == nullptr){
+            std::cout << "Não existe usuário associado à este CPF." << std::endl;
+        }
+        else{
+            atual = atual->proximo;
+        }
+
     }
-    else
-        std::cout << "Senha e ou usuario incorreto" << std::endl;
 }
 
-//funcao cadastrar uma creche
+
 
 
