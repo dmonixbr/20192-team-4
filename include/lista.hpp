@@ -7,7 +7,7 @@
 #include "gerente.hpp"
 
 struct admins {
-	Administrador admin;
+	Administrador *admin;
     admins();
     ~admins();
     
@@ -16,7 +16,7 @@ struct admins {
 };
 
 struct creches {
-    Creche creche;
+    Creche *creche;
     creches();
     ~creches();
 
@@ -26,7 +26,7 @@ struct creches {
 };
 
 struct gerentes {
-    Gerente gerente;
+    Gerente *gerente;
     gerentes();
     ~gerentes();
 
@@ -43,10 +43,10 @@ struct ListaAdmins{
     ListaAdmins();
     ~ListaAdmins();
 
-    void insere_admin(Administrador);
-    Administrador get_admin(int);
+    void insere_admin(Administrador *_admin);
+    Administrador *get_admin(int);
     int tamanho();
-    void insere_primeiro(Administrador);
+    void insere_primeiro(Administrador *_admin);
 };
 
 struct ListaCreches{
@@ -57,13 +57,13 @@ struct ListaCreches{
     ListaCreches();
     ~ListaCreches();
 
-    void insere_creche(Creche);
-    Creche get_creche(int);
+    void insere_creche(Creche *_creche);
+    Creche *get_creche(int);
     void remover_creche(int);
     void remover_primeiro();
     void remover_ultimo();
     int tamanho();
-    void insere_primeiro(Creche);
+    void insere_primeiro(Creche *_creche);
 };
 
 struct ListaGerentes{
@@ -74,12 +74,12 @@ struct ListaGerentes{
     ListaGerentes();
     ~ListaGerentes();
 
-    void insere_gerente(Gerente);
-    Gerente get_gerente(int);
+    void insere_gerente(Gerente *_ger);
+    Gerente *get_gerente(int);
     void remover_gerente(int);
     void remover_primeiro();
     void remover_ultimo();
     int tamanho();
-    void insere_primeiro(Gerente);
+    void insere_primeiro(Gerente *_ger);
 };
 #endif

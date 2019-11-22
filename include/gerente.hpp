@@ -23,7 +23,7 @@ class Gerente : public Usuario {
         void set_nome(std::string) override;
         std::string get_senha() override;
         void set_senha(std::string) override;
-        void login(std::string, std::string) override;
+        void Login(std::string) override;
 };
 
 

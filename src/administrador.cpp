@@ -1,7 +1,8 @@
 #include "../include/administrador.hpp"
 #include "../include/usuario.hpp"
+#include "../include/lista.hpp"
 
-Administrador::Administrador(std::string _nome, std::string _cpf, std::string _senha, int _id){
+Administrador::Administrador(){
     this->nome = "";
     this->cpf = "";
     this->senha = "";
@@ -39,7 +40,7 @@ void Administrador::Login(std::string _cpf){
     for (i=0; i<listaA.tamanho(); i++){
         if (atual->admin.cpf == _cpf ){
             std::cout << "Digite a senha: \n";
-            std::cin << senha;
+            std::cin >> senha;
             if (atual->admin.senha == senha){
                 // FUNÇÃO DO MENU DO ADMIN 
             }
