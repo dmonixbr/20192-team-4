@@ -3,21 +3,24 @@
 #include "../include/administrador.hpp"
 #include "../include/creche.hpp"
 #include "../include/usuario.hpp"
-#include "../include/funcoes.hpp"
+#include "../include/lista.hpp"
 
-ListaGerentes listaG = ListaGerentes();
-ListaAdmins listaA = ListaAdmins();
+ListaGerentes listaG;
+ListaAdmins listaA;
+
 
 int main(){
+    Administrador Super = Administrador();
+    Administrador *S = & Super;
+    Super.set_nome("super");
+    Super.set_cpf("00000000000");
+    Super.set_senha("super");
+    listaA.insere_admin(S);
     /*-------------Testes do programa----------------*/
-    
-    
-    std::cout << "Bem vindo cornos" << std::endl;
-    /*---------------Crud Usuarios------------------*/
 
    //criando o auxiliar de acesso
 
-    std::cout << "------Seja Bem Vindo ao Sistema da creche-------"<<std::endl;
+    std::cout << "\n\n------Seja Bem Vindo ao Sistema da creche-------"<<std::endl;
 
     
     while(1){
@@ -35,7 +38,10 @@ int main(){
             }
             else{
                 if(aux_acesso == 1){
-                    return 0;
+                    std::cout << "\n\n---------------------------- Login ----------------------------\n\nDigite seu CPF:" << std::endl;
+                    std::string cpf;
+                    std::cin >> cpf;
+                    listaA.primeiro->admin->Login(cpf);
                 }
                 else if(aux_acesso == 2){
                     return 0;

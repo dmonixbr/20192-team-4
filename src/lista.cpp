@@ -70,7 +70,7 @@ int ListaGerentes::tamanho(){
     return this->numero_de_gerentes;
 }
 
-void ListaAdmins::insere_primeiro(Administrador _admin){
+void ListaAdmins::insere_primeiro(Administrador *_admin){
     admins *novo_no = new admins();
     
     novo_no->admin = _admin;
@@ -91,7 +91,7 @@ void ListaAdmins::insere_primeiro(Administrador _admin){
     }
 }
 
-void ListaCreches::insere_primeiro(Creche _creche){
+void ListaCreches::insere_primeiro(Creche *_creche){
     creches *novo_no = new creches();
     
     novo_no->creche = _creche;
@@ -112,7 +112,7 @@ void ListaCreches::insere_primeiro(Creche _creche){
     }
 }
 
-void ListaGerentes::insere_primeiro(Gerente _gerente){
+void ListaGerentes::insere_primeiro(Gerente *_gerente){
     gerentes *novo_no = new gerentes();
     
     novo_no->gerente = _gerente;
@@ -133,7 +133,7 @@ void ListaGerentes::insere_primeiro(Gerente _gerente){
     }
 }
 
-void ListaAdmins::insere_admin(Administrador _admin){
+void ListaAdmins::insere_admin(Administrador *_admin){
     if(tamanho() == 0){
         insere_primeiro(_admin);
     }
@@ -151,7 +151,7 @@ void ListaAdmins::insere_admin(Administrador _admin){
     }
 }
 
-void ListaCreches::insere_creche(Creche _creche){
+void ListaCreches::insere_creche(Creche *_creche){
     if(tamanho() == 0){
         insere_primeiro(_creche);
     }
@@ -169,7 +169,7 @@ void ListaCreches::insere_creche(Creche _creche){
     }
 }
 
-void ListaGerentes::insere_gerente(Gerente _gerente){
+void ListaGerentes::insere_gerente(Gerente *_gerente){
     if(tamanho() == 0){
         insere_primeiro(_gerente);
     }
@@ -187,7 +187,7 @@ void ListaGerentes::insere_gerente(Gerente _gerente){
     }
 }
 
-Administrador ListaAdmins::get_admin(int n){
+Administrador *ListaAdmins::get_admin(int n){
     admins *atual = primeiro;
     int i=0;
     while(i<n){
@@ -197,7 +197,7 @@ Administrador ListaAdmins::get_admin(int n){
     return atual->admin;
 }
 
-Creche ListaCreches::get_creche(int n){
+Creche *ListaCreches::get_creche(int n){
     creches *atual = primeiro;
     int i=0;
     while(i<n){
@@ -207,7 +207,7 @@ Creche ListaCreches::get_creche(int n){
     return atual->creche;
 }
 
-Gerente ListaGerentes::get_gerente(int n){
+Gerente *ListaGerentes::get_gerente(int n){
     gerentes *atual = primeiro;
     int i=0;
     while(i<n){

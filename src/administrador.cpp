@@ -2,6 +2,7 @@
 #include "../include/usuario.hpp"
 #include "../include/lista.hpp"
 
+
 Administrador::Administrador(){
     this->nome = "";
     this->cpf = "";
@@ -36,13 +37,14 @@ std::string Administrador::get_senha(){
 void Administrador::Login(std::string _cpf){
     int i;
     std::string senha;
-    ListaAdmins *atual = listaA.primeiro;
+    extern ListaAdmins listaA;
+    admins *atual = listaA.primeiro;
     for (i=0; i<listaA.tamanho(); i++){
-        if (atual->admin.cpf == _cpf ){
+        if (atual->admin->cpf == _cpf ){
             std::cout << "Digite a senha: \n";
             std::cin >> senha;
-            if (atual->admin.senha == senha){
-                // FUNÇÃO DO MENU DO ADMIN 
+            if (atual->admin->senha == senha){
+                std::cout << "\n\nVocê entrou!\n\n" << std::endl;
             }
 
         }
@@ -55,6 +57,12 @@ void Administrador::Login(std::string _cpf){
 
     }
 }
+
+void Administrador::Deslogar(){
+    
+}
+
+
 
 
 

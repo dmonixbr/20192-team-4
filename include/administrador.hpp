@@ -1,4 +1,3 @@
-
 #ifndef ADMINISTRADOR_H
 #define ADMINISTRADOR_H
 
@@ -15,7 +14,8 @@ class Administrador : public Usuario{
 		void set_nome(std::string);
 		std::string get_senha();
 		void set_senha(std::string);
-        void Login(std::string);
+        void Login(std::string) override;
+        void Deslogar() override;
 
     private:
 
