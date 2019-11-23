@@ -17,6 +17,7 @@ class Administrador : public Usuario{
 		void set_senha(std::string);
         void Login(std::string) override;
         void Deslogar() override;
+        
 
     private:
 

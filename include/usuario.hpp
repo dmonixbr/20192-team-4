@@ -20,6 +20,7 @@ class Usuario{
 
 		virtual void Login(std::string) = 0;
 		virtual void Deslogar() = 0;
+		
 
 };
 
