@@ -1,5 +1,7 @@
 #include "../include/gerente.hpp"
 
+extern int MenuPrincipal();
+
 Gerente::Gerente(){
     this->cpf = "";
     this->nome = "";
@@ -73,8 +75,23 @@ void Gerente::Login(std::string){
 
 }
 
+int Gerente::Menu(){
+
+}
+
 void Gerente::Deslogar(){
-    
+    std::cout << "Tem certeza que deseja deslogar? (Y/N)" << std::endl;
+    std::string opt;
+    std::cin >> opt;
+    extern Gerente *SessaoGerente;
+    if (opt == "y" || opt == "Y"){
+        MenuPrincipal();
+    }else if (opt == "n" || opt == "N"){
+        SessaoGerente->Menu();
+    }
+    else{
+        std::cout << "Você digitou uma opção errada" << std::endl;
+    }
 }
 
 
