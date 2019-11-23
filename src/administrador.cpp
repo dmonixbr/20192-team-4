@@ -65,15 +65,7 @@ int Administrador::Menu(){
                     std::string nome, telefone, endereco, validate_convenio;
                     int id_gerente;
                     system("clear");
-                    std::cout << "\n\n---------------------------- Cadastrar uma nova creche ----------------------------\n" << std::endl;
-                    std::cout << "\n" << std::endl;
-                    std::cout << "\nDigite o nome da creche:";
-                    //std::cin  >>  nome;
-                    std::cout << "\nDigite o telefone da creche:";
-                    //std::cin  >>  telefone;
-                    std::cout << "\nDigite o endereco da creche:";
-                    //std::cin  >>  endereco;
-                    std::cout << "\nDigite a validade do convenio:";
+                    SessaoAdmin->CadastrarCreche();
 
                 }
 
@@ -110,11 +102,6 @@ int Administrador::Menu(){
 
 }
 
-//Função de Cadastro de Creche
-void Administrador::CadastrarCreche(std::string,std::string,std::string,std::string){
-
-
-}
 
 
 //funcao para logar no sistema
@@ -192,4 +179,31 @@ void  Administrador::CadastrarGerente(){
     novo_gerente->set_telefone(_telefone_gerente);
 
     listaG.insere_gerente(novo_gerente);
+}
+
+void Administrador::CadastrarCreche(){
+    extern Administrador SessaoAdmin;
+    std::string nome, endereco, telefone, validade;
+    int gerente;
+
+    system("clear");
+    std::cout << "---------------------------- Cadastrar Creche ----------------------------\n\n" << std::endl;
+    std::cout << "Digite o nome da creche: \n" << std::endl;
+    std::cin >> nome;
+    std::cout << "Digite o Endereço da Creche: \n" << std::endl;
+    std::cin >> endereco;
+    std::cout << "Digite o telefone da Creche: \n" << std::endl;
+    std::cin >> telefone;
+    std::cout << "Selecione o Gerente: \n" << std::endl;
+   
+    std::cin >> gerente;
+    std::cout << "Digite a validade do convênio (DDMMAAAA):" << std::endl;
+    std::cin >> validade;
+    Creche creche = Creche(nome, endereco, telefone, validade, gerente);
+
+    SessaoAdmin.Menu(); 
+}
+
+void Administrador::ListarGerentes(){
+
 }
