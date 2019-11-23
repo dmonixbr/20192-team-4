@@ -2,6 +2,7 @@
 #define USUARIO_H
 #include <string>
 #include <iostream>
+#include <stdio.h>
 
 class Usuario{
 	protected:

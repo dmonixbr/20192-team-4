@@ -1,6 +1,7 @@
 #ifndef CRECHE_H
 #define CRECHE_H
 #include <string>
+#include <stdio.h>
 #include "gerente.hpp"
 
 class Creche {

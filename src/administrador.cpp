@@ -43,6 +43,7 @@ std::string Administrador::get_senha(){
 int MenuAdmin(){
 
     while(1){
+        system("clear");
         std::cout << "Digite o numero da funcao que voce quer fazer:" << std::endl;
         std::cout << std::endl;
         std::cout << "1 - Cadastrar uma nova creche"<<std::endl; 
@@ -59,7 +60,7 @@ int MenuAdmin(){
                 if(aux_acesso == 1){
                     std::string nome, telefone, endereco, validate_convenio;
                     int id_gerente;
-
+                    system("clear");
                     std::cout << "\n\n---------------------------- Cadastrar uma nova creche ----------------------------\n" << std::endl;
                     std::cout << "\n" << std::endl;
                     std::cout << "\nDigite o nome da creche:";
@@ -75,6 +76,7 @@ int MenuAdmin(){
                 }
 
                 else if(aux_acesso == 2){
+                    system("clear");
                     std::cout << "\n\n---------------------------- Lista de creches ----------------------------\n\nDigite seu CPF:" << std::endl;;
                     return 0;
                 }
