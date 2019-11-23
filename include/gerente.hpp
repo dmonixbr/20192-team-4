@@ -10,6 +10,7 @@ class Gerente : public Usuario {
     public:
 
         Gerente();
+        Gerente(std::string,std::string,std::string,std::string,std::string,std::string);
 
         void set_periodo_mandato(std::string);
         std::string get_periodo_mandato();

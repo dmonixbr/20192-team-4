@@ -5,12 +5,16 @@
 #include "../include/administrador.hpp"
 #include "../include/gerente.hpp"
 #include "../include/creche.hpp"
+#include "../include/lista.hpp"
 
 #include <string.h>
 #include <iostream>
 #include <math.h>
 
 
+ListaGerentes listaG;
+ListaAdmins listaA;
+ListaCreches listaC;
 
 /* 
 --------------------- Teste funcoes e construtor administrador--------------------------------
@@ -52,4 +56,17 @@ TEST_CASE("02 - Teste getters e setters Administrador"){
     CHECK(Admin2.get_nome()=="Gabriel");
     CHECK(Admin2.get_senha()=="14072000");  
 }
+
+/*--------------- testando lista --------------------*/
+
+TEST_CASE("Teste inserir na lista"){
+    ListaGerentes
+
+
+
+
+
+}
+
+
 

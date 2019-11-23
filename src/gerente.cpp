@@ -8,7 +8,14 @@ Gerente::Gerente(){
     this->endereco = "";
     this->telefone = "";
 }
-
+Gerente::Gerente(std::string cpf,std::string nome,std::string senha,std::string periodo_mandato,std::string endereco,std::string telefone){
+    this->cpf = cpf;
+    this->nome = nome;
+    this->senha = senha;
+    this->periodo_mandato = periodo_mandato;
+    this->endereco = endereco;
+    this->telefone = telefone;
+}
 
 //setters
 void Gerente::set_periodo_mandato(std::string _periodo_mandato){
