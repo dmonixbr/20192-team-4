@@ -56,8 +56,21 @@ int MenuAdmin(){
             }
             else{
                 if(aux_acesso == 1){
-                    std::cout << "\n\n---------------------------- Cadastrar uma nova creche ----------------------------\n\nDigite seu CPF:" << std::endl;
-                    return 0;
+                    std::string nome, telefone, endereco, validate_convenio;
+                    int id_gerente;
+
+                    std::cout << "\n\n---------------------------- Cadastrar uma nova creche ----------------------------\n" << std::endl;
+                    std::cout << "\n" << std::endl;
+                    std::cout << "\nDigite o nome da creche:";
+                    //std::cin  >>  nome;
+                    std::cout << "\nDigite o telefone da creche:";
+                    //std::cin  >>  telefone;
+                    std::cout << "\nDigite o endereco da creche:";
+                    //std::cin  >>  endereco;
+                    std::cout << "\nDigite a validade do convenio:";
+                    //std::cin  >>  validate_convenio;
+                    std::cout << "\nDigite o ID do gerente:";
+
                 }
 
                 else if(aux_acesso == 2){
@@ -68,7 +81,6 @@ int MenuAdmin(){
 
                 else if(aux_acesso == 0){
                      
-                    
                 }
                 else{
                     throw "Ocorreu um erro inesperado, e para a sua seguranca o programa vai desligar";
@@ -88,6 +100,11 @@ int MenuAdmin(){
 
 }
 
+//Função de Cadastro de Creche
+void Administrador::CadastrarCreche(std::string,std::string,std::string,std::string){
+
+
+}
 
 
 //funcao para logar no sistema

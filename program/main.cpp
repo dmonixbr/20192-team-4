@@ -16,6 +16,7 @@ int main(){
     Super->set_cpf("00000000000");
     Super->set_senha("super");
     listaA.insere_admin(Super);
+
     
     /*-------------Testes do programa----------------*/
 
@@ -45,7 +46,11 @@ int main(){
                     listaA.primeiro->admin->Login(cpf);
                 }
                 else if(aux_acesso == 2){
-                    return 0;
+                    std::cout << "\n\n---------------------------- Login ----------------------------\n\nDigite seu CPF:" << std::endl;
+                    std::string cpf;
+                    std::cin >> cpf;
+                    listaG.primeiro->gerente->Login(cpf);
+                    
                 }
                 else if(aux_acesso == 0){
                     std::cout << "Muito Obrigado!!!" << std::endl;
