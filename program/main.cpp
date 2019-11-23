@@ -65,6 +65,7 @@ int MenuPrincipal(){
 }
 
 int main(){
+    system("clear");
     /*---------------------Criando Administrador super--------------*/
     Administrador *Super = new Administrador();
     Super->set_nome("super");
