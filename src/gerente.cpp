@@ -4,12 +4,12 @@
 extern int MenuPrincipal();
 
 Gerente::Gerente(){
-    this->cpf = "";
-    this->nome = "";
-    this->senha = "";
-    this->periodo_mandato = "";
-    this->endereco = "";
-    this->telefone = "";
+    this->cpf = "0";
+    this->nome = "0";
+    this->senha = "0";
+    this->periodo_mandato = "0";
+    this->endereco = "0";
+    this->telefone = "0";
 }
 Gerente::Gerente(std::string cpf,std::string nome,std::string senha,std::string periodo_mandato,std::string endereco,std::string telefone){
     this->cpf = cpf;

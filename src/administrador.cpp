@@ -4,9 +4,9 @@
 #include "../include/globais.hpp"
 
 Administrador::Administrador(){
-    this->nome = "";
-    this->cpf = "";
-    this->senha = "";
+    this->nome = "0";
+    this->cpf = "0";
+    this->senha = "0";
 }
 Administrador::Administrador(std::string nome,std::string cpf,std::string senha){
     this->nome = nome;
