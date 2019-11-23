@@ -3,11 +3,12 @@
 
 Creche::Creche(std::string _nome, std::string _telefone, std::string _endereco, std::string _validate_convenio, int id_gerente){
     this->nome = _nome;
-    this->endereco = _telefone;
+    this->telefone = _telefone;
     this->endereco = _endereco;
     this->validade_convenio = _validate_convenio;
-    this->id_gerente = id_gerente;
+    this->pos_gerente = id_gerente;
 }
+
 
 //setters
 void Creche::set_nome(std::string _nome){

@@ -4,6 +4,7 @@
 
 extern ListaGerentes listaG;
 extern ListaAdmins listaA;
+extern ListaAdmins listaC;
 
 namespace gmu
 {
