@@ -10,6 +10,7 @@ class Creche {
         std::string telefone;
         std::string endereco;
         std::string validade_convenio;
+        int pos_gerente;
     public:
 
         Creche(std::string,std::string,std::string,std::string);

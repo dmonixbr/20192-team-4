@@ -22,7 +22,7 @@ class Administrador : public Usuario{
     private:
 
         
-        void CadastrarCreche(std::string,std::string,std::string,std::string);
+        void CadastrarCreche();
         void VerCreche ();
         void EditarCreche();
         void DeletarCreche ();
@@ -30,6 +30,7 @@ class Administrador : public Usuario{
         void GerarRelatorioAnual ();
         void GerarRelatorioTrimestral ();
         int Menu();
+        void ListarGerentes();
 
 
 };
