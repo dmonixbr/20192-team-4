@@ -1,8 +1,7 @@
 #include "../include/administrador.hpp"
 #include "../include/usuario.hpp"
 #include "../include/lista.hpp"
-
-extern int MenuPrincipal();
+#include "../include/globais.hpp"
 
 Administrador::Administrador(){
     this->nome = "";
@@ -137,7 +136,7 @@ void Administrador::Login(std::string _cpf){
         }
         else if (atual->proximo == nullptr){
             std::cout << "Não existe usuário associado à este CPF." << std::endl;
-            MenuPrincipal();
+            gmu::MenuFunc::MenuPrincipal();
         }
         else{
             atual = atual->proximo;
@@ -153,7 +152,7 @@ void Administrador::Deslogar(){
     std::cin >> opt;
     extern Administrador *SessaoAdmin;
     if (opt == "y" || opt == "Y"){
-        MenuPrincipal();
+        gmu::MenuFunc::MenuPrincipal();
     }else if (opt == "n" || opt == "N"){
         SessaoAdmin->Menu();
     }

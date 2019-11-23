@@ -1,4 +1,5 @@
 #include "../include/gerente.hpp"
+#include "../include/globais.hpp"
 
 extern int MenuPrincipal();
 
@@ -85,7 +86,7 @@ void Gerente::Deslogar(){
     std::cin >> opt;
     extern Gerente *SessaoGerente;
     if (opt == "y" || opt == "Y"){
-        MenuPrincipal();
+        gmu::MenuFunc::MenuPrincipal();
     }else if (opt == "n" || opt == "N"){
         SessaoGerente->Menu();
     }
