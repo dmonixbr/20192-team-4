@@ -29,12 +29,14 @@ int MenuPrincipal(){
             }
             else{
                 if(aux_acesso == 1){
+                    system("clear");
                     std::cout << "\n\n---------------------------- Login ----------------------------\n\nDigite seu CPF:" << std::endl;
                     std::string cpf;
                     std::cin >> cpf;
                     listaA.primeiro->admin->Login(cpf);
                 }
                 else if(aux_acesso == 2){
+                    system("clear");
                     std::cout << "\n\n---------------------------- Login ----------------------------\n\nDigite seu CPF:" << std::endl;
                     std::string cpf;
                     std::cin >> cpf;
