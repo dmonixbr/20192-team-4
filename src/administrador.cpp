@@ -2,6 +2,7 @@
 #include "../include/usuario.hpp"
 #include "../include/lista.hpp"
 
+extern int menu_principal();
 
 Administrador::Administrador(){
     this->nome = "";
@@ -125,6 +126,7 @@ void Administrador::Login(std::string _cpf){
         }
         else if (atual->proximo == nullptr){
             std::cout << "Não existe usuário associado à este CPF." << std::endl;
+            menu_principal();
         }
         else{
             atual = atual->proximo;

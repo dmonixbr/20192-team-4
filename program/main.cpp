@@ -8,20 +8,7 @@
 ListaGerentes listaG;
 ListaAdmins listaA;
 
-
-int main(){
-    /*---------------------Criando Administrador super--------------*/
-    Administrador *Super = new Administrador();
-    Super->set_nome("super");
-    Super->set_cpf("00000000000");
-    Super->set_senha("super");
-    listaA.insere_admin(Super);
-
-    
-    /*-------------Testes do programa----------------*/
-
-   //criando o auxiliar de acesso
-
+int menu_principal(){
     std::cout << "\n\n------Seja Bem Vindo ao Sistema da creche-------"<<std::endl;
 
     
@@ -71,4 +58,16 @@ int main(){
         }
         return -1;
     }
+}
+
+int main(){
+    /*---------------------Criando Administrador super--------------*/
+    Administrador *Super = new Administrador();
+    Super->set_nome("super");
+    Super->set_cpf("00000000000");
+    Super->set_senha("super");
+    listaA.insere_admin(Super);
+
+    
+    menu_principal();
 }
