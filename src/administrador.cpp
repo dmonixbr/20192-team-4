@@ -51,12 +51,13 @@ int Administrador::Menu(){
         std::cout << std::endl;
         std::cout << "1 - Cadastrar uma nova creche"<<std::endl; 
         std::cout << "2 - Ver creches"<<std::endl;
+        std::cout << "3 - Cadastrar um novo gerente" << std::endl;
         std::cout << "0 - Sair"<<std::endl;
 
         try{
             int aux_acesso;
             std::cin >> aux_acesso;
-            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=0){
+            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=3 && aux_acesso !=0){
                 throw "Ops, voce digitou um numero errado!";
             }
             else{
