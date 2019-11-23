@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 .vscode/
 
 *.o
 bin/
+=======
+.vscode/
+
+*.o
+>>>>>>> master

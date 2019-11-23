@@ -1,8 +1,7 @@
 #include "../include/administrador.hpp"
 #include "../include/usuario.hpp"
 #include "../include/lista.hpp"
-
-extern int MenuPrincipal();
+#include "../include/globais.hpp"
 
 Administrador::Administrador(){
     this->nome = "";
@@ -41,8 +40,10 @@ std::string Administrador::get_senha(){
 
 //Função de Menu de Administrador
 int Administrador::Menu(){
-
+    extern ListaAdmins listaA;
+    admins *atual = listaA.primeiro;
     extern Administrador *SessaoAdmin;
+    SessaoAdmin = atual->admin;
 
     while(1){
         system("clear");
@@ -71,6 +72,11 @@ int Administrador::Menu(){
                     system("clear");
                     std::cout << "\n\n---------------------------- Lista de creches ----------------------------\n\nDigite seu CPF:" << std::endl;;
                     return 0;
+                }
+
+                else if(aux_acesso == 3){
+                    system("clear");
+                    SessaoAdmin->CadastrarGerente();
                 }
 
 
@@ -117,7 +123,7 @@ void Administrador::Login(std::string _cpf){
         }
         else if (atual->proximo == nullptr){
             std::cout << "Não existe usuário associado à este CPF." << std::endl;
-            MenuPrincipal();
+            gmu::MenuFunc::MenuPrincipal();
         }
         else{
             atual = atual->proximo;
@@ -133,7 +139,7 @@ void Administrador::Deslogar(){
     std::cin >> opt;
     extern Administrador *SessaoAdmin;
     if (opt == "y" || opt == "Y"){
-        MenuPrincipal();
+        gmu::MenuFunc::MenuPrincipal();
     }else if (opt == "n" || opt == "N"){
         SessaoAdmin->Menu();
     }
@@ -142,7 +148,37 @@ void Administrador::Deslogar(){
     }
 }
 
+void  Administrador::CadastrarGerente(){
+    extern ListaGerentes listaG;
 
+    std::string _cpf_gerente;
+    std::string _nome_gerente;
+    std::string _senha_gerente;
+    std::string _endereco_gerente;
+    std::string _telefone_gerente;
+    system("clear");
+
+    std::cout << "--------------------------------Cadastro de Gerente---------------------------\n\nDigite o CPF do Gerente:" << std::endl;
+    std::cin >> _cpf_gerente;
+    std::cout << "Digite o nome do Gerente:" << std::endl;
+    std::cin >> _nome_gerente;
+    std::cout << "Digite a senha do gerente:" << std::endl;
+    std::cin >> _senha_gerente;
+    std::cout << "Digite o endereco do gerente:" << std::endl;
+    std::cin >> _endereco_gerente;
+    std::cout << "Digite o telefone do gerente:" << std::endl;
+    std::cin >> _telefone_gerente;
+
+    Gerente *novo_gerente = new Gerente();
+
+    novo_gerente->set_cpf(_cpf_gerente);
+    novo_gerente->set_nome(_nome_gerente);
+    novo_gerente->set_senha(_senha_gerente);
+    novo_gerente->set_endereco(_endereco_gerente);
+    novo_gerente->set_telefone(_telefone_gerente);
+
+    listaG.insere_gerente(novo_gerente);
+}
 
 void Administrador::CadastrarCreche(){
     extern Administrador SessaoAdmin;
