@@ -29,6 +29,7 @@ class Administrador : public Usuario{
         void CadastrarGerente();
         void GerarRelatorioAnual ();
         void GerarRelatorioTrimestral ();
+        int Menu();
 
 
 };

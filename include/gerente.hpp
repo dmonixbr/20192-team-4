@@ -24,6 +24,7 @@ class Gerente : public Usuario {
         std::string get_senha() override;
         void set_senha(std::string) override;
         void Login(std::string) override;
+        void Deslogar() override;
 };
 
 

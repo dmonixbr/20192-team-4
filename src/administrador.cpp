@@ -2,7 +2,7 @@
 #include "../include/usuario.hpp"
 #include "../include/lista.hpp"
 
-extern int menu_principal();
+extern int MenuPrincipal();
 
 Administrador::Administrador(){
     this->nome = "";
@@ -40,14 +40,16 @@ std::string Administrador::get_senha(){
 
 
 //Função de Menu de Administrador
-int MenuAdmin(){
+int Administrador::Menu(){
+
+    extern Administrador *SessaoAdmin;
 
     while(1){
         std::cout << "Digite o numero da funcao que voce quer fazer:" << std::endl;
         std::cout << std::endl;
         std::cout << "1 - Cadastrar uma nova creche"<<std::endl; 
         std::cout << "2 - Ver creches"<<std::endl;
-        std::cout << "0 - Voltar para o Menu Anterior"<<std::endl;
+        std::cout << "0 - Sair"<<std::endl;
 
         try{
             int aux_acesso;
@@ -69,8 +71,6 @@ int MenuAdmin(){
                     std::cout << "\nDigite o endereco da creche:";
                     //std::cin  >>  endereco;
                     std::cout << "\nDigite a validade do convenio:";
-                    //std::cin  >>  validate_convenio;
-                    std::cout << "\nDigite o ID do gerente:";
 
                 }
 
@@ -81,7 +81,7 @@ int MenuAdmin(){
 
 
                 else if(aux_acesso == 0){
-                     
+                     SessaoAdmin->Deslogar();
                 }
                 else{
                     throw "Ocorreu um erro inesperado, e para a sua seguranca o programa vai desligar";
@@ -113,6 +113,7 @@ void Administrador::Login(std::string _cpf){
     int i;
     std::string senha;
     extern ListaAdmins listaA;
+    extern Administrador *SessaoAdmin;
     admins *atual = listaA.primeiro;
     for (i=0; i<listaA.tamanho(); i++){
         if (atual->admin->cpf == _cpf ){
@@ -120,13 +121,14 @@ void Administrador::Login(std::string _cpf){
             std::cin >> senha;
             if (atual->admin->senha == senha){
                 std::cout << "\n\nVocê entrou!\n\n" << std::endl;
-                MenuAdmin();
+                SessaoAdmin = atual->admin;
+                SessaoAdmin->Menu();
             }
 
         }
         else if (atual->proximo == nullptr){
             std::cout << "Não existe usuário associado à este CPF." << std::endl;
-            menu_principal();
+            MenuPrincipal();
         }
         else{
             atual = atual->proximo;
@@ -137,6 +139,17 @@ void Administrador::Login(std::string _cpf){
 
 
 void Administrador::Deslogar(){
-    
+    std::cout << "Tem certeza que deseja deslogar? (Y/N)" << std::endl;
+    std::string opt;
+    std::cin >> opt;
+    extern Administrador *SessaoAdmin;
+    if (opt == "y" || opt == "Y"){
+        MenuPrincipal();
+    }else if (opt == "n" || opt == "N"){
+        SessaoAdmin->Menu();
+    }
+    else{
+        std::cout << "Você digitou uma opção errada" << std::endl;
+    }
 }
 

@@ -66,5 +66,9 @@ void Gerente::Login(std::string){
 
 }
 
+void Gerente::Deslogar(){
+    
+}
+
 
 

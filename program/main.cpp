@@ -7,8 +7,10 @@
 
 ListaGerentes listaG;
 ListaAdmins listaA;
+Administrador *SessaoAdmin;
+Gerente *SessaoGerente;
 
-int menu_principal(){
+int MenuPrincipal(){
     std::cout << "\n\n------Seja Bem Vindo ao Sistema da creche-------"<<std::endl;
 
     
@@ -67,7 +69,8 @@ int main(){
     Super->set_cpf("00000000000");
     Super->set_senha("super");
     listaA.insere_admin(Super);
+    
 
     
-    menu_principal();
+    MenuPrincipal();
 }
