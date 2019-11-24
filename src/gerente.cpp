@@ -1,5 +1,6 @@
 #include "../include/gerente.hpp"
 #include "../include/globais.hpp"
+#include "../include/lista.hpp"
 
 extern int MenuPrincipal();
 
@@ -72,12 +73,61 @@ std::string Gerente::get_senha(){
 
 
 //Metodos
-void Gerente::Login(std::string){
+void Gerente::Login(std::string _cpf){
+    int i;
+    std::string senha;
+    extern ListaGerentes listaG;
+    extern Gerente *SessaoGerente;
+    gerentes *atual = listaG.primeiro;
+    for (i=0; i<listaG.tamanho(); i++){
+        if (atual->gerente->cpf == _cpf ){
+            std::cout << "Digite a senha: \n";
+            std::cin >> senha;
+            if (atual->gerente->senha == senha){
+                std::cout << "\n\nVocê entrou!\n\n" << std::endl;
+                SessaoGerente = atual->gerente;
+                SessaoGerente->Menu();
+            }
 
+        }
+        else if (atual->proximo == nullptr){
+            std::cout << "Não existe usuário associado à este CPF." << std::endl;
+            gmu::MenuFunc::MenuPrincipal();
+        }
+        else{
+            atual = atual->proximo;
+        }
+
+    }
 }
 
 int Gerente::Menu(){
+    extern ListaGerentes listaG;
+    gerentes *atual = listaG.primeiro;
+    extern Gerente *SessaoGerente;
+    SessaoGerente = atual->gerente;
 
+    while(1){
+        system("clear");
+        std::cout << "Digite o numero da funcao que voce quer fazer:" << std::endl;
+        std::cout << std::endl;
+        std::cout << "1 - Emitir relatorio de minha creche"<<std::endl; 
+        std::cout << "2 - Editar minha creche"<<std::endl;
+        std::cout << "0 - Sair"<<std::endl;
+
+        try{
+            int aux_acesso;
+            std::cin >> aux_acesso;
+            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=0){
+                throw "Ops, voce digitou um numero errado!";
+            }
+            else{
+                if(aux_acesso == 1){
+                    system("clear");
+                }
+            }
+        }
+    }
 }
 
 void Gerente::Deslogar(){
