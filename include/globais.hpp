@@ -4,6 +4,6 @@ namespace gmu{
 
     class MenuFunc{
         public:
-            static int MenuPrincipal();
+            static void MenuPrincipal();
     };
 }
