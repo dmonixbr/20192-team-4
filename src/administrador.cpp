@@ -58,7 +58,7 @@ int Administrador::Menu(){
 
         try{
             int aux_acesso;
-            std::cin >> aux_acesso;
+            std::getline(std::cin, aux_acesso);
             if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=3 && aux_acesso != 4 && aux_acesso !=0){
                 throw "Ops, voce digitou um numero errado!";
             }
@@ -117,7 +117,7 @@ void Administrador::Login(std::string _cpf){
     for (i=0; i<listaA.tamanho(); i++){
         if (atual->admin->cpf == _cpf ){
             std::cout << "Digite a senha: \n";
-            std::cin >> senha;
+            std::getline(std::cin, senha);
             if (atual->admin->senha == senha){
                 std::cout << "\n\nVocê entrou!\n\n" << std::endl;
                 SessaoAdmin = atual->admin;
@@ -144,7 +144,7 @@ void Administrador::Login(std::string _cpf){
 void Administrador::Deslogar(){
     std::cout << "Tem certeza que deseja deslogar? (Y/N)" << std::endl;
     std::string opt;
-    std::cin >> opt;
+    std::getline(std::cin, opt);
     extern Administrador *SessaoAdmin;
     if (opt == "y" || opt == "Y"){
         gmu::MenuFunc::MenuPrincipal();
@@ -171,15 +171,15 @@ void  Administrador::CadastrarGerente(){
     system("clear");
 
     std::cout << "--------------------------------Cadastro de Gerente---------------------------\n\nDigite o CPF do Gerente:" << std::endl;
-    std::cin >> _cpf_gerente;
+    std::getline(std::cin, _cpf_gerente);
     std::cout << "Digite o nome do Gerente:" << std::endl;
-    std::cin >> _nome_gerente;
+    std::getline(std::cin, _nome_gerente);
     std::cout << "Digite a senha do gerente:" << std::endl;
-    std::cin >> _senha_gerente;
+    std::getline(std::cin, _senha_gerente);
     std::cout << "Digite o endereco do gerente:" << std::endl;
-    std::cin >> _endereco_gerente;
+    std::getline(std::cin, _endereco_gerente);
     std::cout << "Digite o telefone do gerente:" << std::endl;
-    std::cin >> _telefone_gerente;
+    std::getline(std::cin, _telefone_gerente);
 
     Gerente *novo_gerente = new Gerente();
 

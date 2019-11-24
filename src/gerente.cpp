@@ -82,7 +82,7 @@ void Gerente::Login(std::string _cpf){
     for (i=0; i<listaG.tamanho(); i++){
         if (atual->gerente->cpf == _cpf ){
             std::cout << "Digite a senha: \n";
-            std::cin >> senha;
+            std::getline(std::cin, senha);
             if (atual->gerente->senha == senha){
                 std::cout << "\n\nVocê entrou!\n\n" << std::endl;
                 SessaoGerente = atual->gerente;
@@ -129,7 +129,7 @@ int Gerente::Menu(){
 
         try{
             int aux_acesso;
-            std::cin >> aux_acesso;
+            std::getline(std::cin, aux_acesso);
             if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=0){
                 throw "Ops, voce digitou um numero errado!";
             }
