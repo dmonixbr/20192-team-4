@@ -282,26 +282,39 @@ void Administrador::ListarCreches(){
 void Administrador::CadastrarAdmin(){
     extern ListaAdmins listaA;
     extern Administrador SessaoAdmin;
+    admins *atual = listaA.primeiro;
     std::string _cpf_admin;
     std::string _nome_admin;
     std::string _senha_admin;
+    int checa_cpf = 0;
 
     system("clear");
     std::cout << "-------------------------- Cadastro de novo administrador do sistema -------------\n" << std::endl;
     std::cout << "Digite o CPF do administrador:" << std::endl;
     std::cin.ignore();
     std::getline(std::cin, _cpf_admin);
-    std::cout << "Digite o nome do administrador: " << std::endl;
-    std::getline(std::cin, _nome_admin);
-    std::cout << "Digite a senha do administrador: " << std::endl;
-    std::getline(std::cin, _senha_admin);
+    for(int i=0;i<listaA.tamanho();i++){
+        if(_cpf_admin == atual->admin->get_cpf()){
+            checa_cpf++;
+        }
+    }
+    if(checa_cpf > 0){
+        std::cout << "CPF ja cadastrado!" << std::endl;
+    }
+    else{
+        std::cout << "Digite o nome do administrador: " << std::endl;
+        std::cin.ignore();
+        std::getline(std::cin, _nome_admin);
+        std::cout << "Digite a senha do administrador: " << std::endl;
+        std::getline(std::cin, _senha_admin);
 
-    Administrador *novo_admin = new Administrador();
-    novo_admin->set_cpf(_cpf_admin);
-    novo_admin->set_nome(_nome_admin);
-    novo_admin->set_senha(_senha_admin);
+        Administrador *novo_admin = new Administrador();
+        novo_admin->set_cpf(_cpf_admin);
+        novo_admin->set_nome(_nome_admin);
+        novo_admin->set_senha(_senha_admin);
 
-    listaA.insere_admin(novo_admin);
+        listaA.insere_admin(novo_admin);
 
-    SessaoAdmin.Menu();
+        SessaoAdmin.Menu();
+    }
 }
