@@ -89,7 +89,7 @@ int Administrador::Menu(){
                 }
 
                 else if(aux_acesso == 5){
-                    SessaoAdmin->EditarAdmin();
+                    SessaoAdmin->EditarAdmin("","","");
                 }
 
                 else if(aux_acesso == 6){
@@ -283,9 +283,16 @@ void Administrador::ListarCreches(){
     }
 }
 void Administrador::EditarAdmin(std::string _nome,std::string _cpf, std::string _senha){
-    std::string cpf , nome, senha;
+    std::string cpf = _cpf,
+                nome = _nome,
+                senha = _senha;
     std::cout << "\n\n ----------Editar meus dados--------------\n\n";
     std::cin.ignore();
+    extern ListaAdmins listaA;
+    admins *atual = listaA.primeiro;
+    extern Administrador *SessaoAdmin;
+    SessaoAdmin = atual->admin;
+
 
     while(1){
         system("clear");
@@ -308,28 +315,34 @@ void Administrador::EditarAdmin(std::string _nome,std::string _cpf, std::string 
                     std::cin.ignore();
                     std::cout << "Digite o novo nome:" << std::endl;
                     std::getline(std::cin, nome);
+                    SessaoAdmin->EditarAdmin(nome,"","");
                 }
                 //editar cpf
                 else if(aux_acesso == 2){
                     std::cin.ignore();
                     std::cout << "Digite o novo cpf:" << std::endl;
                     std::getline(std::cin, cpf);
+                    SessaoAdmin->EditarAdmin("",cpf,"");
                 }
                 //editar senha
                 else if(aux_acesso == 3){
-                    
+                    std::cin.ignore();
+                    std::cout << "Digite a nova senha: " << std::endl;
+                    std::getline(std::cin, senha);
+                    SessaoAdmin->EditarAdmin("","",senha);
                 }
                 
                 //sair e salvar
                 else if(aux_acesso == 4){
-
-    }
-   
-}
+                    SessaoAdmin->set_cpf(cpf);
+                    SessaoAdmin->set_nome(nome);
+                    SessaoAdmin->set_senha(senha);
+                    SessaoAdmin->Menu();
+                }
 
                 //sair sem salvar
                 else if(aux_acesso == 0){
-
+                    SessaoAdmin->Menu();
                 }
             }
         
