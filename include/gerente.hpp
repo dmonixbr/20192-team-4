@@ -7,6 +7,7 @@ class Gerente : public Usuario {
         std::string periodo_mandato;
         std::string endereco;
         std::string telefone;
+        
 
         //funcoes creche
         
@@ -30,6 +31,7 @@ class Gerente : public Usuario {
         std::string get_nome() override;
         std::string get_endereco();
         std::string get_senha() override;
+        
 
         //setters
         void set_periodo_mandato(std::string);
@@ -39,7 +41,6 @@ class Gerente : public Usuario {
         void set_nome(std::string) override;
         void set_senha(std::string) override;
         void Login(std::string) override;
-        
 };
 
 

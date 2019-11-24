@@ -195,6 +195,7 @@ void  Administrador::CadastrarGerente(){
     std::string _senha_gerente;
     std::string _endereco_gerente;
     std::string _telefone_gerente;
+    std::string _periodo_mandato;
     system("clear");
 
     std::cout << "--------------------------------Cadastro de Gerente---------------------------\n\nDigite o CPF do Gerente:" << std::endl;
@@ -208,6 +209,8 @@ void  Administrador::CadastrarGerente(){
     std::getline(std::cin, _endereco_gerente);
     std::cout << "Digite o telefone do gerente:" << std::endl;
     std::getline(std::cin, _telefone_gerente);
+    std::cout << "Digite o periodo de mandato do gerente:" << std::endl;
+    std::getline(std::cin, _periodo_mandato);
 
     Gerente *novo_gerente = new Gerente();
 
@@ -216,6 +219,7 @@ void  Administrador::CadastrarGerente(){
     novo_gerente->set_senha(_senha_gerente);
     novo_gerente->set_endereco(_endereco_gerente);
     novo_gerente->set_telefone(_telefone_gerente);
+    novo_gerente->set_periodo_mandato(_periodo_mandato);
 
     listaG.insere_gerente(novo_gerente);
 
@@ -339,6 +343,7 @@ void Administrador::EditarDados(){
                 nome = SessaoAdmin->get_nome(),
                 senha = SessaoAdmin->get_senha();
     std::cout << "\n\n ----------Editar meus dados--------------\n\n";
+    int aux_acesso;
 
 
     while(1){
@@ -351,7 +356,6 @@ void Administrador::EditarDados(){
         std::cout << "4 - Sair e salvar           0 - Sair sem salvar" << std::endl;
 
         try{
-            int aux_acesso;
             std::cin >> aux_acesso;
             if(aux_acesso != 1 && aux_acesso != 2 && aux_acesso != 3 && aux_acesso != 4 && aux_acesso != 0){
                 throw "Ops, voce digitou um numero errado";    
@@ -386,12 +390,14 @@ void Administrador::EditarDados(){
                     SessaoAdmin->set_nome(nome);
                     SessaoAdmin->set_senha(senha);
                     SessaoAdmin->Menu();
+                    return;
                 }
 
                 //sair sem salvar
                 else if(aux_acesso == 0){
                     system("clear");
                     SessaoAdmin->Menu();
+                    return;
                 }
             }
         }
