@@ -14,6 +14,8 @@ class Usuario{
 		std::string nome;
 		std::string	senha;
 
+		virtual void VerDados() = 0;
+		virtual void EditarDados() = 0;
 		
 	public:
 
@@ -26,7 +28,6 @@ class Usuario{
 
 		virtual void Login(std::string) = 0;
 		virtual void Deslogar() = 0;
-		virtual void VerDados() = 0;
 	
 };
 

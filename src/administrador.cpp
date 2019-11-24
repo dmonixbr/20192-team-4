@@ -57,12 +57,13 @@ int Administrador::Menu(){
         std::cout << "4 - Listar gerentes cadastrados" << std::endl;
         std::cout << "5 - Editar meus proprios dados" << std::endl;
         std::cout << "6 - Cadastrar novo administrador ao sistema" << std::endl;
+        std::cout << "7 - Ver meus proprios dados" << std::endl;
         std::cout << "0 - Sair"<<std::endl;
 
         try{
             int aux_acesso;
             std::cin >> aux_acesso;
-            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=3 && aux_acesso != 4 && aux_acesso != 5 && aux_acesso != 6 && aux_acesso !=0){
+            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=3 && aux_acesso != 4 && aux_acesso != 5 && aux_acesso != 6 && aux_acesso !=0 && aux_acesso != 7){
                 throw "Ops, voce digitou um numero errado!";
             }
             else{
@@ -90,15 +91,21 @@ int Administrador::Menu(){
                 }
 
                 else if(aux_acesso == 5){
-                    SessaoAdmin->EditarDados("","","");
+                    SessaoAdmin->EditarDados();
                 }
 
                 else if(aux_acesso == 6){
                     SessaoAdmin->CadastrarAdmin();
                 }
+                
+                else if(aux_acesso == 7){
+                    SessaoAdmin->VerDados();
+                }
+
                 else if(aux_acesso == 0){
                     SessaoAdmin->Deslogar();
                 }
+
                 else{
                     throw "Ocorreu um erro inesperado, e para a sua seguranca o programa vai desligar";
                 }
@@ -313,16 +320,16 @@ void Administrador::ListarCreches(){
         }
     }
 }
-void Administrador::EditarDados(std::string _nome,std::string _cpf, std::string _senha){
-    std::string cpf = _cpf,
-                nome = _nome,
-                senha = _senha;
-    std::cout << "\n\n ----------Editar meus dados--------------\n\n";
-    //std::cin.ignore();
+void Administrador::EditarDados(){
     extern ListaAdmins listaA;
     admins *atual = listaA.primeiro;
     extern Administrador *SessaoAdmin;
     SessaoAdmin = atual->admin;
+
+    std::string cpf = SessaoAdmin->get_cpf(),
+                nome = SessaoAdmin->get_nome(),
+                senha = SessaoAdmin->get_senha();
+    std::cout << "\n\n ----------Editar meus dados--------------\n\n";
 
 
     while(1){
@@ -347,7 +354,6 @@ void Administrador::EditarDados(std::string _nome,std::string _cpf, std::string 
                     std::cin.ignore();
                     std::cout << "Digite o novo nome:" << std::endl;
                     std::getline(std::cin, nome);
-                    SessaoAdmin->EditarDados(nome,"","");
                 }
                 //editar cpf
                 else if(aux_acesso == 2){
@@ -355,7 +361,6 @@ void Administrador::EditarDados(std::string _nome,std::string _cpf, std::string 
                     std::cin.ignore();
                     std::cout << "Digite o novo cpf:" << std::endl;
                     std::getline(std::cin, cpf);
-                    SessaoAdmin->EditarDados("",cpf,"");
                 }
                 //editar senha
                 else if(aux_acesso == 3){
@@ -363,7 +368,6 @@ void Administrador::EditarDados(std::string _nome,std::string _cpf, std::string 
                     std::cin.ignore();
                     std::cout << "Digite a nova senha: " << std::endl;
                     std::getline(std::cin, senha);
-                    SessaoAdmin->EditarDados("","",senha);
                 }
                 
                 //sair e salvar
@@ -435,9 +439,36 @@ void Administrador::CadastrarAdmin(){
 
 void Administrador::VerDados(){
     extern ListaAdmins listaA;
-    extern Administrador SessaoAdmin;
     admins *atual = listaA.primeiro;
+    extern Administrador *SessaoAdmin;
+    SessaoAdmin = atual->admin;
 
+    system("clear");
+    std::cout << "Seja Bem Vindo! \n" << std::endl;
+    std::cout << "Ola " << SessaoAdmin->get_nome() << "," << std::endl;
+
+    std::cout << "CPF: " << SessaoAdmin->get_cpf() << ";" << std::endl;
+    std::cout << "SENHA: " << SessaoAdmin->get_senha() << ";\n\n" << std::endl;
+
+    std::cout << "Digite 0 para sair" << std::endl; 
+    int aux_acesso;
+    std::cin.ignore();
+    std::cin >> aux_acesso;
+
+    try{
+        if(aux_acesso != 0){
+            throw "ops, voce digitou um numero errado";
+        }
+        else if(aux_acesso == 0){
+            SessaoAdmin->Menu();
+        }
+    }
+    catch(const char *e){
+        std::cerr << e << '\n';
+    }
+    catch(...){
+    std::cerr << "Erro inesperado" << '\n';
+    }
 }
 
 void Administrador::ListarAdmins(){ 

@@ -16,6 +16,8 @@ class Gerente : public Usuario {
         int Menu();
 
         void VerDados() override;
+        void EditarDados() override;
+        
     public:
 
         Gerente();
