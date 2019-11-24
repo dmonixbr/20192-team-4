@@ -289,6 +289,7 @@ void Administrador::EditarAdmin(){
         std::cout << "1 - Editar Nome" << std::endl;
         std::cout << "2 - Editar CPF" << std::endl;
         std::cout << "3 - Editar senha" << std::endl;
+        std::cout << std::endl;
 
 
     }
