@@ -57,12 +57,13 @@ int Administrador::Menu(){
         std::cout << "3 - Cadastrar um novo gerente" << std::endl;
         std::cout << "4 - Listar gerentes cadastrados" << std::endl;
         std::cout << "5 - Editar meus proprios dados" << std::endl;
+        std::cout << "5 - Cadastrar novo administrador ao sistema" << std::endl;
         std::cout << "0 - Sair"<<std::endl;
 
         try{
             int aux_acesso;
             std::cin >> aux_acesso;
-            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=3 && aux_acesso != 4 && aux_acesso !=0){
+            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=3 && aux_acesso != 4 && aux_acesso != 5 && aux_acesso !=0){
                 throw "Ops, voce digitou um numero errado!";
             }
             else{
@@ -89,9 +90,7 @@ int Administrador::Menu(){
 
                 else if(aux_acesso == 5){
                     SessaoAdmin->EditarAdmin();
-                }
 
-                else if(aux_acesso == 0){
                      SessaoAdmin->Deslogar();
                 }
                 else{
@@ -296,4 +295,30 @@ void Administrador::EditarAdmin(){
    
 
 
+
+void Administrador::CadastrarAdmin(){
+    extern ListaAdmins listaA;
+    extern Administrador SessaoAdmin;
+    std::string _cpf_admin;
+    std::string _nome_admin;
+    std::string _senha_admin;
+
+    system("clear");
+    std::cout << "-------------------------- Cadastro de novo administrador do sistema -------------\n" << std::endl;
+    std::cout << "Digite o CPF do administrador:" << std::endl;
+    std::cin.ignore();
+    std::getline(std::cin, _cpf_admin);
+    std::cout << "Digite o nome do administrador: " << std::endl;
+    std::getline(std::cin, _nome_admin);
+    std::cout << "Digite a senha do administrador: " << std::endl;
+    std::getline(std::cin, _senha_admin);
+
+    Administrador *novo_admin = new Administrador();
+    novo_admin->set_cpf(_cpf_admin);
+    novo_admin->set_nome(_nome_admin);
+    novo_admin->set_senha(_senha_admin);
+
+    listaA.insere_admin(novo_admin);
+
+    SessaoAdmin.Menu();
 }

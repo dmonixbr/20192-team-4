@@ -33,6 +33,7 @@ class Administrador : public Usuario{
         void ListarGerentes();
         void ListarCreches();
         void EditarAdmin();
+        void CadastrarAdmin();
 
 
 };
