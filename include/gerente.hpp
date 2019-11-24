@@ -31,6 +31,8 @@ class Gerente : public Usuario {
         //funcoes creche
         void Login(std::string) override;
         void Deslogar() override;
+        void EmitirRelatorio();
+        void EditarCreche();
         int Menu();
 };
 

@@ -231,19 +231,18 @@ void Administrador::ListarGerentes(){
     gerentes *atual;
     atual = listaG.primeiro;
     if(listaG.tamanho() != 0){
-        std::cout << "ID\t\tNome do gerente" << std::endl;
-        std::cout << "------------------------------------------------------------" << std::endl;
+        std::cout << "ID\t\tNome do gerente\t\tTelefone\t\tCreche" << std::endl;
+        std::cout << "------------------------------------------------------------------------------" << std::endl;
         for(int i=0;i<listaG.tamanho();i++){
-            Gerente *gerente_momento = atual->gerente;
-            std::cout << i << "\t\t" << gerente_momento->get_nome() << std::endl;
+            std::cout << i << "\t\t" << atual->gerente->get_nome() << "\t\t" << atual->gerente->get_telefone() << std::endl;
             atual = atual->proximo;
-            delete gerente_momento;
         }
     }
     else{
         std::cout << "Não há nenhum gerente cadastrado" << std::endl;
     }
-
+    std::cout << "Aperte qualquer tecla para continuar" << std::endl;
+    getchar();
     SessaoAdmin->Menu();
 }
 

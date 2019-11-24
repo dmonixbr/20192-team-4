@@ -20,8 +20,8 @@ ListaCreches listaC;
 /*-------------------------*/
 
 /* 
---------------------- Teste funcoes e construtor administrador--------------------------------
-*/
+--------------------- Teste funcoes e construtor administrador---------------------------*/
+
 TEST_CASE("01 - Teste contrutor administrador"){
     CHECK_NOTHROW(Administrador Admin("Joao","14067737602","1234"));
     CHECK_NOTHROW(Administrador Admin2("Lucas", "14234533221", "mjss12332"));
@@ -60,11 +60,50 @@ TEST_CASE("02 - Teste getters e setters Administrador"){
     CHECK(Admin2.get_senha()=="14072000");  
 }
 
+/*----------------- Testes funcoes e construtores Gerente -------------------*/
+
+TEST_CASE("01 - Teste Construtores Gerente"){
+    CHECK_NOTHROW(Gerente gerente1("Luis","0000000","1234567","12345","rua teste","31992312342"));
+    CHECK_NOTHROW(Gerente gerente2("Luas", "14234533221", "mjs","122","rua teste 2","31993410213"));
+}
+TEST_CASE("02 - Teste getters e setters Gerente"){
+    Gerente *gerente1 = new Gerente("teste1","teste","123456789","1234","rua teste","31999999999");
+    Gerente gerente2("teste2","teste","1234567","123456","rua teste2","3188888888");
+    Gerente *gerente3 = new Gerente("teste3","teste","11111111111","1234","rua local","31993410214");
+
+    CHECK(gerente1->get_cpf() == "teste");
+    CHECK(gerente2.get_cpf()== "teste");
+
+    CHECK(gerente2.get_nome()== "teste2");
+    CHECK(gerente3->get_nome()=="teste3");
+
+    CHECK(gerente1->get_senha() == "123456789");
+    CHECK(gerente2.get_senha()== "1234567");
+
+    CHECK(gerente2.get_periodo_mandato()== "123456");
+    CHECK(gerente3->get_periodo_mandato()=="1234");
+
+    CHECK(gerente2.get_endereco()== "rua teste2");
+    CHECK(gerente3->get_endereco()=="rua local");
+
+    CHECK(gerente2.get_telefone()== "3188888888");
+    CHECK(gerente3->get_telefone()=="31993410214");
+
+    gerente1->set_cpf("01234");
+    gerente2.set_endereco("testeSet");
+    gerente3->set_senha("{/*pause*/}");
+
+    CHECK(gerente1->get_cpf()== "01234");
+    CHECK(gerente2.get_endereco() == "testeSet");
+    CHECK(gerente3->get_senha()=="{/*pause*/}");
+
+
+}
 /*--------------- testando lista --------------------*/
 
 TEST_CASE("Teste inserir na lista"){
     Administrador admin1("teste1","1234567","1234567");
-    Creche creche1("creche1","1234567","1234567","00000");
+    Creche creche1("creche1","1234567","1234567","12312423",1);
     Gerente gerente1("gerente1","1234567","1234567","000","000","000");
 
     listaA.insere_admin(&admin1);
@@ -84,7 +123,7 @@ TEST_CASE("Teste inserir na lista"){
     CHECK(listaA.get_admin(0)->get_cpf() == "0000000");
 
     Administrador *admin2 = new Administrador();
-    Creche *creche2 = new Creche();
+    Creche *creche2 = new Creche("","","","",1);
     Gerente *gerente2 = new Gerente();
 
     creche2->set_nome("teste1");
@@ -105,7 +144,7 @@ TEST_CASE("Teste inserir na lista"){
 
     Administrador *admin3 = new Administrador();
     listaA.insere_admin(admin3);
-    Creche *creche3 = new Creche();
+    Creche *creche3 = new Creche("teste3","","","",3);
     listaC.insere_creche(creche3);
 
     listaG.remover_ultimo();
