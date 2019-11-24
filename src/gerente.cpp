@@ -129,7 +129,7 @@ int Gerente::Menu(){
 
         try{
             int aux_acesso;
-            std::getline(std::cin, aux_acesso);
+            std::cin >> aux_acesso;
             if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=0){
                 throw "Ops, voce digitou um numero errado!";
             }
