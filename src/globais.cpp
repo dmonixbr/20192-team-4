@@ -28,13 +28,14 @@ namespace gmu
                         system("clear");
                         std::cout << "\n\n---------------------------- Login ----------------------------\n\nDigite seu CPF:" << std::endl;
                         std::string cpf;
-                        std::getline(std::cin, cpf);
+                        std::cin >> cpf;
                         listaA.primeiro->admin->Login(cpf);
                     }
                     else if(aux_acesso == 2){
                         system("clear");
                         std::cout << "\n\n---------------------------- Login ----------------------------\n\nDigite seu CPF:" << std::endl;
                         std::string cpf;
+                        std::cin.ignore();
                         std::getline(std::cin, cpf);
                         listaG.primeiro->gerente->Login(cpf);
                     
@@ -60,3 +61,4 @@ namespace gmu
         }
     }
 }
+

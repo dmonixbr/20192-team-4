@@ -82,6 +82,7 @@ void Gerente::Login(std::string _cpf){
     for (i=0; i<listaG.tamanho(); i++){
         if (atual->gerente->cpf == _cpf ){
             std::cout << "Digite a senha: \n";
+            std::cin.ignore();
             std::getline(std::cin, senha);
             if (atual->gerente->senha == senha){
                 std::cout << "\n\nVocê entrou!\n\n" << std::endl;
