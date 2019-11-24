@@ -12,7 +12,7 @@ Gerente::Gerente(){
     this->endereco = "0";
     this->telefone = "0";
 }
-Gerente::Gerente(std::string cpf,std::string nome,std::string senha,std::string periodo_mandato,std::string endereco,std::string telefone){
+Gerente::Gerente(std::string nome,std::string cpf,std::string senha,std::string periodo_mandato,std::string endereco,std::string telefone){
     this->cpf = cpf;
     this->nome = nome;
     this->senha = senha;
