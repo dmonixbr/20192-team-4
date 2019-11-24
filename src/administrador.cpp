@@ -123,7 +123,6 @@ void Administrador::Login(std::string _cpf){
                 SessaoAdmin = atual->admin;
                 SessaoAdmin->Menu();
             }
-
         }
         else if (atual->proximo == nullptr){
             std::cout << "Não existe usuário associado à este CPF." << std::endl;
