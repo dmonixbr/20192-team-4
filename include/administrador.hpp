@@ -32,10 +32,10 @@ class Administrador : public Usuario{
         void GerarRelatorioTrimestral ();
         int Menu();
         int ListarGerentes();
-        void ListarCreches();
+        int ListarCreches();
         void EditarDados() override;
         void CadastrarAdmin();
-        void VerDados() override;
+        void VerDados(int) override;
 
 };
 

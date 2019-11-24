@@ -8,7 +8,7 @@ extern ListaAdmins listaC;
 
 namespace gmu
 {
-    int MenuFunc::MenuPrincipal(){
+    void MenuFunc::MenuPrincipal(){
         std::cout << "\n\n------Seja Bem Vindo ao Sistema da creche-------"<<std::endl;
                 while(1){
                     std::cout << "Digite o numero da funcao que voce quer fazer:" << std::endl;
@@ -48,7 +48,7 @@ namespace gmu
                     else if(aux_acesso == 0){
                         std::cout << "Muito Obrigado!!!" << std::endl;
                         std::cout << "Tenha um bom dia!!" << std::endl;
-                        return 0;
+                        return;
                     }   
                     else{
                         throw "Ocorreu um erro inesperado, e para a sua seguranca o programa vai desligar";
@@ -62,7 +62,7 @@ namespace gmu
             catch(...){
                 std::cerr << "Erro inesperado" << '\n';
             }
-            return -1;
+            return;
         }
     }
 }

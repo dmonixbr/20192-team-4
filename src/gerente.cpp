@@ -74,7 +74,6 @@ std::string Gerente::get_senha(){
 
 //Metodos
 void Gerente::Login(std::string _cpf){
-    std::cout << "teste" << std::endl;
     int i;
     std::string senha;
     extern ListaGerentes listaG;
@@ -192,12 +191,14 @@ int Gerente::Menu(){
         std::cout << std::endl;
         std::cout << "1 - Emitir relatorio de minha creche"<<std::endl; 
         std::cout << "2 - Editar minha creche"<<std::endl;
+        std::cout << "3 - Editar meus dados" << std:: endl;
+        std::cout << "4 - Ver meus dados" << std::endl;
         std::cout << "0 - Sair"<<std::endl;
 
         try{
             int aux_acesso;
             std::cin >> aux_acesso;
-            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=0){
+            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=3 && aux_acesso !=4 && aux_acesso !=0){
                 throw "Ops, voce digitou um numero errado!";
             }
             else{
@@ -208,6 +209,16 @@ int Gerente::Menu(){
                 else if(aux_acesso == 2){
                     SessaoGerente->EditarCreche();
                 }
+                else if(aux_acesso == 3){
+                    system("clear");
+                    SessaoGerente->EditarDados();
+                }
+
+                else if(aux_acesso == 4){
+                    system("clear");
+                    SessaoGerente->VerDados();
+                }
+
                 else if(aux_acesso == 0){
                     SessaoGerente->Deslogar();
                 }
@@ -245,9 +256,139 @@ void Gerente::Deslogar(){
 }
 
 void Gerente::VerDados(){
-    
+        extern ListaGerentes listaG;
+    gerentes *atual = listaG.primeiro;
+    extern Gerente *SessaoGerente;
+    SessaoGerente = atual->gerente;
+
+    system("clear");
+    std::cout << "Seja Bem Vindo! \n" << std::endl;
+    std::cout << "Ola " << SessaoGerente->get_nome() << "," << std::endl;
+
+    std::cout << "CPF: " << SessaoGerente->get_cpf() << ";" << std::endl;
+    std::cout << "Senha: " << SessaoGerente->get_senha() << ";" << std::endl;
+    std::cout << "Periodo mandato: " << SessaoGerente->get_periodo_mandato() << ";" << std::endl;
+    std::cout << "Endereco:" << SessaoGerente->get_endereco() << ";" << std::endl;
+    std::cout << "Telefone: " << SessaoGerente->get_telefone() << ";\n\n" << std::endl;
+
+    std::cout << "Digite 0 para sair" << std::endl; 
+    int aux_acesso;
+    std::cin.ignore();
+    std::cin >> aux_acesso;
+
+    try{
+        if(aux_acesso != 0){
+            throw "ops, voce digitou um numero errado";
+        }
+        else if(aux_acesso == 0){
+            SessaoGerente->Menu();
+        }
+    }
+    catch(const char *e){
+        std::cerr << e << '\n';
+    }
+    catch(...){
+    std::cerr << "Erro inesperado" << '\n';
+    }
 }
 
 void Gerente::EditarDados(){
-    
+    extern ListaGerentes listaG;
+    gerentes *atual = listaG.primeiro;
+    extern Gerente *SessaoGerente;
+    SessaoGerente = atual->gerente;
+
+    std::string cpf = SessaoGerente->get_cpf(),
+                nome = SessaoGerente->get_nome(),
+                senha = SessaoGerente->get_senha(),
+                endereco = SessaoGerente->get_endereco(),
+                telefone = SessaoGerente->get_telefone();
+
+    std::cout << "\n\n ----------Editar meus dados--------------\n\n";
+
+
+    while(1){
+      //0  system("clear");
+        std::cout <<"Digite o numero do dado que voce deseja editar\n"<<std::endl;
+        std::cout << "1 - Editar Nome" << std::endl;
+        std::cout << "2 - Editar CPF" << std::endl;
+        std::cout << "3 - Editar senha" << std::endl;
+        std::cout << "4 - Editar endereco" << std::endl;
+        std::cout << "5 - Editar telefone" << std::endl;
+        std::cout << std::endl;
+        std::cout << "6 - Sair e salvar           0 - Sair sem salvar" << std::endl;
+
+        try{
+            int aux_acesso;
+            std::cin >> aux_acesso;
+            if(aux_acesso != 1 && aux_acesso != 2 && aux_acesso != 3 && aux_acesso != 4 && aux_acesso !=5 && aux_acesso !=6 && aux_acesso != 0){
+                throw "Ops, voce digitou um numero errado";    
+            }
+            else{
+                //editar nome
+                if(aux_acesso == 1){
+                    system("clear");
+                    std::cin.ignore();
+                    std::cout << "Digite o novo nome:" << std::endl;
+                    std::getline(std::cin, nome);
+                }
+                //editar cpf
+                else if(aux_acesso == 2){
+                    system("clear");
+                    std::cin.ignore();
+                    std::cout << "Digite o novo cpf:" << std::endl;
+                    std::getline(std::cin, cpf);
+                }
+                //editar senha
+                else if(aux_acesso == 3){
+                    system("clear");
+                    std::cin.ignore();
+                    std::cout << "Digite a nova senha: " << std::endl;
+                    std::getline(std::cin, senha);
+                }
+
+                //editar endereco
+                else if(aux_acesso == 4){
+                    system("clear");
+                    std::cin.ignore();
+                    std::cout << "Digite o novo endereco: " << std::endl;
+                    std::getline(std::cin, endereco);
+                }
+
+                //editar telefone
+                else if(aux_acesso == 5){
+                    system("clear");
+                    std::cin.ignore();
+                    std::cout << "Digite o novo telefone: " << std::endl;
+                    std::getline(std::cin, telefone);
+                }
+                
+                //sair e salvar
+                else if(aux_acesso == 6){
+                    system("clear");
+                    SessaoGerente->set_cpf(cpf);
+                    SessaoGerente->set_nome(nome);
+                    SessaoGerente->set_senha(senha);
+                    SessaoGerente->set_endereco(endereco);
+                    SessaoGerente->set_telefone(telefone);
+                    SessaoGerente->Menu();
+                    return;
+                    
+                }
+
+                //sair sem salvar
+                else if(aux_acesso == 0){
+                    system("clear");
+                    SessaoGerente->Menu();
+                    return;
+                }
+            }
+        }
+        catch(const char *e){
+            std::cerr << e << '\n';
+        }
+        catch(...){
+        std::cerr << "Erro inesperado" << '\n';
+        }
+    }
 }
