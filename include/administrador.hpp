@@ -34,6 +34,7 @@ class Administrador : public Usuario{
         void ListarCreches();
         void EditarAdmin(std::string, std::string, std::string);
         void CadastrarAdmin();
+        void ListarAdmins();
 
 
 };
