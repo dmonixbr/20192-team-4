@@ -8,6 +8,7 @@
 
 ListaGerentes listaG;
 ListaAdmins listaA;
+ListaCreches listaC;
 Administrador *SessaoAdmin;
 Gerente *SessaoGerente;
 

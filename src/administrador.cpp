@@ -1,4 +1,5 @@
 #include "../include/administrador.hpp"
+#include "../include/creche.hpp"
 #include "../include/usuario.hpp"
 #include "../include/lista.hpp"
 #include "../include/globais.hpp"
@@ -62,8 +63,6 @@ int Administrador::Menu(){
             }
             else{
                 if(aux_acesso == 1){
-                    std::string nome, telefone, endereco, validate_convenio;
-                    int id_gerente;
                     system("clear");
                     SessaoAdmin->CadastrarCreche();
 
@@ -189,7 +188,11 @@ void  Administrador::CadastrarGerente(){
 
 void Administrador::CadastrarCreche(){
     extern Administrador SessaoAdmin;
-    std::string nome, endereco, telefone, validade;
+    extern ListaCreches listaC;
+    std::string nome;
+    std::string endereco;
+    std::string telefone;
+    std::string validade;
     int gerente;
 
     system("clear");
@@ -205,7 +208,8 @@ void Administrador::CadastrarCreche(){
     std::cin >> gerente;
     std::cout << "Digite a validade do convênio (DDMMAAAA):" << std::endl;
     std::cin >> validade;
-    Creche creche = Creche(nome, endereco, telefone, validade, gerente);
+
+    Creche *creche = new Creche(nome, telefone, endereco, validade, gerente);
 
     SessaoAdmin.Menu(); 
 }

@@ -12,7 +12,9 @@ Creche::Creche(){
     this->telefone = "0";
     this->endereco = "0";
     this->validade_convenio = "0";
+    this->pos_gerente = id_gerente;
 }
+
 
 //setters
 void Creche::set_nome(std::string _nome){
