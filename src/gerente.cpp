@@ -179,5 +179,11 @@ void Gerente::Deslogar(){
     }
 }
 
+void Gerente::VerDados(){
+
+}
+void Gerente::EditarDados(){
+    
+}
 
 
