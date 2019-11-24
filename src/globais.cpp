@@ -33,12 +33,17 @@ namespace gmu
                     }
                     else if(aux_acesso == 2){
                         system("clear");
-                        std::cout << "\n\n---------------------------- Login ----------------------------\n\nDigite seu CPF:" << std::endl;
-                        std::string cpf;
-                        std::cin.ignore();
-                        std::getline(std::cin, cpf);
-                        listaG.primeiro->gerente->Login(cpf);
-                    
+                        if (listaG.primeiro == nullptr){                        
+                            std::cout << "\n\n\nNão existem gerentes cadastrados. Peça para um administrador cadastrar você!\n\n\n" << std::endl;
+                            std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(3));
+                            system("clear");
+                            gmu::MenuFunc::MenuPrincipal();
+                        }else{
+                            std::cout << "\n\n---------------------------- Login ----------------------------\n\nDigite seu CPF:" << std::endl;
+                            std::string cpf;
+                            std::cin >> cpf;
+                            listaG.primeiro->gerente->Login(cpf);
+                        }
                     }
                     else if(aux_acesso == 0){
                         std::cout << "Muito Obrigado!!!" << std::endl;

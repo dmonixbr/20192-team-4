@@ -74,6 +74,7 @@ std::string Gerente::get_senha(){
 
 //Metodos
 void Gerente::Login(std::string _cpf){
+    std::cout << "teste" << std::endl;
     int i;
     std::string senha;
     extern ListaGerentes listaG;
@@ -81,7 +82,7 @@ void Gerente::Login(std::string _cpf){
     gerentes *atual = listaG.primeiro;
     for (i=0; i<listaG.tamanho(); i++){
         if (atual->gerente->cpf == _cpf ){
-            std::cout << "Digite a senha: \n";
+            std::cout << "Digite a senha: \n" << std::endl;
             std::cin.ignore();
             std::getline(std::cin, senha);
             if (atual->gerente->senha == senha){
