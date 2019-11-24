@@ -10,6 +10,9 @@ class Usuario{
 		std::string cpf;
 		std::string nome;
 		std::string	senha;
+
+		virtual void Login(std::string) = 0;
+		virtual void Deslogar() = 0;
 		
 	public:
 		virtual std::string get_cpf() = 0;
@@ -19,8 +22,6 @@ class Usuario{
 		virtual std::string get_senha() = 0;
 		virtual void set_senha(std::string) = 0;
 
-		virtual void Login(std::string) = 0;
-		virtual void Deslogar() = 0;
 		
 
 };

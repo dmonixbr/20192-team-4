@@ -287,7 +287,7 @@ void Administrador::EditarAdmin(std::string _nome,std::string _cpf, std::string 
                 nome = _nome,
                 senha = _senha;
     std::cout << "\n\n ----------Editar meus dados--------------\n\n";
-    std::cin.ignore();
+    //std::cin.ignore();
     extern ListaAdmins listaA;
     admins *atual = listaA.primeiro;
     extern Administrador *SessaoAdmin;
@@ -345,7 +345,6 @@ void Administrador::EditarAdmin(std::string _nome,std::string _cpf, std::string 
                     SessaoAdmin->Menu();
                 }
             }
-        
         }
         catch(const char *e){
             std::cerr << e << '\n';
