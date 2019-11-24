@@ -1,5 +1,4 @@
 
-#include <iomanip>
 #include "../include/administrador.hpp"
 #include "../include/creche.hpp"
 #include "../include/usuario.hpp"
@@ -83,6 +82,7 @@ int Administrador::Menu(){
                 }
 
                 else if(aux_acesso == 4){
+                    system("clear");
                     SessaoAdmin->ListarGerentes();
                 }
 
@@ -122,8 +122,10 @@ void Administrador::Login(std::string _cpf){
             std::cin.ignore();
             std::getline(std::cin, senha);
             if (atual->admin->senha == senha){
-                std::cout << "\n\nVocê entrou!\n\n" << std::endl;
+                system("clear");
                 SessaoAdmin = atual->admin;
+                std::cout << "\n\nVocê entrou!\n\n" << "Seja bem vindo," << SessaoAdmin->nome << "!" << std::endl;
+                std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(2));
                 SessaoAdmin->Menu();
             }else{
                 std::cout << "Você digitou a senha incorreta. Tente novamente." << std::endl;
@@ -216,9 +218,10 @@ void Administrador::CadastrarCreche(){
     std::getline(std::cin, endereco);
     std::cout << "Digite o telefone da Creche: \n" << std::endl;
     std::getline(std::cin, telefone);
-    std::cout << "Selecione o Gerente: \n" << std::endl;
-   
+    std::cout << "Digite o ID do Gerente: \n" << std::endl;
+    SessaoAdmin.ListarGerentes();
     std::cin >> gerente;
+    std::cin.ignore();
     std::cout << "Digite a validade do convênio (DDMMAAAA):" << std::endl;
     std::getline(std::cin, validade);
 
@@ -250,8 +253,11 @@ void Administrador::ListarGerentes(){
     else{
         std::cout << "Não há nenhum gerente cadastrado" << std::endl;
     }
-    std::cout << "Aperte qualquer tecla para continuar" << std::endl;
-    getchar();
+    std::cout << "Tecle 0 para voltar ao menu." << std::endl;
+    int a;
+    do{
+        std::cin >> a;
+    }while(a!=0);
     SessaoAdmin->Menu();
 }
 
@@ -265,10 +271,11 @@ void Administrador::ListarCreches(){
     creches *atual;
     atual = listaC.primeiro;
     if(listaC.tamanho() !=0){
-        std::cout << std::left << std::setw(20) << "Nome" << std::setw(70) << "Endereço" << std::setw(20) << "Telefone" << std::setw(30) << "Gerente"  << std::setw(30) << "Validade do Convênio" << std::endl;
-        std::cout << "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << std::endl;
+        std::cout << std::left << std::setw(20) << "Nome" << std::setw(40) << "Endereço" << std::setw(20) << "Telefone" << std::setw(30) << "Gerente"  << std::setw(30) << "Validade do Convênio" << std::endl;
+        std::cout << "--------------------------------------------------------------------------------------------------------------------------------------------" << std::endl;
         for (int i=0; i<listaC.tamanho(); i++){
-            std::cout << std::left << std::setw(20) << atual->creche->get_nome() << std::setw(70) << atual->creche->get_endereco() << std::setw(20) << atual->creche->get_telefone() << std::setw(30) << atual->creche->get_pos_gerente() << std::setw(30) << atual->creche->get_validade_convenio() << std::endl;
+            std::cout << std::left << std::setw(20) << atual->creche->get_nome() << std::setw(40) << atual->creche->get_endereco() << std::setw(20) << atual->creche->get_telefone() << std::setw(30) 
+            << listaG.get_gerente(atual->creche->get_pos_gerente())->get_nome() << std::setw(30) << atual->creche->get_validade_convenio() << std::endl;
             atual = atual->proximo;
         }
     }

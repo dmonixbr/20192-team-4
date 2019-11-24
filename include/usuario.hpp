@@ -3,6 +3,9 @@
 #include <string>
 #include <iostream>
 #include <stdio.h>
+#include <chrono>
+#include <thread>
+#include <iomanip>
 
 class Usuario{
 	protected:
