@@ -57,13 +57,13 @@ int Administrador::Menu(){
         std::cout << "3 - Cadastrar um novo gerente" << std::endl;
         std::cout << "4 - Listar gerentes cadastrados" << std::endl;
         std::cout << "5 - Editar meus proprios dados" << std::endl;
-        std::cout << "5 - Cadastrar novo administrador ao sistema" << std::endl;
+        std::cout << "6 - Cadastrar novo administrador ao sistema" << std::endl;
         std::cout << "0 - Sair"<<std::endl;
 
         try{
             int aux_acesso;
             std::cin >> aux_acesso;
-            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=3 && aux_acesso != 4 && aux_acesso != 5 && aux_acesso !=0){
+            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=3 && aux_acesso != 4 && aux_acesso != 5 && aux_acesso != 6 && aux_acesso !=0){
                 throw "Ops, voce digitou um numero errado!";
             }
             else{
@@ -90,8 +90,13 @@ int Administrador::Menu(){
 
                 else if(aux_acesso == 5){
                     SessaoAdmin->EditarAdmin();
+                }
 
-                     SessaoAdmin->Deslogar();
+                else if(aux_acesso == 6){
+                    SessaoAdmin->CadastrarAdmin();
+                }
+                else if(aux_acesso == 0){
+                    SessaoAdmin->Deslogar();
                 }
                 else{
                     throw "Ocorreu um erro inesperado, e para a sua seguranca o programa vai desligar";
@@ -293,7 +298,7 @@ void Administrador::EditarAdmin(){
 
     }
    
-
+}
 
 
 void Administrador::CadastrarAdmin(){
@@ -313,10 +318,12 @@ void Administrador::CadastrarAdmin(){
     for(int i=0;i<listaA.tamanho();i++){
         if(_cpf_admin == atual->admin->get_cpf()){
             checa_cpf++;
+            atual = atual->proximo;
         }
     }
     if(checa_cpf > 0){
         std::cout << "CPF ja cadastrado!" << std::endl;
+        SessaoAdmin.Menu();
     }
     else{
         std::cout << "Digite o nome do administrador: " << std::endl;
