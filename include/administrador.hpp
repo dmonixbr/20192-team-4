@@ -23,19 +23,19 @@ class Administrador : public Usuario{
     private:
 
         
-        void CadastrarCreche();
-        void VerCreche ();
-        void EditarCreche();
-        void DeletarCreche ();
-        void CadastrarGerente();
-        void GerarRelatorioAnual ();
+        void CadastrarCreche(); //OK
+        void VerCreche (); //OK
+        void EditarCreche();    
+        void DeletarCreche ();  
+        void CadastrarGerente();  //OK
+        void GerarRelatorioAnual ();  
         void GerarRelatorioTrimestral ();
         int Menu();
         int ListarGerentes();
         void ListarCreches();
-        void EditarDados() override;
-        void CadastrarAdmin();
-        void VerDados() override;
+        void EditarDados() override;  //OK
+        void CadastrarAdmin();  //OK
+        void VerDados() override; //OK
 
 };
 

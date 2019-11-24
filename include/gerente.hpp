@@ -11,13 +11,13 @@ class Gerente : public Usuario {
 
         //funcoes creche
         
-        void Deslogar() override;
-        void EmitirRelatorio();
-        void EditarCreche();
-        int Menu();
+        void Deslogar() override; //OK
+        void EmitirRelatorio(); 
+        void EditarCreche();    
+        int Menu();  //OK
 
-        void VerDados() override;
-        void EditarDados() override;
+        void VerDados() override;  //OK
+        void EditarDados() override;  //OK
         
     public:
 
@@ -40,7 +40,7 @@ class Gerente : public Usuario {
         void set_cpf(std::string) override;
         void set_nome(std::string) override;
         void set_senha(std::string) override;
-        void Login(std::string) override;
+        void Login(std::string) override;  //OK
 };
 
 
