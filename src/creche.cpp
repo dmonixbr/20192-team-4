@@ -28,9 +28,7 @@ void Creche::set_pos_gerente(int pos_gerente){
     this->pos_gerente = pos_gerente;
 }
 
-void Creche::set_gerente(int _gerente){
-    this->pos_gerente = _gerente;
-}
+
 
 //getters
 std::string Creche::get_nome(){
@@ -49,6 +47,4 @@ int Creche::get_pos_gerente(){
     return this->pos_gerente;
 }
 
-int Creche::get_gerente(){
-    return this->pos_gerente;
-}
+

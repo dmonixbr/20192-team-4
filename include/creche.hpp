@@ -28,6 +28,7 @@ class Creche {
         void set_telefone(std::string);
         void set_endereco(std::string);
         void set_validade_convenio(std::string);
+        void set_pos_gerente(int);
 };
 
 #endif

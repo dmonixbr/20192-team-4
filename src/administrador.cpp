@@ -129,10 +129,6 @@ void Administrador::Login(std::string _cpf){
                 std::cout << "Você digitou a senha incorreta. Tente novamente." << std::endl;
                 gmu::MenuFunc::MenuPrincipal();
             }
-            else{
-                std::cout << "Voce digitou a senha incorretamente" << std::endl;
-                gmu::MenuFunc::MenuPrincipal();
-            }
 
         }
         else if (atual->proximo == nullptr){
@@ -272,7 +268,7 @@ void Administrador::ListarCreches(){
         std::cout << std::left << std::setw(20) << "Nome" << std::setw(70) << "Endereço" << std::setw(20) << "Telefone" << std::setw(30) << "Gerente"  << std::setw(30) << "Validade do Convênio" << std::endl;
         std::cout << "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << std::endl;
         for (int i=0; i<listaC.tamanho(); i++){
-            std::cout << std::left << std::setw(20) << atual->creche->get_nome() << std::setw(70) << atual->creche->get_endereco() << std::setw(20) << atual->creche->get_telefone() << std::setw(30) << atual->creche->get_gerente() << std::setw(30) << atual->creche->get_validade_convenio() << std::endl;
+            std::cout << std::left << std::setw(20) << atual->creche->get_nome() << std::setw(70) << atual->creche->get_endereco() << std::setw(20) << atual->creche->get_telefone() << std::setw(30) << atual->creche->get_pos_gerente() << std::setw(30) << atual->creche->get_validade_convenio() << std::endl;
             atual = atual->proximo;
         }
     }
