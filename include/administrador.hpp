@@ -35,6 +35,7 @@ class Administrador : public Usuario{
         void VerDados() override;
         void Login(std::string) override;
         void Deslogar() override;
+        void ListarAdmins();
 
 
 };

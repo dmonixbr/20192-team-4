@@ -57,12 +57,13 @@ int Administrador::Menu(){
         std::cout << "4 - Listar gerentes cadastrados" << std::endl;
         std::cout << "5 - Editar meus proprios dados" << std::endl;
         std::cout << "6 - Cadastrar novo administrador ao sistema" << std::endl;
+        std::cout << "7 - Listar administradores do sistema" << std::endl;
         std::cout << "0 - Sair"<<std::endl;
 
         try{
             int aux_acesso;
             std::cin >> aux_acesso;
-            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=3 && aux_acesso != 4 && aux_acesso != 5 && aux_acesso != 6 && aux_acesso !=0){
+            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=3 && aux_acesso != 4 && aux_acesso != 5 && aux_acesso != 6 && aux_acesso != 7 && aux_acesso !=0){
                 throw "Ops, voce digitou um numero errado!";
             }
             else{
@@ -94,6 +95,9 @@ int Administrador::Menu(){
 
                 else if(aux_acesso == 6){
                     SessaoAdmin->CadastrarAdmin();
+                }
+                else if(aux_acesso == 7){
+                    SessaoAdmin->ListarAdmins();
                 }
                 else if(aux_acesso == 0){
                     SessaoAdmin->Deslogar();
@@ -258,15 +262,24 @@ void Administrador::ListarGerentes(){
             std::cout << "------------------------------------------------------------------------------" << std::endl;
             atual = atual->proximo;
         }
+        
+
     }
     else{
         std::cout << "Não há nenhum gerente cadastrado" << std::endl;
     }
-    std::cout << "Tecle 0 para voltar ao menu." << std::endl;
-    int a;
-    do{
+    std::cout << "Tecle 1 para cadastrar novo gerente ou 0 para voltar ao menu." << std::endl;
+    int a = 2;
+    while (a =2){
         std::cin >> a;
-    }while(a!=0);
+        if (a == 1){
+            SessaoAdmin->CadastrarGerente();
+        }else if(a == 0){
+            SessaoAdmin->Menu();
+        }else{
+            std::cout << "Você digitou uma opção inválida! Tente Novamente!" << std::endl;
+        }
+    }
     SessaoAdmin->Menu();
 }
 
@@ -411,4 +424,27 @@ void Administrador::CadastrarAdmin(){
 
 void Administrador::VerDados(){
 
+}
+
+void Administrador::ListarAdmins(){
+    extern Administrador SessaoAdmin;
+    extern ListaAdmins listaA;
+    admins *atual = listaA.primeiro;
+
+    system("clear");
+
+    std::cout << "Lista de administradores" << std::endl;
+    std::cout << "-------------------------------------------------------------------------------" << std::endl;
+    for(int i=0;i<listaA.tamanho();i++){
+        std::cout << "Nome: " << atual->admin->get_nome() << std::endl;
+        std::cout << "Cpf: " << atual->admin->get_cpf() << std::endl;
+        std::cout << "-------------------------------------------------------------------------------" << std::endl;
+        atual = atual->proximo;
+    }
+    int a;
+    std::cout << "Tecle 0 para voltar ao menu" << std::endl;
+    do{
+        std::cin >> a;
+    }while(a!=0);
+    SessaoAdmin.Menu();
 }
