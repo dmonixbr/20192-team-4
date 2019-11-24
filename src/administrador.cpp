@@ -54,6 +54,7 @@ int Administrador::Menu(){
         std::cout << "2 - Ver creches"<<std::endl;
         std::cout << "3 - Cadastrar um novo gerente" << std::endl;
         std::cout << "4 - Listar gerentes cadastrados" << std::endl;
+        std::cout << "5 - Editar meus proprios dados" << std::endl;
         std::cout << "0 - Sair"<<std::endl;
 
         try{
@@ -82,6 +83,10 @@ int Administrador::Menu(){
 
                 else if(aux_acesso == 4){
                     SessaoAdmin->ListarGerentes();
+                }
+
+                else if(aux_acesso == 5){
+                    SessaoAdmin->EditarAdmin();
                 }
 
                 else if(aux_acesso == 0){
@@ -267,4 +272,22 @@ void Administrador::ListarCreches(){
         std::cout << "Nome \t\t\t Endereco \t\t\t Telefone \t Validade do convênio \t Nome do Gerente" << std::endl;
 
     }
+}
+void Administrador::EditarAdmin(){
+    std::string cpf , nome, senha;
+    std::cout << "\n\n ----------Editar meus dados--------------\n\n";
+    std::cin.ignore();
+
+    while(1){
+        system("clear");
+        std::cout <<"Digite o numero do dado que voce deseja editar\n"<<std::endl;
+        std::cout << "1 - Editar Nome" << std::endl;
+        std::cout << "2 - Editar CPF" << std::endl;
+        std::cout << "3 - Editar senha" << std::endl;
+
+
+    }
+   
+
+
 }
