@@ -101,6 +101,14 @@ void Gerente::Login(std::string _cpf){
     }
 }
 
+void Gerente::EditarCreche(){
+
+}
+
+void Gerente::EmitirRelatorio(){
+
+}
+
 int Gerente::Menu(){
     extern ListaGerentes listaG;
     gerentes *atual = listaG.primeiro;
@@ -124,9 +132,29 @@ int Gerente::Menu(){
             else{
                 if(aux_acesso == 1){
                     system("clear");
+                    SessaoGerente->EmitirRelatorio();
+                }
+                else if(aux_acesso == 2){
+                    system("clear");
+                    SessaoGerente->EditarCreche();
+                }
+                else if(aux_acesso == 0){
+                    SessaoGerente->Deslogar();
+                }
+                else{
+                    throw "Ocorreu um erro inesperado, e para a sua seguranca o programa vai desligar";
                 }
             }
         }
+        catch(const char *e)
+        {
+            std::cerr << e << '\n';
+        }
+        catch(...){
+            std::cerr << "Erro inesperado" << '\n';
+        }
+       
+        return -1;
     }
 }
 
@@ -138,6 +166,7 @@ void Gerente::Deslogar(){
     if (opt == "y" || opt == "Y"){
         gmu::MenuFunc::MenuPrincipal();
     }else if (opt == "n" || opt == "N"){
+        system("clear");
         SessaoGerente->Menu();
     }
     else{
