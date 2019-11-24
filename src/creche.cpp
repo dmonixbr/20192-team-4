@@ -28,6 +28,8 @@ void Creche::set_pos_gerente(int pos_gerente){
     this->pos_gerente = pos_gerente;
 }
 
+
+
 //getters
 std::string Creche::get_nome(){
     return this->nome;
@@ -44,3 +46,5 @@ std::string Creche::get_validade_convenio(){
 int Creche::get_pos_gerente(){
     return this->pos_gerente;
 }
+
+
