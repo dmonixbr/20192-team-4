@@ -32,7 +32,7 @@ class Administrador : public Usuario{
         int Menu();
         void ListarGerentes();
         void ListarCreches();
-        void EditarAdmin();
+        void EditarAdmin(std::string, std::string, std::string);
         void CadastrarAdmin();
 
 
