@@ -13,8 +13,7 @@ class Creche {
         int pos_gerente;
     public:
 
-        Creche(std::string,std::string,std::string,std::string);
-        Creche();
+        Creche(std::string,std::string,std::string,std::string, int);
 
         //getters
         std::string get_nome();
