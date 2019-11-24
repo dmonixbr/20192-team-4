@@ -1,3 +1,4 @@
+#include "../include/lista.hpp"
 
 namespace gmu{
 
