@@ -64,7 +64,7 @@ TEST_CASE("02 - Teste getters e setters Administrador"){
 
 TEST_CASE("Teste inserir na lista"){
     Administrador admin1("teste1","1234567","1234567");
-    Creche creche1("creche1","1234567","1234567","00000");
+    Creche creche1("creche1","1234567","1234567","12312423",1);
     Gerente gerente1("gerente1","1234567","1234567","000","000","000");
 
     listaA.insere_admin(&admin1);
@@ -84,7 +84,7 @@ TEST_CASE("Teste inserir na lista"){
     CHECK(listaA.get_admin(0)->get_cpf() == "0000000");
 
     Administrador *admin2 = new Administrador();
-    Creche *creche2 = new Creche();
+    Creche *creche2 = new Creche("","","","",1);
     Gerente *gerente2 = new Gerente();
 
     creche2->set_nome("teste1");
@@ -105,7 +105,7 @@ TEST_CASE("Teste inserir na lista"){
 
     Administrador *admin3 = new Administrador();
     listaA.insere_admin(admin3);
-    Creche *creche3 = new Creche();
+    Creche *creche3 = new Creche("teste3","","","",3);
     listaC.insere_creche(creche3);
 
     listaG.remover_ultimo();
