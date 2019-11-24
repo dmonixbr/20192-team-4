@@ -117,6 +117,7 @@ void Administrador::Login(std::string _cpf){
     for (i=0; i<listaA.tamanho(); i++){
         if (atual->admin->cpf == _cpf ){
             std::cout << "Digite a senha: \n";
+            std::cin.ignore();
             std::getline(std::cin, senha);
             if (atual->admin->senha == senha){
                 std::cout << "\n\nVocê entrou!\n\n" << std::endl;
@@ -143,6 +144,7 @@ void Administrador::Login(std::string _cpf){
 
 void Administrador::Deslogar(){
     std::cout << "Tem certeza que deseja deslogar? (Y/N)" << std::endl;
+    std::cin.ignore();
     std::string opt;
     std::getline(std::cin, opt);
     extern Administrador *SessaoAdmin;
@@ -171,6 +173,7 @@ void  Administrador::CadastrarGerente(){
     system("clear");
 
     std::cout << "--------------------------------Cadastro de Gerente---------------------------\n\nDigite o CPF do Gerente:" << std::endl;
+    std::cin.ignore();
     std::getline(std::cin, _cpf_gerente);
     std::cout << "Digite o nome do Gerente:" << std::endl;
     std::getline(std::cin, _nome_gerente);
