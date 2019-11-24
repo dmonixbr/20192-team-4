@@ -15,6 +15,7 @@ class Creche {
         int numero_de_professores;
         int numero_de_coordenadores;
         int numero_de_auxiliares_bercario;
+        int numero_de_alunos;
         float valor_per_capta_aluno;
         float valor_manuntencao;
         float faixa_etaria_media;
@@ -32,6 +33,7 @@ class Creche {
         int get_numero_professores();
         int get_numero_coordenadores();
         int get_numero_aux_berc();
+        int get_numero_alunos();
         float get_valor_per_capta();
         float get_valor_manuntencao();
         float get_faixa_etaria();
@@ -47,6 +49,7 @@ class Creche {
         void set_numero_professores(int);
         void set_numero_coordenadores(int);
         void set_numero_aux_berc(int);
+        void set_numero_alunos(int);
         void set_valor_per_capta(float);
         void set_valor_manuntencao(float);
         void set_faixa_etaria(float);

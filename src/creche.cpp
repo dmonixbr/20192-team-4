@@ -39,6 +39,9 @@ void Creche::set_numero_coordenadores(int _coordenadores){
 void Creche::set_numero_aux_berc(int _aux_berc){
     this->numero_de_auxiliares_bercario = _aux_berc;
 }
+void Creche::set_numero_alunos(int _alunos){
+    this->numero_de_alunos = _alunos;
+}
 void Creche::set_valor_per_capta(float _per_capta){
     this->valor_per_capta_aluno = _per_capta;
 }
@@ -78,6 +81,9 @@ int Creche::get_numero_coordenadores(){
 }
 int Creche::get_numero_aux_berc(){
     return this->numero_de_auxiliares_bercario;
+}
+int Creche::get_numero_alunos(){
+    return this->numero_de_alunos;
 }
 float Creche::get_valor_per_capta(){
     return this->valor_per_capta_aluno;

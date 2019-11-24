@@ -12,6 +12,7 @@ ListaAdmins listaA;
 ListaCreches listaC;
 Administrador *SessaoAdmin;
 Gerente *SessaoGerente;
+Creche *SessaoCreche;
 
 
 int main(){
