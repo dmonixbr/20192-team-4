@@ -76,7 +76,7 @@ int Administrador::Menu(){
 
                 else if(aux_acesso == 2){
                     system("clear");
-                    SessaoAdmin->ListarCreches();
+                    SessaoAdmin->ListarCreches(false);
                     return 0;
                 }
 
@@ -139,11 +139,10 @@ void Administrador::Login(std::string _cpf){
     extern Administrador *SessaoAdmin;
     admins *atual = listaA.primeiro;
     for (i=0; i<listaA.tamanho(); i++){
-        if (atual->admin->cpf == _cpf ){
+        if (atual->admin->get_cpf() == _cpf ){
             std::cout << "Digite a senha: \n";
-            std::cin.ignore();
-            std::getline(std::cin, senha);
-            if (atual->admin->senha == senha){
+            std::cin >> senha;
+            if (atual->admin->get_senha() == senha){
                 system("clear");
                 SessaoAdmin = atual->admin;
                 std::cout << "\n\nVocê entrou!\n\n" << "Seja bem vindo," << SessaoAdmin->nome << "!" << std::endl;
@@ -232,45 +231,59 @@ void  Administrador::CadastrarGerente(){
 void Administrador::CadastrarCreche(){
     extern Administrador SessaoAdmin;
     extern ListaCreches listaC;
-    std::string nome;
-    std::string endereco;
-    std::string telefone;
-    std::string validade;
-    int gerente;
+    std::string nome = "";
+    std::string endereco = "";
+    std::string telefone = "";
+    std::string validade = "";
+    int gerente = -9;
 
     system("clear");
     std::cout << "---------------------------- Cadastrar Creche ----------------------------\n\n" << std::endl;
     std::cin.ignore();
     std::cout << "Digite o nome da creche: \n" << std::endl;
-    std::getline(std::cin, nome);
+    do{
+        std::getline(std::cin, nome);
+    }while (nome == "");
     std::cout << "Digite o Endereço da Creche: \n" << std::endl;
-    std::getline(std::cin, endereco);
+    do{
+        std::getline(std::cin, endereco);
+    }while (endereco == "");
     std::cout << "Digite o telefone da Creche: \n" << std::endl;
-    std::getline(std::cin, telefone);
+    do{
+        std::getline(std::cin, telefone);
+    }while (telefone == "");
     std::cout << "Digite o ID do Gerente: \n" << std::endl;
-    int a = SessaoAdmin.ListarGerentes();
+
+    std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(1));
+    int a;
     int b;
-    if (a == 1){
-        std::cout << "Digite o id de um gerente ou digite -7 para cadastrar um novo gerente" << std::endl;
-        std::cin >> b;
-        if (b == -7){
-            SessaoAdmin.CadastrarGerente();
-        }else if(b >=0){
-            gerente = b;
-        }
-    }else if ( a == 0 ){
-        std::cout << "Tecle 1 para adicionar um novo gerente ou 0 para voltar ao menu." << std::endl;
-        int a=2;
-        while(a==2){
-            std::cin >> a;
-            if (a == 1){
+    do{
+        a= SessaoAdmin.ListarGerentes();
+        if (a == 1){
+            std::cout << "Digite o id de um gerente ou digite -7 para cadastrar um novo gerente" << std::endl;
+            std::cin >> b;
+            if (b == -7){
                 SessaoAdmin.CadastrarGerente();
-            }else if (a==0){
-                SessaoAdmin.Menu();
+                std::cout << "Digite o ID do Gerente: \n" << std::endl;
+                std::cin >> gerente;
+            }else if(b >=0){
+                gerente = b;
+            }
+        }else if ( a == 0 ){
+            std::cout << "Tecle 1 para adicionar um novo gerente ou 0 para voltar ao menu." << std::endl;
+            int a=2;
+            while(a==2){
+                std::cin >> a;
+                if (a == 1){
+                    SessaoAdmin.CadastrarGerente();
+                }else if (a==0){
+                    SessaoAdmin.Menu();
+                }
             }
         }
-    }
+    }while (gerente == -9);
     std::cout << "Digite a validade do convênio (DDMMAAAA):" << std::endl;
+    std::cin.ignore();
     std::getline(std::cin, validade);
 
 
@@ -310,15 +323,16 @@ int Administrador::ListarGerentes(){
     
 }
 
-int Administrador::ListarCreches(){
+int Administrador::ListarCreches(bool ver){
     system("clear");
     extern ListaGerentes listaG;
     extern ListaCreches listaC;
     extern Administrador SessaoAdmin;
 
-    std::cout << "\n\n---------------------------- Lista de creches ----------------------------\n\n" << std::endl;
+    std::cout << "\n\n-------------------------------------------------------- Lista de creches --------------------------------------------------------\n\n" << std::endl;
     creches *atual;
     atual = listaC.primeiro;
+    int opt = -1;
     if(listaC.tamanho() !=0){
         std::cout << std::left << std::setw(20) << "Nome" << std::setw(40) << "Endereço" << std::setw(20) << "Telefone" << std::setw(30) << "Gerente"  << std::setw(30) << "Validade do Convênio" << std::setw(15) << "ID" << std::endl;
         std::cout << "--------------------------------------------------------------------------------------------------------------------------------------------" << std::endl;
@@ -327,11 +341,24 @@ int Administrador::ListarCreches(){
             << listaG.get_gerente(atual->creche->get_pos_gerente())->get_nome() << std::setw(30) << atual->creche->get_validade_convenio() << std::setw(15) << i << std::endl;
             atual = atual->proximo;
         }
-        return 1;
+        if (ver){
+            return 1;
+        }
     }else{
         std::cout << "Não existem creches cadastradas! " << std::endl;
-        return 0;
+        if (ver){
+            return 2;
+        }
     }
+    do{
+        std::cout << "Digite 0 para voltar para o menu" << std::endl;
+        std::cin >> opt;
+        if (opt == 0){
+            SessaoAdmin.Menu();
+        }else{
+            std::cout << "Opção inválida! Tente Novamente";
+        }
+    }while(opt != 0);
 }
 void Administrador::EditarDados(){
     extern ListaAdmins listaA;
@@ -513,23 +540,75 @@ void Administrador::ListarAdmins(){
 void Administrador::VerCreche(int _c){
     extern Creche *SessaoCreche;
     extern ListaCreches listaC;
+    extern ListaGerentes listaG;
     SessaoCreche = listaC.get_creche(_c);
     std::cout << "--------------------------------------- Informações da Creche ---------------------------------------" << std::endl;
-    std::cout << "Nome: " << SessaoCreche->nome << "\n" << "Endereço: " << SessaoCreche->endereco << "\n" << "Telefone: " << SessaoCreche->telefone << "\n" << std::endl;
+    std::cout << "Nome: " << SessaoCreche->get_nome() << "\n" << "Endereço: " << SessaoCreche->get_endereco() << "\n" << "Telefone: " << SessaoCreche->get_telefone() << "\n" << "Gerente: " << listaG.get_gerente(SessaoCreche->get_pos_gerente())->get_nome() << "\n" << std::endl;
 }
 
 void Administrador::EditarCreche(){
-    extern Administrador SessaoAdmin;
+    extern Administrador *SessaoAdmin;
     extern Creche *SessaoCreche;
     extern ListaCreches listaC;
     system("clear");
     std::cout << "--------------------------------------- Editar Creche ---------------------------------------" << std::endl;
-    int a = SessaoAdmin.ListarCreches();
+    int a = SessaoAdmin->ListarCreches(true);
     if (a == 1){
-        int c;
-        std::cout << "Digite o ID da creche que deseja editar:" << std::endl;
+        int c, cr;
+        std::cout << "\n\n\nDigite o ID da creche que deseja editar:\n\n" << std::endl;
+        std::cin >> cr;
+        SessaoCreche = listaC.get_creche(cr);
+        std::cout << "\n" << std::endl;
+        SessaoAdmin->VerCreche(cr);
+        std::string nome;
+        std::string endereco;
+        std::string telefone;
+        int ger = -1;
+        int list;
+        do{
+        std::cout << "\nEscolha a opção:\n1- Editar Nome\n2- Editar Endereço\n3- Editar Telefone\n4- Editar Gerente\n0- Sair" << std::endl;
         std::cin >> c;
-        SessaoCreche = listaC.get_creche(c);
-        SessaoAdmin.VerCreche();
+            if (c == 1){
+                std::cout << "\n\nDigite o novo nome: \n" << std::endl;
+                std::cin >> nome;
+                SessaoCreche->set_nome(nome);
+            }else if(c == 2){
+                std::cout << "\n\nDigite o novo endereço: \n" << std::endl;
+                std::cin >> endereco;
+                SessaoCreche->set_endereco(endereco);
+            }else if(c == 3){
+                std::cout << "\n\nDigite o novo telefone: \n" << std::endl;
+                std::cin >> telefone;
+                SessaoCreche->set_telefone(telefone);
+            }else if(c == 4){
+                std::cout << "\n\n" << std::endl;
+                list = SessaoAdmin->ListarGerentes();
+                
+                do{
+                    if (list == 1){
+                        std::cout << "\n\nDigite o ID do novo Gerente: \n" << std::endl;
+                        std::cin >> ger;
+                        SessaoCreche->set_pos_gerente(ger);
+                    }else if (list == 0){
+                        std::cout << "Não existe nenhum gerente cadastrado! Tecle 9 para cadastrar um novo gerente!" << std::endl;
+                        std::cin >> list;
+                        if (list == 9){
+                            SessaoAdmin->CadastrarGerente();
+                        }
+                    }
+                }while(ger == -1);
+                
+            }
+        }while(c !=0);
+        if (c == 0){
+            SessaoAdmin->Menu();
+        }
+    }else if(a == 2){
+        std::cout << "\n\nDigite 0 para voltar ao menu." << std::endl;
+        std::cin >> a;
+        std::cout << a << std::endl;
+        if (a == 0){
+            SessaoAdmin->Menu();
+        }
     }
 }

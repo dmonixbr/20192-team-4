@@ -24,7 +24,7 @@ class Administrador : public Usuario{
 
         
         void CadastrarCreche();
-        void VerCreche ();
+        void VerCreche (int);
         void EditarCreche();
         void DeletarCreche ();
         void CadastrarGerente();
@@ -32,10 +32,10 @@ class Administrador : public Usuario{
         void GerarRelatorioTrimestral ();
         int Menu();
         int ListarGerentes();
-        int ListarCreches();
+        int ListarCreches(bool);
         void EditarDados() override;
         void CadastrarAdmin();
-        void VerDados(int) override;
+        void VerDados() override;
 
 };
 
