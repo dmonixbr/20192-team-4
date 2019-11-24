@@ -82,11 +82,16 @@ void Gerente::Login(std::string _cpf){
     for (i=0; i<listaG.tamanho(); i++){
         if (atual->gerente->cpf == _cpf ){
             std::cout << "Digite a senha: \n";
-            std::cin >> senha;
+            std::cin.ignore();
+            std::getline(std::cin, senha);
             if (atual->gerente->senha == senha){
                 std::cout << "\n\nVocê entrou!\n\n" << std::endl;
                 SessaoGerente = atual->gerente;
                 SessaoGerente->Menu();
+            }
+            else{
+                std::cout << "Voce digitou a senha incorretamente" << std::endl;
+                gmu::MenuFunc::MenuPrincipal();
             }
 
         }
@@ -99,6 +104,14 @@ void Gerente::Login(std::string _cpf){
         }
 
     }
+}
+
+void Gerente::EditarCreche(){
+
+}
+
+void Gerente::EmitirRelatorio(){
+
 }
 
 int Gerente::Menu(){
@@ -124,9 +137,29 @@ int Gerente::Menu(){
             else{
                 if(aux_acesso == 1){
                     system("clear");
+                    SessaoGerente->EmitirRelatorio();
+                }
+                else if(aux_acesso == 2){
+                    system("clear");
+                    SessaoGerente->EditarCreche();
+                }
+                else if(aux_acesso == 0){
+                    SessaoGerente->Deslogar();
+                }
+                else{
+                    throw "Ocorreu um erro inesperado, e para a sua seguranca o programa vai desligar";
                 }
             }
         }
+        catch(const char *e)
+        {
+            std::cerr << e << '\n';
+        }
+        catch(...){
+            std::cerr << "Erro inesperado" << '\n';
+        }
+       
+        return -1;
     }
 }
 
@@ -138,6 +171,7 @@ void Gerente::Deslogar(){
     if (opt == "y" || opt == "Y"){
         gmu::MenuFunc::MenuPrincipal();
     }else if (opt == "n" || opt == "N"){
+        system("clear");
         SessaoGerente->Menu();
     }
     else{

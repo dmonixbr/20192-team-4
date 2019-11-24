@@ -20,7 +20,7 @@ class Creche {
         std::string get_telefone();
         std::string get_endereco();
         std::string get_validade_convenio();
-        int get_gerente();
+        int get_pos_gerente();
 
 
         //setters
@@ -28,7 +28,6 @@ class Creche {
         void set_telefone(std::string);
         void set_endereco(std::string);
         void set_validade_convenio(std::string);
-        void set_gerente(int);
 };
 
 #endif

@@ -119,13 +119,18 @@ void Administrador::Login(std::string _cpf){
     for (i=0; i<listaA.tamanho(); i++){
         if (atual->admin->cpf == _cpf ){
             std::cout << "Digite a senha: \n";
-            std::cin >> senha;
+            std::cin.ignore();
+            std::getline(std::cin, senha);
             if (atual->admin->senha == senha){
                 std::cout << "\n\nVocê entrou!\n\n" << std::endl;
                 SessaoAdmin = atual->admin;
                 SessaoAdmin->Menu();
             }else{
                 std::cout << "Você digitou a senha incorreta. Tente novamente." << std::endl;
+                gmu::MenuFunc::MenuPrincipal();
+            }
+            else{
+                std::cout << "Voce digitou a senha incorretamente" << std::endl;
                 gmu::MenuFunc::MenuPrincipal();
             }
 
@@ -144,8 +149,9 @@ void Administrador::Login(std::string _cpf){
 
 void Administrador::Deslogar(){
     std::cout << "Tem certeza que deseja deslogar? (Y/N)" << std::endl;
+    std::cin.ignore();
     std::string opt;
-    std::cin >> opt;
+    std::getline(std::cin, opt);
     extern Administrador *SessaoAdmin;
     if (opt == "y" || opt == "Y"){
         gmu::MenuFunc::MenuPrincipal();
@@ -172,15 +178,16 @@ void  Administrador::CadastrarGerente(){
     system("clear");
 
     std::cout << "--------------------------------Cadastro de Gerente---------------------------\n\nDigite o CPF do Gerente:" << std::endl;
-    std::cin >> _cpf_gerente;
+    std::cin.ignore();
+    std::getline(std::cin, _cpf_gerente);
     std::cout << "Digite o nome do Gerente:" << std::endl;
-    std::cin >> _nome_gerente;
+    std::getline(std::cin, _nome_gerente);
     std::cout << "Digite a senha do gerente:" << std::endl;
-    std::cin >> _senha_gerente;
+    std::getline(std::cin, _senha_gerente);
     std::cout << "Digite o endereco do gerente:" << std::endl;
-    std::cin >> _endereco_gerente;
+    std::getline(std::cin, _endereco_gerente);
     std::cout << "Digite o telefone do gerente:" << std::endl;
-    std::cin >> _telefone_gerente;
+    std::getline(std::cin, _telefone_gerente);
 
     Gerente *novo_gerente = new Gerente();
 
@@ -236,10 +243,11 @@ void Administrador::ListarGerentes(){
     gerentes *atual;
     atual = listaG.primeiro;
     if(listaG.tamanho() != 0){
-        std::cout << "ID\t\tNome do gerente\t\tTelefone\t\tCreche" << std::endl;
+        std::cout << "Lista de Gerentes" << std::endl;
         std::cout << "------------------------------------------------------------------------------" << std::endl;
         for(int i=0;i<listaG.tamanho();i++){
-            std::cout << i << "\t\t" << atual->gerente->get_nome() << "\t\t" << atual->gerente->get_telefone() << std::endl;
+            std::cout << "ID: " << i << "\nNome: " << atual->gerente->get_nome() << "\nTelefone: " << atual->gerente->get_telefone() << "Endereco: " << atual->gerente->get_endereco() << std::endl;
+            std::cout << "------------------------------------------------------------------------------" << std::endl;
             atual = atual->proximo;
         }
     }

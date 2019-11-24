@@ -35,7 +35,8 @@ namespace gmu
                         system("clear");
                         std::cout << "\n\n---------------------------- Login ----------------------------\n\nDigite seu CPF:" << std::endl;
                         std::string cpf;
-                        std::cin >> cpf;
+                        std::cin.ignore();
+                        std::getline(std::cin, cpf);
                         listaG.primeiro->gerente->Login(cpf);
                     
                     }
@@ -60,3 +61,4 @@ namespace gmu
         }
     }
 }
+
