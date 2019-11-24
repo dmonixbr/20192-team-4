@@ -27,6 +27,27 @@ void Creche::set_validade_convenio(std::string validade_convenio){
 void Creche::set_pos_gerente(int pos_gerente){
     this->pos_gerente = pos_gerente;
 }
+void Creche::set_numero_turmas(int _turmas){
+    this->numero_de_turmas = _turmas;
+}
+void Creche::set_numero_professores(int _professores){
+    this->numero_de_professores = _professores;
+}
+void Creche::set_numero_coordenadores(int _coordenadores){
+    this->numero_de_coordenadores = _coordenadores;
+}
+void Creche::set_numero_aux_berc(int _aux_berc){
+    this->numero_de_auxiliares_bercario = _aux_berc;
+}
+void Creche::set_valor_per_capta(float _per_capta){
+    this->valor_per_capta_aluno = _per_capta;
+}
+void Creche::set_valor_manuntencao(float _manuntencao){
+    this->valor_manuntencao = _manuntencao;
+}
+void Creche::set_faixa_etaria(float _faixa){
+    this->faixa_etaria_media = _faixa;
+}
 
 
 
@@ -46,5 +67,24 @@ std::string Creche::get_validade_convenio(){
 int Creche::get_pos_gerente(){
     return this->pos_gerente;
 }
-
-
+int Creche::get_numero_turmas(){
+    return this->numero_de_turmas;
+}
+int Creche::get_numero_professores(){
+    return this->numero_de_professores;
+}
+int Creche::get_numero_coordenadores(){
+    return this->numero_de_coordenadores;
+}
+int Creche::get_numero_aux_berc(){
+    return this->numero_de_auxiliares_bercario;
+}
+float Creche::get_valor_per_capta(){
+    return this->valor_per_capta_aluno;
+}
+float Creche::get_valor_manuntencao(){
+    return this->valor_manuntencao;
+}
+float Creche::get_faixa_etaria(){
+    return this->faixa_etaria_media;
+}
