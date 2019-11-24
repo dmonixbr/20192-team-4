@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "../include/gerente.hpp"
 #include "../include/administrador.hpp"
 #include "../include/creche.hpp"
