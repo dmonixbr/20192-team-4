@@ -82,6 +82,7 @@ int Administrador::Menu(){
                 else if(aux_acesso == 3){
                     system("clear");
                     SessaoAdmin->CadastrarGerente();
+                    SessaoAdmin->Menu();
                 }
 
                 else if(aux_acesso == 4){
@@ -213,7 +214,10 @@ void  Administrador::CadastrarGerente(){
 
     listaG.insere_gerente(novo_gerente);
 
-    SessaoAdmin->Menu();
+    system("clear");
+    std::cout << "Gerente cadastrado com sucesso! O ID do gerente é: " << listaG.tamanho()-1 << std::endl;
+    std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(3));
+
 }
 
 void Administrador::CadastrarCreche(){
@@ -235,9 +239,28 @@ void Administrador::CadastrarCreche(){
     std::cout << "Digite o telefone da Creche: \n" << std::endl;
     std::getline(std::cin, telefone);
     std::cout << "Digite o ID do Gerente: \n" << std::endl;
-    SessaoAdmin.ListarGerentes();
-    std::cin >> gerente;
-    std::cin.ignore();
+    int a = SessaoAdmin.ListarGerentes();
+    int b;
+    if (a == 1){
+        std::cout << "Digite o id de um gerente ou digite -7 para cadastrar um novo gerente" << std::endl;
+        std::cin >> b;
+        if (b == -7){
+            SessaoAdmin.CadastrarGerente();
+        }else if(b >=0){
+            gerente = b;
+        }
+    }else if ( a == 0 ){
+        std::cout << "Tecle 1 para adicionar um novo gerente ou 0 para voltar ao menu." << std::endl;
+        int a=2;
+        while(a==2){
+            std::cin >> a;
+            if (a == 1){
+                SessaoAdmin.CadastrarGerente();
+            }else if (a==0){
+                SessaoAdmin.Menu();
+            }
+        }
+    }
     std::cout << "Digite a validade do convênio (DDMMAAAA):" << std::endl;
     std::getline(std::cin, validade);
 
@@ -245,10 +268,14 @@ void Administrador::CadastrarCreche(){
     Creche *creche = new Creche(nome, telefone, endereco, validade, gerente);
     listaC.insere_creche(creche);
 
+    system("clear");
+    std::cout << "Creche cadastrada com sucesso!" << std::endl;
+    std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(2));
+
     SessaoAdmin.Menu(); 
 }
 
-void Administrador::ListarGerentes(){
+int Administrador::ListarGerentes(){
     system("clear");
     extern ListaAdmins listaA;
     admins *adm_atual = listaA.primeiro;
@@ -265,16 +292,13 @@ void Administrador::ListarGerentes(){
             std::cout << "------------------------------------------------------------------------------" << std::endl;
             atual = atual->proximo;
         }
+        return 1;
     }
     else{
         std::cout << "Não há nenhum gerente cadastrado" << std::endl;
+        return 0;
     }
-    std::cout << "Tecle 0 para voltar ao menu." << std::endl;
-    int a;
-    do{
-        std::cin >> a;
-    }while(a!=0);
-    SessaoAdmin->Menu();
+    
 }
 
 void Administrador::ListarCreches(){
@@ -445,4 +469,27 @@ void Administrador::VerDados(){
     catch(...){
     std::cerr << "Erro inesperado" << '\n';
     }
+}
+
+void Administrador::ListarAdmins(){ 
+    extern Administrador SessaoAdmin; 
+    extern ListaAdmins listaA; 
+    admins *atual = listaA.primeiro; 
+ 
+    system("clear"); 
+ 
+    std::cout << "Lista de administradores" << std::endl; 
+    std::cout << "-------------------------------------------------------------------------------" << std::endl; 
+    for(int i=0;i<listaA.tamanho();i++){ 
+        std::cout << "Nome: " << atual->admin->get_nome() << std::endl; 
+        std::cout << "Cpf: " << atual->admin->get_cpf() << std::endl; 
+        std::cout << "-------------------------------------------------------------------------------" << std::endl; 
+        atual = atual->proximo; 
+    } 
+    int a; 
+    std::cout << "Tecle 0 para voltar ao menu" << std::endl; 
+    do{ 
+        std::cin >> a; 
+    }while(a!=0); 
+    SessaoAdmin.Menu(); 
 }
