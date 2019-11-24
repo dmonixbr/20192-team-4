@@ -31,6 +31,7 @@ class Administrador : public Usuario{
         void GerarRelatorioTrimestral ();
         int Menu();
         void ListarGerentes();
+        void ListarCreches();
 
 
 };

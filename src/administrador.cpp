@@ -71,7 +71,7 @@ int Administrador::Menu(){
 
                 else if(aux_acesso == 2){
                     system("clear");
-                    std::cout << "\n\n---------------------------- Lista de creches ----------------------------\n\nDigite seu CPF:" << std::endl;;
+                    SessaoAdmin->ListarCreches();
                     return 0;
                 }
 
@@ -201,19 +201,22 @@ void Administrador::CadastrarCreche(){
 
     system("clear");
     std::cout << "---------------------------- Cadastrar Creche ----------------------------\n\n" << std::endl;
+    std::cin.ignore();
     std::cout << "Digite o nome da creche: \n" << std::endl;
-    std::cin >> nome;
+    std::getline(std::cin, nome);
     std::cout << "Digite o Endereço da Creche: \n" << std::endl;
-    std::cin >> endereco;
+    std::getline(std::cin, endereco);
     std::cout << "Digite o telefone da Creche: \n" << std::endl;
-    std::cin >> telefone;
+    std::getline(std::cin, telefone);
     std::cout << "Selecione o Gerente: \n" << std::endl;
    
     std::cin >> gerente;
     std::cout << "Digite a validade do convênio (DDMMAAAA):" << std::endl;
-    std::cin >> validade;
+    std::getline(std::cin, validade);
+
 
     Creche *creche = new Creche(nome, telefone, endereco, validade, gerente);
+    listaC.insere_creche(creche);
 
     SessaoAdmin.Menu(); 
 }
@@ -242,4 +245,19 @@ void Administrador::ListarGerentes(){
     }
 
     SessaoAdmin->Menu();
+}
+
+void Administrador::ListarCreches(){
+    system("clear");
+    extern ListaGerentes listaG;
+    extern ListaCreches listaC;
+    extern Administrador SessaoAdmin;
+
+    std::cout << "\n\n---------------------------- Lista de creches ----------------------------\n\n" << std::endl;
+    creches *atual;
+    atual = listaC.primeiro;
+    if(listaC.tamanho() !=0){
+        std::cout << "Nome \t\t\t Endereco \t\t\t Telefone \t Validade do convênio \t Nome do Gerente" << std::endl;
+
+    }
 }
