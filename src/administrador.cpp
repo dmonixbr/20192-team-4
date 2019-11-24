@@ -258,15 +258,24 @@ void Administrador::ListarGerentes(){
             std::cout << "------------------------------------------------------------------------------" << std::endl;
             atual = atual->proximo;
         }
+        
+
     }
     else{
         std::cout << "Não há nenhum gerente cadastrado" << std::endl;
     }
-    std::cout << "Tecle 0 para voltar ao menu." << std::endl;
-    int a;
-    do{
+    std::cout << "Tecle 1 para cadastrar novo gerente ou 0 para voltar ao menu." << std::endl;
+    int a = 2;
+    while (a =2){
         std::cin >> a;
-    }while(a!=0);
+        if (a == 1){
+            SessaoAdmin->CadastrarGerente();
+        }else if(a == 0){
+            SessaoAdmin->Menu();
+        }else{
+            std::cout << "Você digitou uma opção inválida! Tente Novamente!" << std::endl;
+        }
+    }
     SessaoAdmin->Menu();
 }
 
