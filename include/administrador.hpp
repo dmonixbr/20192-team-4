@@ -31,7 +31,7 @@ class Administrador : public Usuario{
         void GerarRelatorioAnual ();
         void GerarRelatorioTrimestral ();
         int Menu();
-        void ListarGerentes();
+        int ListarGerentes();
         void ListarCreches();
         void EditarDados(std::string, std::string, std::string);
         void CadastrarAdmin();
