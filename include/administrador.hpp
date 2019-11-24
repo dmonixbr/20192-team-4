@@ -15,6 +15,9 @@ class Administrador : public Usuario{
 		void set_nome(std::string);
 		std::string get_senha();
 		void set_senha(std::string);
+        void Login(std::string) override;
+        void Deslogar() override;
+        void ListarAdmins();
         
 
     private:
@@ -33,10 +36,6 @@ class Administrador : public Usuario{
         void EditarDados(std::string, std::string, std::string);
         void CadastrarAdmin();
         void VerDados() override;
-        void Login(std::string) override;
-        void Deslogar() override;
-        void ListarAdmins();
-
 
 };
 
