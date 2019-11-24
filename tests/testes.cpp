@@ -6,15 +6,18 @@
 #include "../include/gerente.hpp"
 #include "../include/creche.hpp"
 #include "../include/lista.hpp"
+#include "../include/globais.hpp"
 
 #include <string.h>
 #include <iostream>
 #include <math.h>
 
-
+Administrador *SessaoAdmin;
+/*Listas vazias para testes*/
 ListaGerentes listaG;
 ListaAdmins listaA;
 ListaCreches listaC;
+/*-------------------------*/
 
 /* 
 --------------------- Teste funcoes e construtor administrador--------------------------------
@@ -60,12 +63,56 @@ TEST_CASE("02 - Teste getters e setters Administrador"){
 /*--------------- testando lista --------------------*/
 
 TEST_CASE("Teste inserir na lista"){
-    ListaGerentes
+    Administrador admin1("teste1","1234567","1234567");
+    Creche creche1("creche1","1234567","1234567","00000");
+    Gerente gerente1("gerente1","1234567","1234567","000","000","000");
 
+    listaA.insere_admin(&admin1);
+    listaG.insere_gerente(&gerente1);
+    listaC.insere_creche(&creche1);
 
+    CHECK(listaA.get_admin(0)->get_cpf() == "1234567");
+    CHECK(listaC.get_creche(0)->get_nome() == "creche1");
+    CHECK(listaG.get_gerente(0)->get_senha() == "1234567");
 
+    admin1.set_cpf("0000000");
+    gerente1.set_telefone("3199999999");
+    creche1.set_validade_convenio("000000");
 
+    CHECK(listaG.get_gerente(0)->get_telefone() == "3199999999");
+    CHECK(listaC.get_creche(0)->get_validade_convenio() == "000000");
+    CHECK(listaA.get_admin(0)->get_cpf() == "0000000");
 
+    Administrador *admin2 = new Administrador();
+    Creche *creche2 = new Creche();
+    Gerente *gerente2 = new Gerente();
+
+    creche2->set_nome("teste1");
+    admin2->set_senha("123456");
+    gerente2->set_periodo_mandato("31");
+
+    listaA.insere_admin(admin2);
+    listaC.insere_creche(creche2);
+    listaG.insere_gerente(gerente2);
+
+    CHECK(listaG.get_gerente(1)->get_periodo_mandato() == "31");
+    CHECK(listaC.get_creche(1)->get_nome() == "teste1");
+    CHECK(listaA.get_admin(1)->get_senha() == "123456");
+
+    CHECK(listaG.numero_de_gerentes == 2);
+    CHECK(listaA.numero_de_admins == 2);
+    CHECK(listaC.numero_de_creches == 2);
+
+    Administrador *admin3 = new Administrador();
+    listaA.insere_admin(admin3);
+    Creche *creche3 = new Creche();
+    listaC.insere_creche(creche3);
+
+    listaG.remover_ultimo();
+    listaC.remover_creche(1);
+
+    CHECK(listaG.tamanho() == 1);
+    CHECK(listaC.tamanho() == 2);
 }
 
 

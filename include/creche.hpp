@@ -13,14 +13,20 @@ class Creche {
         int pos_gerente;
     public:
 
-        Creche(std::string, std::string, std::string, std::string, int);
+        Creche(std::string,std::string,std::string,std::string);
+        Creche();
 
-        void set_nome(std::string);
+        //getters
         std::string get_nome();
-        void set_telefone(std::string);
         std::string get_telefone();
-        void set_endereco(std::string);
         std::string get_endereco();
+        std::string get_validade_convenio();
+
+
+        //setters
+        void set_nome(std::string);
+        void set_telefone(std::string);
+        void set_endereco(std::string);
         void set_validade_convenio(std::string);
 };
 

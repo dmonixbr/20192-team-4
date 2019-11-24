@@ -12,18 +12,23 @@ class Gerente : public Usuario {
         Gerente();
         Gerente(std::string,std::string,std::string,std::string,std::string,std::string);
 
-        void set_periodo_mandato(std::string);
-        std::string get_periodo_mandato();
-        void set_endereco(std::string);
-        std::string get_endereco();
-        void set_telefone(std::string);
+        //getters
         std::string get_telefone();
         std::string get_cpf() override;
-        void set_cpf(std::string) override;
+        std::string get_periodo_mandato();
         std::string get_nome() override;
-        void set_nome(std::string) override;
+        std::string get_endereco();
         std::string get_senha() override;
+
+        //setters
+        void set_periodo_mandato(std::string);
+        void set_endereco(std::string);
+        void set_telefone(std::string);
+        void set_cpf(std::string) override;
+        void set_nome(std::string) override;
         void set_senha(std::string) override;
+        
+        //funcoes creche
         void Login(std::string) override;
         void Deslogar() override;
         int Menu();
