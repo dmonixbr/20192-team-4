@@ -9,7 +9,7 @@ class Gerente : public Usuario {
         std::string telefone;
 
         //funcoes creche
-        void Login(std::string) override;
+        
         void Deslogar() override;
         void EmitirRelatorio();
         void EditarCreche();
@@ -36,6 +36,7 @@ class Gerente : public Usuario {
         void set_cpf(std::string) override;
         void set_nome(std::string) override;
         void set_senha(std::string) override;
+        void Login(std::string) override;
         
 };
 
