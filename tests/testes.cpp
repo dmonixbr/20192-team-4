@@ -96,9 +96,30 @@ TEST_CASE("02 - Teste getters e setters Gerente"){
     CHECK(gerente1->get_cpf()== "01234");
     CHECK(gerente2.get_endereco() == "testeSet");
     CHECK(gerente3->get_senha()=="{/*pause*/}");
+}
+/*----------------- Teste Funcoes e construtor creche ---------------*/
+TEST_CASE("01 - Teste Construtores"){
+    CHECK_NOTHROW(Creche creche1("teste","1213545345","rua teste","ferwef "" fwefwe",3));
+    CHECK_NOTHROW(Creche creche2("teste2","1241334","efwe^%^57","{qwdQ}",5));
+}
+
+TEST_CASE("02 - Teste getters e setters"){
+    Creche creche1("teste","1213545345","rua teste","ferwef",3);
+    Creche creche2("teste2","0000000","rua teste2","1231242",5);
+    Creche *creche3 = new Creche("teste3","123456","rua creche","123456",100);
+
+    CHECK(creche1.get_endereco()=="rua teste");
+    CHECK(creche1.get_nome()=="teste");
+    CHECK(creche1.get_pos_gerente() == 3);
+
+    CHECK(creche3->get_validade_convenio()=="123456");
+    CHECK(creche3->get_telefone() == "123456");
+
 
 
 }
+
+
 /*--------------- testando lista --------------------*/
 
 TEST_CASE("Teste inserir na lista"){
