@@ -58,12 +58,13 @@ int Administrador::Menu(){
         std::cout << "5 - Editar meus proprios dados" << std::endl;
         std::cout << "6 - Cadastrar novo administrador ao sistema" << std::endl;
         std::cout << "7 - Ver meus proprios dados" << std::endl;
+        std::cout << "8 - Editar gerente" << std::endl;
         std::cout << "0 - Sair"<<std::endl;
 
         try{
             int aux_acesso;
             std::cin >> aux_acesso;
-            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=3 && aux_acesso != 4 && aux_acesso != 5 && aux_acesso != 6 && aux_acesso !=0 && aux_acesso != 7){
+            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=3 && aux_acesso != 4 && aux_acesso != 5 && aux_acesso != 6 && aux_acesso !=0 && aux_acesso != 7 && aux_acesso !=8){
                 throw "Ops, voce digitou um numero errado!";
             }
             else{
@@ -88,6 +89,10 @@ int Administrador::Menu(){
                 else if(aux_acesso == 4){
                     system("clear");
                     SessaoAdmin->ListarGerentes();
+                    int j;
+                    std::cout << "Digite qualquer numero para voltar ao menu" << std::endl;
+                    std::cin >> j;
+                    SessaoAdmin->Menu();
                 }
 
                 else if(aux_acesso == 5){
@@ -100,6 +105,10 @@ int Administrador::Menu(){
                 
                 else if(aux_acesso == 7){
                     SessaoAdmin->VerDados();
+                }
+
+                else if(aux_acesso == 8){
+                    SessaoAdmin->EditarGerente();
                 }
 
                 else if(aux_acesso == 0){
@@ -498,4 +507,159 @@ void Administrador::ListarAdmins(){
         std::cin >> a; 
     }while(a!=0); 
     SessaoAdmin.Menu(); 
+}
+
+void Administrador::EditarGerente(){
+    //inicializando lista de gerente e criando um ponteiro para o gerente que irei editar
+    Gerente *GerenteEditado;
+    extern ListaGerentes listaG;
+    
+    //Abrindo sessao do admin
+    extern Administrador *SessaoAdmin; 
+    extern ListaAdmins listaA; 
+    admins *atual = listaA.primeiro;
+    SessaoAdmin = atual->admin;
+
+    //Caso de excessao se nao houver gerentes cadastrados
+    if(listaG.primeiro == nullptr){
+        std::cout << "Nao existe gerentes para serem editados" << std::endl;
+        std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(2));
+        SessaoAdmin->Menu();
+    }
+    //caso tenham gerentes cadastrados
+    else{
+        //Interface da funcao editar gerente
+        SessaoAdmin->ListarGerentes();
+        int id_gerente;
+        std::cout << "Digite o id do gerente que voce quer editar: " << std::endl;
+        std::cin >> id_gerente;
+        if(id_gerente > listaG.tamanho() && id_gerente < 0){
+            std::cout << "Digite um numero correto" << std::endl;
+            SessaoAdmin->Menu();
+        }
+        else{
+
+            //Selecionando gerente a ser editado apartir do id
+            GerenteEditado = listaG.get_gerente(id_gerente);
+
+            //aux de acesso as funcoes de editar
+            int aux_acesso;
+            //criando variaveis auxiliares para edicao
+            std::string _nome = GerenteEditado->get_nome(),
+                        _cpf = GerenteEditado->get_cpf(),
+                        _endereco = GerenteEditado->get_endereco(),
+                        _periodo_mandato = GerenteEditado->get_periodo_mandato(),
+                        _telefone = GerenteEditado->get_telefone();
+            while(1){
+
+                //interface do editar
+                system("clear");
+                std::cout << "Ola " << SessaoAdmin->get_nome() << std::endl;
+                std::cout << "Escolha qual dado do gerente \n" << GerenteEditado->get_nome() << " voce quer editar: \n\n" << std::endl;
+                std::cout << "1 - Nome"<<std::endl;
+                std::cout << "2 - Cpf"<<std::endl;
+                std::cout << "3 - Perido de mandato" << std::endl;
+                std::cout << "4 - Endereco" << std::endl;
+                std::cout << "5 - Telefone" << std::endl;
+                std::cout << "6 - Excluir Gerente \n" << std::endl;
+                std::cout << "7 - Sair e salvar                     0 - Sair sem salvar"<<std::endl;
+
+                try
+                {
+                    std::cin >> aux_acesso;
+                    if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=3 && aux_acesso !=4 && aux_acesso !=5 && aux_acesso !=6 && aux_acesso != 7 &&aux_acesso !=0){
+                        throw "Ops voce digitou um numero";
+                    }
+                    else{
+                        //Editar nome
+                        if(aux_acesso == 1){
+                            system("clear");
+                            std::cin.ignore();
+                            std::cout << "Digite o novo nome: "<<std::endl;
+                            std::getline(std::cin, _nome);
+                        }
+                        //Editar cpf
+                        else if(aux_acesso == 2){
+                            std::cin.ignore();
+                            system("clear");
+                            std::cout << "Digite o novo cpf: "<<std::endl;
+                            std::getline(std::cin, _cpf);
+                        }
+                        //editar periodo de mandato
+                        else if(aux_acesso == 3){
+                            std::cin.ignore();
+                            system("clear");
+                            std::cout << "Digite o novo periodo de mandato: "<<std::endl;
+                            std::getline(std::cin, _periodo_mandato);
+                        }
+                        //Editar endereco
+                        else if(aux_acesso == 4){
+                            std::cin.ignore();
+                            system("clear");
+                            std::cout << "Digite o novo endereco: "<<std::endl;
+                            std::getline(std::cin, _endereco);
+                        }
+                        //Editar Telefone
+                        else if(aux_acesso == 5){
+                            std::cin.ignore();
+                            system("clear");
+                            std::cout << "Digite o novo telefone: "<<std::endl;
+                            std::getline(std::cin, _telefone);
+                        }
+                        //Excluir o gerente
+                        else if(aux_acesso == 6){
+                            std::cin.ignore();
+                            system("clear");
+                            std::string aux_acesso2;
+                            std::cout << "Voce confirma que quer excluir o " << GerenteEditado->get_nome() << "?    (y/n)  "<<std::endl;
+                            std::getline(std::cin,aux_acesso2);
+                            try
+                            {
+                                if(aux_acesso2 != "y" && aux_acesso2 != "n"){
+                                    throw "Ops voce digitou uma letra errada";
+                                }
+                                else{
+                                    if(aux_acesso2 == "y"){
+                                        listaG.remover_gerente(id_gerente);
+                                        throw "Gerente removido com sucesso";
+                                    
+                                    }
+                                }
+                            }
+                            catch(const char *e)
+                            {
+                                std::cerr << e << '\n';
+                                std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(2));
+                                SessaoAdmin->Menu();
+                            }
+                            
+                        }
+                        //sair e salvar
+                        else if(aux_acesso == 7){
+                            system("clear");
+                            GerenteEditado->set_nome(_nome);
+                            GerenteEditado->set_cpf(_cpf);
+                            GerenteEditado->set_periodo_mandato(_periodo_mandato);
+                            GerenteEditado->set_endereco(_endereco);
+                            GerenteEditado->set_telefone(_telefone);
+                            std::cout << "Usuario editado com sucesso" << std::endl;
+                            SessaoAdmin->Menu();
+                            return;
+
+                        }
+                        //sair sem salvar
+                        else if(aux_acesso == 0){
+                            system("clear");
+                            SessaoAdmin->Menu();
+                            return;
+                        }
+                    }
+                }
+                catch(const char *e)
+                {
+                    std::cerr << e << '\n';
+                }
+            }
+        }
+    }
 }

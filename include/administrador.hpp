@@ -33,6 +33,7 @@ class Administrador : public Usuario{
         int Menu();
         int ListarGerentes();
         void ListarCreches();
+        void EditarGerente();
         void EditarDados() override;  //OK
         void CadastrarAdmin();  //OK
         void VerDados() override; //OK
