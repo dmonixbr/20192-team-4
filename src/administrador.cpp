@@ -123,6 +123,10 @@ void Administrador::Login(std::string _cpf){
                 SessaoAdmin = atual->admin;
                 SessaoAdmin->Menu();
             }
+            else{
+                std::cout << "Voce digitou a senha incorretamente" << std::endl;
+                gmu::MenuFunc::MenuPrincipal();
+            }
 
         }
         else if (atual->proximo == nullptr){
