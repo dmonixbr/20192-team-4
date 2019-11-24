@@ -1,3 +1,5 @@
+
+#include <iomanip>
 #include "../include/administrador.hpp"
 #include "../include/creche.hpp"
 #include "../include/usuario.hpp"
@@ -122,6 +124,9 @@ void Administrador::Login(std::string _cpf){
                 std::cout << "\n\nVocê entrou!\n\n" << std::endl;
                 SessaoAdmin = atual->admin;
                 SessaoAdmin->Menu();
+            }else{
+                std::cout << "Você digitou a senha incorreta. Tente novamente." << std::endl;
+                gmu::MenuFunc::MenuPrincipal();
             }
 
         }
@@ -256,7 +261,11 @@ void Administrador::ListarCreches(){
     creches *atual;
     atual = listaC.primeiro;
     if(listaC.tamanho() !=0){
-        std::cout << "Nome \t\t\t Endereco \t\t\t Telefone \t Validade do convênio \t Nome do Gerente" << std::endl;
-
+        std::cout << std::left << std::setw(20) << "Nome" << std::setw(70) << "Endereço" << std::setw(20) << "Telefone" << std::setw(30) << "Gerente"  << std::setw(30) << "Validade do Convênio" << std::endl;
+        std::cout << "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << std::endl;
+        for (int i=0; i<listaC.tamanho(); i++){
+            std::cout << std::left << std::setw(20) << atual->creche->get_nome() << std::setw(70) << atual->creche->get_endereco() << std::setw(20) << atual->creche->get_telefone() << std::setw(30) << atual->creche->get_gerente() << std::setw(30) << atual->creche->get_validade_convenio() << std::endl;
+            atual = atual->proximo;
+        }
     }
 }

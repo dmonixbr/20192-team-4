@@ -25,6 +25,10 @@ void Creche::set_validade_convenio(std::string validade_convenio){
     this->validade_convenio = validade_convenio;
 }
 
+void Creche::set_gerente(int _gerente){
+    this->pos_gerente = _gerente;
+}
+
 //getters
 std::string Creche::get_nome(){
     return this->nome;
@@ -37,4 +41,8 @@ std::string Creche::get_telefone(){
 }
 std::string Creche::get_validade_convenio(){
     return this->validade_convenio;
+}
+
+int Creche::get_gerente(){
+    return this->pos_gerente;
 }
