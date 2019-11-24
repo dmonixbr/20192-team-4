@@ -7,6 +7,15 @@ class Gerente : public Usuario {
         std::string periodo_mandato;
         std::string endereco;
         std::string telefone;
+
+        //funcoes creche
+        void Login(std::string) override;
+        void Deslogar() override;
+        void EmitirRelatorio();
+        void EditarCreche();
+        int Menu();
+
+        void VerDados() override;
     public:
 
         Gerente();
@@ -28,12 +37,6 @@ class Gerente : public Usuario {
         void set_nome(std::string) override;
         void set_senha(std::string) override;
         
-        //funcoes creche
-        void Login(std::string) override;
-        void Deslogar() override;
-        void EmitirRelatorio();
-        void EditarCreche();
-        int Menu();
 };
 
 

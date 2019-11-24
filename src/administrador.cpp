@@ -89,7 +89,7 @@ int Administrador::Menu(){
                 }
 
                 else if(aux_acesso == 5){
-                    SessaoAdmin->EditarAdmin("","","");
+                    SessaoAdmin->EditarDados("","","");
                 }
 
                 else if(aux_acesso == 6){
@@ -289,7 +289,7 @@ void Administrador::ListarCreches(){
         }
     }
 }
-void Administrador::EditarAdmin(std::string _nome,std::string _cpf, std::string _senha){
+void Administrador::EditarDados(std::string _nome,std::string _cpf, std::string _senha){
     std::string cpf = _cpf,
                 nome = _nome,
                 senha = _senha;
@@ -319,28 +319,32 @@ void Administrador::EditarAdmin(std::string _nome,std::string _cpf, std::string 
             else{
                 //editar nome
                 if(aux_acesso == 1){
+                    system("clear");
                     std::cin.ignore();
                     std::cout << "Digite o novo nome:" << std::endl;
                     std::getline(std::cin, nome);
-                    SessaoAdmin->EditarAdmin(nome,"","");
+                    SessaoAdmin->EditarDados(nome,"","");
                 }
                 //editar cpf
                 else if(aux_acesso == 2){
+                    system("clear");
                     std::cin.ignore();
                     std::cout << "Digite o novo cpf:" << std::endl;
                     std::getline(std::cin, cpf);
-                    SessaoAdmin->EditarAdmin("",cpf,"");
+                    SessaoAdmin->EditarDados("",cpf,"");
                 }
                 //editar senha
                 else if(aux_acesso == 3){
+                    system("clear");
                     std::cin.ignore();
                     std::cout << "Digite a nova senha: " << std::endl;
                     std::getline(std::cin, senha);
-                    SessaoAdmin->EditarAdmin("","",senha);
+                    SessaoAdmin->EditarDados("","",senha);
                 }
                 
                 //sair e salvar
                 else if(aux_acesso == 4){
+                    system("clear");
                     SessaoAdmin->set_cpf(cpf);
                     SessaoAdmin->set_nome(nome);
                     SessaoAdmin->set_senha(senha);
@@ -349,6 +353,7 @@ void Administrador::EditarAdmin(std::string _nome,std::string _cpf, std::string 
 
                 //sair sem salvar
                 else if(aux_acesso == 0){
+                    system("clear");
                     SessaoAdmin->Menu();
                 }
             }
@@ -402,4 +407,8 @@ void Administrador::CadastrarAdmin(){
 
         SessaoAdmin.Menu();
     }
+}
+
+void Administrador::VerDados(){
+
 }
