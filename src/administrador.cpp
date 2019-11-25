@@ -359,9 +359,9 @@ int Administrador::ListarCreches(bool ver){
             return 2;
         }
     }
+    std::string opc;
     do{
         std::cout << "Digite 0 para voltar para o menu" << std::endl;
-        std::string opc;
         std::cin.ignore();
         std::getline(std::cin,opc);
         if (opc == "0"){
