@@ -167,6 +167,62 @@ void Gerente::EditarCreche(){
 }
 
 void Gerente::EmitirRelatorio(){
+    extern Gerente SessaoGerente;
+    extern ListaGerentes listaG;
+    extern ListaCreches listaC;
+    gerentes *gerente_atual = listaG.primeiro;
+    creches *creche_atual = listaC.primeiro;
+    int checa_creche = 0;
+    int id_gerente = 0;
+    int id_creche;
+
+    for(int i = 0; i < listaG.tamanho(); i++){
+        if(SessaoGerente.get_cpf()==gerente_atual->gerente->get_cpf()){
+            id_gerente = i;
+        }
+        gerente_atual = gerente_atual->proximo;
+    }
+
+    for(int i = 0; i < listaC.tamanho(); i++){
+        if(creche_atual->creche->get_pos_gerente() == id_gerente){
+            checa_creche++;
+            id_creche = i;
+        }
+        creche_atual = creche_atual->proximo;
+    }
+    creche_atual = listaC.primeiro;
+    if(checa_creche>0){
+        Creche *creche = listaC.get_creche(id_creche);
+        std::cout << "RELATORIO DE SUA INSTITUIÇÃO" << std::endl;
+        std::cout << "--------------------------------------------------------------" << std::endl;
+        std::cout << "Numero de alunos: " << creche->get_numero_alunos() << std::endl;
+        std::cout << "Numero de turmas: " << creche->get_numero_turmas() << std::endl;
+        std::cout << "Numero de professores: " << creche->get_numero_professores() << std::endl;
+        std::cout << "Numero de coordenadores: " << creche->get_numero_coordenadores() << std::endl;
+        std::cout << "Numero de auxiliares de bercario: " << creche->get_numero_aux_berc() << std::endl;
+        std::cout << "--------------------------------------------------------------" << std::endl;
+        std::cout << "\t\t\t ORÇAMENTO DISPONIBILIZADO \t\t\t" << std::endl;
+        std::cout << std::setprecision(2) << std::fixed;
+        std::cout << "--------------------------------------------------------------" << std::endl;
+        std::cout << "Orcamento de Manuntencao: R$" << creche->get_valor_manuntencao() << std::endl;
+        std::cout << "Orcamento de Professores: R$" << (creche->get_numero_professores() * 1039.00) << std::endl;
+        std::cout << "Orcamento de Gerencia: R$" << ((creche->get_numero_coordenadores() * 2078.00) + 2565.40) << std::endl;
+        std::cout << "Orcamento para alunos: R$" << ((creche->get_numero_alunos()*creche->get_faixa_etaria()) * creche->get_valor_per_capta()) << std::endl;
+        std::cout << "\n";
+        std::cout << "Orcamento Geral: R$" << (creche->get_valor_manuntencao()) + (creche->get_numero_professores() * 1039.00) + ((creche->get_numero_coordenadores() * 2078.00) + 2565.40) + ((creche->get_numero_alunos()*creche->get_faixa_etaria()) * creche->get_valor_per_capta()) << std::endl;
+        std::cout << "--------------------------------------------------------------" << std::endl;
+        std::cout << "\n";
+        std::cout << "Tecle qualquer caractere para continuar" << std::endl;
+        std::string aux_acesso;
+        std::cin.ignore();
+        std::getline(std::cin, aux_acesso);
+        SessaoGerente.Menu();
+    }
+    else{
+        std::cout << "Voce nao foi definido como gerente de nenhuma creche" << std::endl;
+        std::this_thread::sleep_until(std::chrono::system_clock::now()+std::chrono::seconds(3));
+        SessaoGerente.Menu();
+    }
 
 }
 

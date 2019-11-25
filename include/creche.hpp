@@ -21,38 +21,38 @@ class Creche {
         float faixa_etaria_media;
     public:
 
-        Creche(std::string,std::string,std::string,std::string, int);
+        Creche(std::string,std::string,std::string,std::string, int); //OK
 
         //getters
-        std::string get_nome();
-        std::string get_telefone();
-        std::string get_endereco();
-        std::string get_validade_convenio();
-        int get_pos_gerente();
-        int get_numero_turmas();
-        int get_numero_professores();
-        int get_numero_coordenadores();
-        int get_numero_aux_berc();
-        int get_numero_alunos();
-        float get_valor_per_capta();
-        float get_valor_manuntencao();
-        float get_faixa_etaria();
+        std::string get_nome(); //OK
+        std::string get_telefone(); //OK
+        std::string get_endereco(); //OK
+        std::string get_validade_convenio(); //OK
+        int get_pos_gerente(); //OK
+        int get_numero_turmas(); //OK
+        int get_numero_professores(); //OK
+        int get_numero_coordenadores(); //OK
+        int get_numero_aux_berc(); //OK
+        int get_numero_alunos(); //OK
+        float get_valor_per_capta(); //OK
+        float get_valor_manuntencao(); //OK
+        float get_faixa_etaria(); //OK
 
 
         //setters
-        void set_nome(std::string);
-        void set_telefone(std::string);
-        void set_endereco(std::string);
-        void set_validade_convenio(std::string);
-        void set_pos_gerente(int);
-        void set_numero_turmas(int);
-        void set_numero_professores(int);
-        void set_numero_coordenadores(int);
-        void set_numero_aux_berc(int);
-        void set_numero_alunos(int);
-        void set_valor_per_capta(float);
-        void set_valor_manuntencao(float);
-        void set_faixa_etaria(float);
+        void set_nome(std::string); //OK
+        void set_telefone(std::string); //OK
+        void set_endereco(std::string); //OK
+        void set_validade_convenio(std::string); //OK
+        void set_pos_gerente(int); //OK
+        void set_numero_turmas(int); //OK
+        void set_numero_professores(int); //OK
+        void set_numero_coordenadores(int); //OK
+        void set_numero_aux_berc(int); //OK
+        void set_numero_alunos(int); //OK
+        void set_valor_per_capta(float); //OK
+        void set_valor_manuntencao(float); //OK
+        void set_faixa_etaria(float); //OK
 };
 
 #endif
