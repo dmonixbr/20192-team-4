@@ -363,14 +363,13 @@ int Administrador::ListarCreches(bool ver){
     std::string opc;
     do{
         std::cout << "Digite 0 para voltar para o menu" << std::endl;
-        std::cin.ignore();
-        std::getline(std::cin,opc);
-        if (opc == "0"){
+        std::cin >> opt;
+        if (opt == 0){
             SessaoAdmin.Menu();
         }else{
             std::cout << "Opção inválida! Tente Novamente";
         }
-    }while(opc != "0");
+    }while(opt != 0);
 }
 
 void Administrador::EditarDados(){
@@ -505,25 +504,19 @@ void Administrador::VerDados(){
     std::cout << "CPF: " << SessaoAdmin->get_cpf() << ";" << std::endl;
     std::cout << "SENHA: " << SessaoAdmin->get_senha() << ";\n\n" << std::endl;
 
-    std::cout << "Digite 0 para sair" << std::endl; 
+    
     int aux_acesso;
-    std::cin.ignore();
-    std::cin >> aux_acesso;
+    do{
 
-    try{
-        if(aux_acesso != 0){
-            throw "ops, voce digitou um numero errado";
-        }
-        else if(aux_acesso == 0){
+        std::cout << "Digite 0 para sair" << std::endl;
+        std::cin >> aux_acesso;
+        if(aux_acesso == 0)
             SessaoAdmin->Menu();
+        else{
+            std::cout << "Voce digitou um numero errado" << std::endl;;
         }
-    }
-    catch(const char *e){
-        std::cerr << e << '\n';
-    }
-    catch(...){
-    std::cerr << "Erro inesperado" << '\n';
-    }
+
+    }while(aux_acesso != 0);
 }
 
 void Administrador::ListarAdmins(){ 
