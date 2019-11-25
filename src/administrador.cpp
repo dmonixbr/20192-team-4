@@ -361,13 +361,15 @@ int Administrador::ListarCreches(bool ver){
     }
     do{
         std::cout << "Digite 0 para voltar para o menu" << std::endl;
-        std::cin >> opt;
-        if (opt == 0){
+        std::string opc;
+        std::cin.ignore();
+        std::getline(std::cin,opc);
+        if (opc == "0"){
             SessaoAdmin.Menu();
         }else{
             std::cout << "Opção inválida! Tente Novamente";
         }
-    }while(opt != 0);
+    }while(opc != "0");
 }
 
 void Administrador::EditarDados(){
