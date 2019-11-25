@@ -13,7 +13,7 @@ class Gerente : public Usuario {
         
         void Deslogar() override; //OK
         void EmitirRelatorio(); 
-        void EditarCreche();    
+        void EditarCreche(); //OK
         int Menu();  //OK
 
         void VerDados() override;  //OK
@@ -25,21 +25,22 @@ class Gerente : public Usuario {
         Gerente(std::string,std::string,std::string,std::string,std::string,std::string);
 
         //getters
-        std::string get_telefone();
-        std::string get_cpf() override;
-        std::string get_periodo_mandato();
-        std::string get_nome() override;
-        std::string get_endereco();
-        std::string get_senha() override;
+        std::string get_telefone(); //OK
+        std::string get_cpf() override; //OK
+        std::string get_periodo_mandato(); //OK
+        std::string get_nome() override; //OK
+        std::string get_endereco(); //OK
+        std::string get_senha() override; //OK
         
 
         //setters
-        void set_periodo_mandato(std::string);
-        void set_endereco(std::string);
-        void set_telefone(std::string);
-        void set_cpf(std::string) override;
-        void set_nome(std::string) override;
-        void set_senha(std::string) override;
+        void set_periodo_mandato(std::string); //OK
+        void set_endereco(std::string); //OK
+        void set_telefone(std::string); //OK
+        void set_cpf(std::string) override; //OK
+        void set_nome(std::string) override; //OK
+        void set_senha(std::string) override; //OK
+
         void Login(std::string) override;  //OK
 };
 
