@@ -58,12 +58,13 @@ int Administrador::Menu(){
         std::cout << "7 - Ver meus proprios dados" << std::endl;
         std::cout << "8 - Editar gerente" << std::endl;
         std::cout << "9 - Editar Creche" << std::endl;
+        std::cout << "10 - Gerar relatorio geral" << std::endl;
         std::cout << "0 - Sair"<<std::endl;
 
         try{
             int aux_acesso;
             std::cin >> aux_acesso;
-            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=3 && aux_acesso != 4 && aux_acesso != 5 && aux_acesso != 6 && aux_acesso !=0 && aux_acesso != 7 && aux_acesso !=8 && aux_acesso !=9){
+            if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=3 && aux_acesso != 4 && aux_acesso != 5 && aux_acesso != 6 && aux_acesso !=0 && aux_acesso != 7 && aux_acesso !=8 && aux_acesso !=9 && aux_acesso !=10){
                 throw "Ops, voce digitou um numero errado!";
             }
             else{
@@ -113,6 +114,10 @@ int Administrador::Menu(){
                 
                 else if(aux_acesso == 9){
                     SessaoAdmin->EditarCreche();
+                }
+                else if(aux_acesso == 10){
+                    system("clear");
+                    SessaoAdmin->GerarRelatorioAnual();
                 }
 
                 else if(aux_acesso == 0){
@@ -770,5 +775,73 @@ void Administrador::EditarCreche(){
         if (a == 0){
             SessaoAdmin->Menu();
         }
+    }
+}
+
+void Administrador::GerarRelatorioAnual(){
+    extern Administrador SessaoAdmin;
+    extern ListaCreches listaC;
+    
+    creches *creche_atual = listaC.primeiro;
+
+    // Variaveis de orçamento
+    float manuntencao = 0;
+    float professores = 0;
+    float gerencia = 0;
+    float alunos = 0;
+    float geral = 0;
+    int numero_de_turmas = 0;
+    int numero_de_professores = 0;
+    int numero_de_coordenadores = 0;
+    int numero_de_auxiliares_bercario = 0;
+    int numero_de_alunos = 0;
+
+    if(listaC.tamanho() > 0){
+        for(int i = 0; i < listaC.tamanho(); i++){
+            numero_de_alunos = numero_de_alunos + creche_atual->creche->get_numero_alunos();
+            numero_de_turmas = numero_de_turmas + creche_atual->creche->get_numero_turmas();
+            numero_de_professores = numero_de_professores + creche_atual->creche->get_numero_professores();
+            numero_de_coordenadores = numero_de_coordenadores + creche_atual->creche->get_numero_coordenadores();
+            numero_de_auxiliares_bercario = numero_de_auxiliares_bercario + creche_atual->creche->get_numero_aux_berc();
+
+            manuntencao = manuntencao + creche_atual->creche->get_valor_manuntencao();
+            professores = professores + (creche_atual->creche->get_numero_professores() * 1039.00);
+            gerencia = gerencia + ((creche_atual->creche->get_numero_coordenadores() * 2078.00) + 2565.40);
+            alunos = alunos + ((creche_atual->creche->get_numero_alunos()*creche_atual->creche->get_faixa_etaria()) * creche_atual->creche->get_valor_per_capta());
+            geral = (geral + (manuntencao + professores + gerencia + alunos))/2;
+
+            creche_atual = creche_atual->proximo;
+        }
+
+        std::cout << "RELATORIO GERAL" << std::endl;
+        std::cout << "--------------------------------------------------------------" << std::endl;
+        std::cout << "Numero de alunos alcancados: " << numero_de_alunos << std::endl;
+        std::cout << "Numero de turmas total: " << numero_de_turmas << std::endl;
+        std::cout << "Numero de professores total: " << numero_de_professores << std::endl;
+        std::cout << "Numero de coordenadores total: " << numero_de_coordenadores << std::endl;
+        std::cout << "Numero de auxiliares de bercario total: " << numero_de_auxiliares_bercario << std::endl;
+        std::cout << "--------------------------------------------------------------" << std::endl;
+        std::cout << "\t\t\t GASTOS GERAIS \t\t\t" << std::endl;
+        std::cout << std::setprecision(2) << std::fixed;
+        std::cout << "--------------------------------------------------------------" << std::endl;
+        std::cout << "Gastos com Manuntencao de instituicoes: R$" << manuntencao << std::endl;
+        std::cout << "Gastos com Professores de instituicoes: R$" << professores << std::endl;
+        std::cout << "Gastos com Gerencia de instituicoes: R$" << gerencia << std::endl;
+        std::cout << "Investimento em alunos: R$" << alunos << std::endl;
+        std::cout << "\n";
+        std::cout << "Gastos gerais: R$" << geral << std::endl;
+        std::cout << "--------------------------------------------------------------" << std::endl;
+        std::cout << "\n";
+        std::cout << "Tecle qualquer caractere para continuar" << std::endl;
+        std::string aux_acesso;
+        std::cin.ignore();
+        std::getline(std::cin, aux_acesso);
+        SessaoAdmin.Menu();
+    }
+
+    else{
+        std::cout << "Nenhuma creche registrada no sistema" << std::endl;
+        std::this_thread::sleep_until(std::chrono::system_clock::now()+std::chrono::seconds(3));
+        SessaoAdmin.Menu();
     }
 }

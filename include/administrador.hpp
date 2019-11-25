@@ -30,7 +30,6 @@ class Administrador : public Usuario{
         void DeletarCreche ();  //Aconselho fazer dentro do editar creche como eu fiz em editar gerente
         void CadastrarGerente(); //OK
         void GerarRelatorioAnual (); 
-        void GerarRelatorioTrimestral();
         int Menu(); //OK
         int ListarGerentes(); //OK
         int ListarCreches(bool); //OK
