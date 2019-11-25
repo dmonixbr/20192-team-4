@@ -88,9 +88,10 @@ int Administrador::Menu(){
                 else if(aux_acesso == 4){
                     system("clear");
                     SessaoAdmin->ListarGerentes();
-                    int j;
-                    std::cout << "Digite qualquer numero para voltar ao menu" << std::endl;
-                    std::cin >> j;
+                    std::string j;
+                    std::cout << "Digite qualquer caractere para voltar ao menu" << std::endl;
+                    std::cin.ignore();
+                    std::getline(std::cin,j);
                     SessaoAdmin->Menu();
                 }
 
