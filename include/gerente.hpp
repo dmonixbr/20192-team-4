@@ -12,7 +12,7 @@ class Gerente : public Usuario {
         //funcoes creche
         
         void Deslogar() override; //OK
-        void EmitirRelatorio(); ///OK
+        void GerarRelatorio() override; ///OK
         void EditarCreche(); //OK
         int Menu();  //OK
 

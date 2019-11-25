@@ -166,7 +166,7 @@ void Gerente::EditarCreche(){
     }
 }
 
-void Gerente::EmitirRelatorio(){
+void Gerente::GerarRelatorio(){
     extern Gerente SessaoGerente;
     extern ListaGerentes listaG;
     extern ListaCreches listaC;
@@ -251,7 +251,7 @@ int Gerente::Menu(){
             else{
                 if(aux_acesso == 1){
                     system("clear");
-                    SessaoGerente->EmitirRelatorio();
+                    SessaoGerente->GerarRelatorio();
                 }
                 else if(aux_acesso == 2){
                     SessaoGerente->EditarCreche();

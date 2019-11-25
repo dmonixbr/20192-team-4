@@ -117,7 +117,7 @@ int Administrador::Menu(){
                 }
                 else if(aux_acesso == 10){
                     system("clear");
-                    SessaoAdmin->GerarRelatorioAnual();
+                    SessaoAdmin->GerarRelatorio();
                 }
 
                 else if(aux_acesso == 0){
@@ -778,7 +778,7 @@ void Administrador::EditarCreche(){
     }
 }
 
-void Administrador::GerarRelatorioAnual(){
+void Administrador::GerarRelatorio(){
     extern Administrador SessaoAdmin;
     extern ListaCreches listaC;
     

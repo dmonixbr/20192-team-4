@@ -29,7 +29,7 @@ class Administrador : public Usuario{
         void EditarGerente(); //OK
         void DeletarCreche ();  //Aconselho fazer dentro do editar creche como eu fiz em editar gerente
         void CadastrarGerente(); //OK
-        void GerarRelatorioAnual (); 
+        void GerarRelatorio() override; //OK
         int Menu(); //OK
         int ListarGerentes(); //OK
         int ListarCreches(bool); //OK
