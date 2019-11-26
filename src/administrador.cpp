@@ -41,9 +41,9 @@ std::string Administrador::get_senha(){
 //Função de Menu de Administrador
 int Administrador::Menu(){
     extern ListaAdmins listaA;
-    admins *atual = listaA.primeiro;
+
     extern Administrador *SessaoAdmin;
-    SessaoAdmin = atual->admin;
+    
 
     while(1){
         system("clear");
@@ -157,7 +157,7 @@ void Administrador::Login(std::string _cpf){
             if (atual->admin->get_senha() == senha){
                 system("clear");
                 SessaoAdmin = atual->admin;
-                std::cout << "\n\nVocê entrou!\n\n" << "Seja bem vindo," << SessaoAdmin->nome << "!" << std::endl;
+                std::cout << "\n\nVocê entrou!\n\n" << "Seja bem vindo, " << SessaoAdmin->get_nome() << "!" << std::endl;
                 std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(2));
                 SessaoAdmin->Menu();
             }else{
@@ -517,7 +517,6 @@ void Administrador::CadastrarAdmin(){
 
     }else{
         std::cout << "Digite o nome do administrador: " << std::endl;
-        std::cin.ignore();
         std::getline(std::cin, _nome_admin);
         std::cout << "Digite a senha do administrador: " << std::endl;
         std::getline(std::cin, _senha_admin);
@@ -535,9 +534,7 @@ void Administrador::CadastrarAdmin(){
 
 void Administrador::VerDados(){
     extern ListaAdmins listaA;
-    admins *atual = listaA.primeiro;
     extern Administrador *SessaoAdmin;
-    SessaoAdmin = atual->admin;
 
     system("clear");
     std::cout << "Seja Bem Vindo! \n" << std::endl;
