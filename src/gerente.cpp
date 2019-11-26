@@ -228,9 +228,7 @@ void Gerente::GerarRelatorio(){
 
 int Gerente::Menu(){
     extern ListaGerentes listaG;
-    gerentes *atual = listaG.primeiro;
     extern Gerente *SessaoGerente;
-    SessaoGerente = atual->gerente;
 
     while(1){
         system("clear");
@@ -303,11 +301,8 @@ void Gerente::Deslogar(){
 }
 
 void Gerente::VerDados(){
-        extern ListaGerentes listaG;
-    gerentes *atual = listaG.primeiro;
+    extern ListaGerentes listaG;
     extern Gerente *SessaoGerente;
-    SessaoGerente = atual->gerente;
-
     system("clear");
     std::cout << "Seja Bem Vindo! \n" << std::endl;
     std::cout << "Ola " << SessaoGerente->get_nome() << "," << std::endl;

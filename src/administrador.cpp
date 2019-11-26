@@ -41,9 +41,7 @@ std::string Administrador::get_senha(){
 //Função de Menu de Administrador
 int Administrador::Menu(){
     extern ListaAdmins listaA;
-
     extern Administrador *SessaoAdmin;
-    
 
     while(1){
         system("clear");
@@ -297,6 +295,7 @@ void Administrador::CadastrarCreche(){
             std::cin >> b;
             if (b == -7){
                 SessaoAdmin.CadastrarGerente();
+                SessaoAdmin.ListarGerentes();
                 std::cout << "Digite o ID do Gerente: \n" << std::endl;
                 std::cin >> gerente;
             }else if(b >=0){
@@ -344,7 +343,7 @@ int Administrador::ListarGerentes(){
         std::cout << "Lista de Gerentes" << std::endl;
         std::cout << "------------------------------------------------------------------------------" << std::endl;
         for(int i=0;i<listaG.tamanho();i++){
-            std::cout << "ID: " << i << "\nNome: " << atual->gerente->get_nome() << "\nTelefone: " << atual->gerente->get_telefone() << "Endereco: " << atual->gerente->get_endereco() << std::endl;
+            std::cout << "ID: " << i << "\nNome: " << atual->gerente->get_nome() << "\nTelefone: " << atual->gerente->get_telefone() << "\nEndereco: " << atual->gerente->get_endereco() << std::endl;
             std::cout << "------------------------------------------------------------------------------" << std::endl;
             atual = atual->proximo;
         }
@@ -589,8 +588,6 @@ void Administrador::EditarGerente(){
     //Abrindo sessao do admin
     extern Administrador *SessaoAdmin; 
     extern ListaAdmins listaA; 
-    admins *atual = listaA.primeiro;
-    SessaoAdmin = atual->admin;
 
     //Caso de excessao se nao houver gerentes cadastrados
     if(listaG.primeiro == nullptr){
@@ -605,8 +602,10 @@ void Administrador::EditarGerente(){
         int id_gerente;
         std::cout << "Digite o id do gerente que voce quer editar: " << std::endl;
         std::cin >> id_gerente;
-        if(id_gerente > listaG.tamanho() && id_gerente < 0){
-            std::cout << "Digite um numero correto" << std::endl;
+        std::cout << "\n\n\n" + id_gerente << std::endl;
+        if(id_gerente > listaG.tamanho()-1 || id_gerente < 0){
+            std::cout << "Você digitou um ID inválido!" << std::endl;
+            std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(2));
             SessaoAdmin->Menu();
         }
         else{
