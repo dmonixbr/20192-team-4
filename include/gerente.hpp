@@ -14,7 +14,7 @@ class Gerente : public Usuario {
         void Deslogar() override; //OK
         void GerarRelatorio() override; ///OK
         void EditarCreche(); //OK
-        int Menu();  //OK
+        int  Menu();  //OK
 
         void VerDados() override;  //OK
         void EditarDados() override;  //OK

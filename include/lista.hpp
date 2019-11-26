@@ -79,7 +79,7 @@ struct ListaGerentes{
     void remover_gerente(int);
     void remover_primeiro();
     void remover_ultimo();
-    int tamanho();
+    int  tamanho();
     void insere_primeiro(Gerente *_ger);
 };
 #endif
