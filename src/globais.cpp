@@ -65,5 +65,31 @@ namespace gmu
             return;
         }
     }
+
+    bool MenuFunc::ValidaCpfGerente(std::string cpf){
+
+        for(int i = 0; i < listaG.tamanho();i++){
+            if(listaG.get_gerente(i)->get_cpf() == cpf){
+                return false;
+                break;
+            }   
+            else{
+                return true;
+            }
+        }
+    }
+
+    bool MenuFunc::ValidaCpfAdmin(std::string cpf){
+        for(int i = 0; i < listaA.tamanho();i++){
+            if(listaA.get_admin(i)->get_cpf() == cpf){
+                return false;
+                break;
+            }
+            else{
+                return true;
+            }
+        }
+    }
 }
+
 

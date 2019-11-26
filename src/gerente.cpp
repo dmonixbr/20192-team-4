@@ -381,10 +381,24 @@ void Gerente::EditarDados(){
                 }
                 //editar cpf
                 else if(aux_acesso == 2){
+                    //cpf auxiliar
+                    std::string _cpf;
+
                     system("clear");
                     std::cin.ignore();
                     std::cout << "Digite o novo cpf:" << std::endl;
-                    std::getline(std::cin, cpf);
+                    std::getline(std::cin, _cpf);
+                    bool validacpf = gmu::MenuFunc::ValidaCpfGerente(_cpf);
+                    //validando cpf
+                    if(validacpf){
+                        cpf = _cpf;
+                        std::cout << "Novo cpf definido com sucesso" << std::endl;
+                        std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(3));
+                    }
+                    else{
+                        std::cout << "Existe um gerente com esse cpf, digite outro!" <<std::endl;
+                        std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(3));
+                    }
                 }
                 //editar senha
                 else if(aux_acesso == 3){

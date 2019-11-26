@@ -149,6 +149,7 @@ void Administrador::Login(std::string _cpf){
     extern ListaAdmins listaA;
     extern Administrador *SessaoAdmin;
     admins *atual = listaA.primeiro;
+
     for (i=0; i<listaA.tamanho(); i++){
         if (atual->admin->get_cpf() == _cpf ){
             std::cout << "Digite a senha: \n";
@@ -195,6 +196,8 @@ void Administrador::Deslogar(){
 
 //cadastro de gerente
 void  Administrador::CadastrarGerente(){
+
+    //instanciando listas globais do programa
     extern ListaGerentes listaG;
     extern ListaAdmins listaA;
     admins *atual = listaA.primeiro;
@@ -207,36 +210,47 @@ void  Administrador::CadastrarGerente(){
     std::string _endereco_gerente;
     std::string _telefone_gerente;
     std::string _periodo_mandato;
+
     system("clear");
 
     std::cout << "--------------------------------Cadastro de Gerente---------------------------\n\nDigite o CPF do Gerente:" << std::endl;
     std::cin.ignore();
     std::getline(std::cin, _cpf_gerente);
-    std::cout << "Digite o nome do Gerente:" << std::endl;
-    std::getline(std::cin, _nome_gerente);
-    std::cout << "Digite a senha do gerente:" << std::endl;
-    std::getline(std::cin, _senha_gerente);
-    std::cout << "Digite o endereco do gerente:" << std::endl;
-    std::getline(std::cin, _endereco_gerente);
-    std::cout << "Digite o telefone do gerente:" << std::endl;
-    std::getline(std::cin, _telefone_gerente);
-    std::cout << "Digite o periodo de mandato do gerente:" << std::endl;
-    std::getline(std::cin, _periodo_mandato);
 
-    Gerente *novo_gerente = new Gerente();
+    //Laco para verificar validacao de cpf
+    bool ValidaCpf = gmu::MenuFunc::ValidaCpfGerente(_cpf_gerente);
 
-    novo_gerente->set_cpf(_cpf_gerente);
-    novo_gerente->set_nome(_nome_gerente);
-    novo_gerente->set_senha(_senha_gerente);
-    novo_gerente->set_endereco(_endereco_gerente);
-    novo_gerente->set_telefone(_telefone_gerente);
-    novo_gerente->set_periodo_mandato(_periodo_mandato);
+    if(ValidaCpf){
+        std::cout << "Digite o nome do Gerente:" << std::endl;
+        std::getline(std::cin, _nome_gerente);
+        std::cout << "Digite a senha do gerente:" << std::endl;
+        std::getline(std::cin, _senha_gerente);
+        std::cout << "Digite o endereco do gerente:" << std::endl;
+        std::getline(std::cin, _endereco_gerente);
+        std::cout << "Digite o telefone do gerente:" << std::endl;
+        std::getline(std::cin, _telefone_gerente);
+        std::cout << "Digite o periodo de mandato do gerente:" << std::endl;
+        std::getline(std::cin, _periodo_mandato);
 
-    listaG.insere_gerente(novo_gerente);
+        Gerente *novo_gerente = new Gerente();
 
-    system("clear");
-    std::cout << "Gerente cadastrado com sucesso! O ID do gerente é: " << listaG.tamanho()-1 << std::endl;
-    std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(3));
+        novo_gerente->set_cpf(_cpf_gerente);
+        novo_gerente->set_nome(_nome_gerente);
+        novo_gerente->set_senha(_senha_gerente);
+        novo_gerente->set_endereco(_endereco_gerente);
+        novo_gerente->set_telefone(_telefone_gerente);
+        novo_gerente->set_periodo_mandato(_periodo_mandato);
+
+        listaG.insere_gerente(novo_gerente);
+
+        system("clear");
+        std::cout << "Gerente cadastrado com sucesso! O ID do gerente é: " << listaG.tamanho()-1 << std::endl;
+        std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(3));
+    }
+    else{
+        std::cout << "Ja existe um gerente com este cpf" << std::endl;
+        std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(3));
+    }
 
 }
 
@@ -414,10 +428,23 @@ void Administrador::EditarDados(){
                 }
                 //editar cpf
                 else if(aux_acesso == 2){
+                    //cpf auxiliar
+                    std::string _cpf;
+
                     system("clear");
                     std::cin.ignore();
                     std::cout << "Digite o novo cpf:" << std::endl;
-                    std::getline(std::cin, cpf);
+                    std::getline(std::cin, _cpf);
+
+                    bool valida_cpf = gmu::MenuFunc::ValidaCpfAdmin(_cpf);
+
+                    if(valida_cpf){
+                        cpf = _cpf;
+                    }
+                    else{
+                        std::cout << "Ja existe um admin com este cpf"<<std::endl;
+                        std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(2));
+                    }
                 }
                 //editar senha
                 else if(aux_acesso == 3){
@@ -618,10 +645,21 @@ void Administrador::EditarGerente(){
                         }
                         //Editar cpf
                         else if(aux_acesso == 2){
+                            std::string cpf_aux;
                             std::cin.ignore();
                             system("clear");
                             std::cout << "Digite o novo cpf: "<<std::endl;
-                            std::getline(std::cin, _cpf);
+                            std::getline(std::cin, cpf_aux);
+
+                            //Valida cpf
+                            bool valida_cpf = gmu::MenuFunc::ValidaCpfGerente(cpf_aux);
+                            if(valida_cpf){
+                                _cpf = cpf_aux;
+                            }
+                            else{
+                                std::cout << "Existe um gerente com esse cpf, digite" << std::endl;
+                                std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(2));
+                            }
                         }
                         //editar periodo de mandato
                         else if(aux_acesso == 3){
@@ -845,3 +883,4 @@ void Administrador::GerarRelatorio(){
         SessaoAdmin.Menu();
     }
 }
+
