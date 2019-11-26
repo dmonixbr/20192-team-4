@@ -856,7 +856,7 @@ void Administrador::GerarRelatorio(){
             professores = professores + (creche_atual->creche->get_numero_professores() * 1039.00);
             gerencia = gerencia + ((creche_atual->creche->get_numero_coordenadores() * 2078.00) + 2565.40);
             alunos = alunos + ((creche_atual->creche->get_numero_alunos()*creche_atual->creche->get_faixa_etaria()) * creche_atual->creche->get_valor_per_capta());
-            geral = (geral + (manuntencao + professores + gerencia + alunos))/2;
+            geral = geral + (manuntencao + professores + gerencia + alunos);
 
             creche_atual = creche_atual->proximo;
         }
