@@ -56,9 +56,11 @@ Esse trabalho é a consolidação de todo aprendizado na matéria de Programaç�
 <li>Como usuário, quero poder fazer login para ter acesso às funções delimitadas ao meu papel.</li>
 </ul>
 
+
+
 ### Cartões CRC
 
-#### Classe: Usuario
+##### Classe: Usuario
 
 |Responsabilidades|Colaboração|
 | - | - |
@@ -68,7 +70,7 @@ Esse trabalho é a consolidação de todo aprendizado na matéria de Programaç�
 |Editar seus dados|
 |Mostrar seu dados|
 
-#### Classe: Administrador
+##### Classe: Administrador
 
 |Responsabilidades| Colaboração|
 | - | - |
@@ -87,7 +89,7 @@ Esse trabalho é a consolidação de todo aprendizado na matéria de Programaç�
 |Fazer login |
 |Deslogar |
 
-#### Classe: Gerente
+##### Classe: Gerente
 
 |Responsabilidades| Colaboração |
 | - | - |
@@ -104,7 +106,7 @@ Esse trabalho é a consolidação de todo aprendizado na matéria de Programaç�
 |Deslogar|
 
 
-#### Classe: Creche
+##### Classe: Creche
 
 |Responsabilidades | Colaboração |
 | - | - |
@@ -122,15 +124,22 @@ Esse trabalho é a consolidação de todo aprendizado na matéria de Programaç�
 |Saber a faixa etária média|
 |Saber qual o gerente responsável pela creche|
 
-#### Classe: MenuFunc
+
+##### Classe: MenuFunc
 
 |Responsabilidades|Colaboração|
 | - | - |
 |Criar menu para usuario selecionar a função que ele deseja|
 
 
+
+
+
 ### Documentação
 Clique [aqui](https://github.com/pds2/20192-team-4/blob/master/Documenta%C3%A7%C3%A3o/Documenta%C3%A7%C3%A3o%20TP%20-%20PDS%20II.pdf) para acessar o pdf com a documentação do programa
+
+
+
 
 ### Como executar
 
