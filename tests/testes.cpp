@@ -14,6 +14,7 @@
 
 Administrador *SessaoAdmin;
 Gerente *SessaoGerente;
+Creche *SessaoCreche;
 /*Listas vazias para testes*/
 ListaGerentes listaG;
 ListaAdmins listaA;
