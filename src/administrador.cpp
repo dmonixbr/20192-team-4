@@ -218,7 +218,13 @@ void  Administrador::CadastrarGerente(){
     std::getline(std::cin, _cpf_gerente);
 
     //Laco para verificar validacao de cpf
-    bool ValidaCpf = gmu::MenuFunc::ValidaCpfGerente(_cpf_gerente);
+    bool ValidaCpf;
+    if (listaG.tamanho() >0){
+        ValidaCpf = gmu::MenuFunc::ValidaCpfGerente(_cpf_gerente);
+    }else{
+        ValidaCpf = true;
+    }
+    //std::cout << ValidaCpf << std::endl;
 
     if(ValidaCpf){
         std::cout << "Digite o nome do Gerente:" << std::endl;
@@ -495,17 +501,21 @@ void Administrador::CadastrarAdmin(){
     std::cout << "Digite o CPF do administrador:" << std::endl;
     std::cin.ignore();
     std::getline(std::cin, _cpf_admin);
-    for(int i=0;i<listaA.tamanho();i++){
-        if(_cpf_admin == atual->admin->get_cpf()){
-            checa_cpf++;
-            atual = atual->proximo;
-        }
+
+
+    bool ValidaCpf;
+    if (listaA.tamanho() >0){
+        ValidaCpf = gmu::MenuFunc::ValidaCpfAdmin(_cpf_admin);
+    }else{
+        ValidaCpf = true;
     }
-    if(checa_cpf > 0){
-        std::cout << "CPF ja cadastrado!" << std::endl;
+
+    if (!ValidaCpf) {
+        std::cout << "Já existe um usuário cadastrado com este CPF!" << std::endl;
+        std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(2));
         SessaoAdmin.Menu();
-    }
-    else{
+
+    }else{
         std::cout << "Digite o nome do administrador: " << std::endl;
         std::cin.ignore();
         std::getline(std::cin, _nome_admin);

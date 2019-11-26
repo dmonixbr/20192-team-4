@@ -73,10 +73,8 @@ namespace gmu
                 return false;
                 break;
             }   
-            else{
-                return true;
-            }
         }
+        return true;
     }
 
     bool MenuFunc::ValidaCpfAdmin(std::string cpf){
@@ -85,10 +83,8 @@ namespace gmu
                 return false;
                 break;
             }
-            else{
-                return true;
-            }
         }
+        return true;
     }
 }
 
