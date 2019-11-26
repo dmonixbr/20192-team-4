@@ -5,6 +5,7 @@
 
 <p align="center"> <h1> Sistema de Gerenciamento Financeiro de Creches </h1> </p>
 
+
 | [Introdução](#introdução) | [Integrantes](#integrantes) | [User Stories](#user-stories) | [Cartões CRC](#cartões-crc) | [Documentação](#documentação) | [Como executar](#como-executar) 
 | - | - | - | - | - | - |
 
@@ -15,7 +16,7 @@ Esse trabalho é a consolidação de todo aprendizado na matéria de Programaç�
     A motivação do trabalho, nasce da necessidade de um familiar de um dos integrantes do grupo, que é responsável por avaliar dados de creches de Belo Horizonte e com base neles, prever o orçamento do próximo ano que deve ser destinado pela Prefeitura de Belo Horizonte a creche.
     O sistema desenvolvido, consiste em um programa onde seja possível gerar relatório anual com a previsão do orçamento previsto para o próximo ano para a creche com base nos dados inseridos.
 
-
+<br>
 
 ### Integrantes
 - Daniel Neiva
@@ -27,6 +28,7 @@ Esse trabalho é a consolidação de todo aprendizado na matéria de Programaç�
 > Professor: Júlio César
 
 
+<br>
 
 ### User Stories
 
@@ -56,6 +58,8 @@ Esse trabalho é a consolidação de todo aprendizado na matéria de Programaç�
 <li>Como usuário, quero poder fazer login para ter acesso às funções delimitadas ao meu papel.</li>
 </ul>
 
+<br>
+<br>
 
 
 ### Cartões CRC
@@ -132,14 +136,15 @@ Esse trabalho é a consolidação de todo aprendizado na matéria de Programaç�
 |Criar menu para usuario selecionar a função que ele deseja|
 
 
-
-
+<br>
+<br>
 
 ### Documentação
 Clique [aqui](https://github.com/pds2/20192-team-4/blob/master/Documenta%C3%A7%C3%A3o/Documenta%C3%A7%C3%A3o%20TP%20-%20PDS%20II.pdf) para acessar o pdf com a documentação do programa
 
 
-
+<br>
+<br>
 
 ### Como executar
 
