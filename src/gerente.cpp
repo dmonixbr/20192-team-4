@@ -124,6 +124,7 @@ void Gerente::EditarCreche(){
         creche_atual = creche_atual->proximo;
     }
     creche_atual = listaC.primeiro;
+    try {
 
     if(checa_creche>0){
         Creche *creche = listaC.get_creche(id_creche);
@@ -164,6 +165,10 @@ void Gerente::EditarCreche(){
         std::this_thread::sleep_until(std::chrono::system_clock::now()+std::chrono::seconds(3));
         SessaoGerente.Menu();
     }
+    }catch(const char *e)
+        {
+            std::cerr << e << '\n';
+        }
 }
 
 void Gerente::GerarRelatorio(){

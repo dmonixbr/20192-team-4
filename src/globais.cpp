@@ -10,7 +10,6 @@ namespace gmu
 {
     void MenuFunc::MenuPrincipal(){
         std::cout << "\n\n------Seja Bem Vindo ao Sistema da creche-------"<<std::endl;
-                while(1){
                     std::cout << "Digite o numero da funcao que voce quer fazer:" << std::endl;
                     std::cout << std::endl;
                     std::cout << "1 - Login como Administrador"<<std::endl; 
@@ -20,8 +19,12 @@ namespace gmu
             try{
                     int aux_acesso;
                     std::cin >> aux_acesso;
+                    if (std::cin.fail()){
+                        throw std::invalid_argument("\nVocê digitou algo INVÁLIDO!!!\n\n");
+                        
+                    }
                 if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=0){
-                    throw "Ops, voce digitou um numero errado!";
+                    throw "Ops, voce digitou um numero errado!\n";
                 }
                 else{
                     if(aux_acesso == 1){
@@ -48,22 +51,30 @@ namespace gmu
                     else if(aux_acesso == 0){
                         std::cout << "Muito Obrigado!!!" << std::endl;
                         std::cout << "Tenha um bom dia!!" << std::endl;
-                        return;
+                        std::exit(0);
                     }   
                     else{
-                        throw "Ocorreu um erro inesperado, e para a sua seguranca o programa vai desligar";
+                        std::cerr << "Ocorreu um erro inesperado, e para a sua seguranca o programa vai desligar";
+                    //    continue;
                     }
                 }
             }
             catch(const char *e)
             {
                 std::cerr << e << '\n';
+                gmu::MenuFunc::MenuPrincipal();
+            }
+            catch(std::invalid_argument &e)
+            {
+                std::cout << e.what();
+                std::cin.clear();
+                std::cin.ignore();
+                gmu::MenuFunc::MenuPrincipal();
+                std::cout << "\n\n\n\n" << std::endl;
             }
             catch(...){
                 std::cerr << "Erro inesperado" << '\n';
             }
-            return;
-        }
     }
 
     bool MenuFunc::ValidaCpfGerente(std::string cpf){
