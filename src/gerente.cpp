@@ -124,28 +124,52 @@ void Gerente::EditarCreche(){
         creche_atual = creche_atual->proximo;
     }
     creche_atual = listaC.primeiro;
+    ler_creche:
     try {
-
     if(checa_creche>0){
         Creche *creche = listaC.get_creche(id_creche);
         std::cout << "Informe os dados de sua creche" << std::endl;
         std::cout << "---------------------------------------------------------" << std::endl;
         std::cout << "Informe o numero de turmas de sua instituicao:" << std::endl;
         std::cin >> _numero_turmas;
+        if (std::cin.fail()){
+            throw std::invalid_argument("\nVocê digitou algo errado!");
+        }
         std::cout << "Informe o numero de professores da sua instituicao:" << std::endl;
         std::cin >> _numero_professores;
+        if (std::cin.fail()){
+            throw std::invalid_argument("\nVocê digitou algo errado!");
+        }
         std::cout << "Informe o numero de coordenadores de sua instituicao:" << std::endl;
         std::cin >> _numero_coord;
+        if (std::cin.fail()){
+            throw std::invalid_argument("\nVocê digitou algo errado!");
+        }
         std::cout << "Informe o numero de auxiliares de bercario em sua instituicao:" << std::endl;
         std::cin >> _numero_aux_berc;
+        if (std::cin.fail()){
+            throw std::invalid_argument("\nVocê digitou algo errado!");
+        }
         std::cout << "Informe o numero de alunos em sua instituicao:" << std::endl;
         std::cin >> _numero_alunos;
+        if (std::cin.fail()){
+            throw std::invalid_argument("\nVocê digitou algo errado!");
+        }
         std::cout << "Informe o valor per capta de alunos:" << std::endl;
         std::cin >> _per_capta;
+        if (std::cin.fail()){
+            throw std::invalid_argument("\nVocê digitou algo errado!");
+        }
         std::cout << "Informe o valor de manuntencao de sua instituicao:" << std::endl;
         std::cin >> _manuntencao;
+        if (std::cin.fail()){
+            throw std::invalid_argument("\nVocê digitou algo errado!");
+        }
         std::cout << "Informe a faixa etaria media de sua instituicao:" << std::endl;
         std::cin >> _faixa_etaria;
+        if (std::cin.fail()){
+            throw std::invalid_argument("\nVocê digitou algo errado!");
+        }
 
         creche->set_numero_turmas(_numero_turmas);
         creche->set_numero_professores(_numero_professores);
@@ -165,10 +189,18 @@ void Gerente::EditarCreche(){
         std::this_thread::sleep_until(std::chrono::system_clock::now()+std::chrono::seconds(3));
         SessaoGerente.Menu();
     }
-    }catch(const char *e)
-        {
-            std::cerr << e << '\n';
-        }
+    }
+    catch(std::invalid_argument &e){
+        std::cout << e.what();
+        std::cin.clear();
+        std::cin.ignore();
+        goto ler_creche;
+
+    }
+    catch(const char *e)
+    {
+        std::cerr << e << '\n';
+    }
 }
 
 void Gerente::GerarRelatorio(){

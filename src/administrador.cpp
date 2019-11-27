@@ -423,23 +423,23 @@ int Administrador::ListarCreches(bool ver){
             return 1;
         }
     }else{
-        std::cout << "Não existem creches cadastradas! " << std::endl;
+        std::cout << "\nNão existem creches cadastradas!\n " << std::endl;
         if (ver){
             return 2;
         }
     }
     std::string opc;
     do{
-        std::cout << "Digite 0 para voltar para o menu" << std::endl;
+        std::cout << "\nDigite 0 para voltar para o menu\n" << std::endl;
         std::cin >> opt;
         try{
             if (std::cin.fail()){
-                throw std::invalid_argument("\nVocê digitou uma opção inválida!");
+                throw std::invalid_argument("\nVocê digitou uma opção inválida!\n");
             }
             if (opt == 0){
                 SessaoAdmin.Menu();
             }else{
-                std::cout << "Opção inválida! Tente Novamente";
+                std::cout << "\nOpção inválida! Tente Novament\n";
             }
         }
         catch(std::invalid_argument &e){
@@ -905,12 +905,15 @@ void Administrador::EditarCreche(){
                             std::cout << "\n\nDigite o ID do novo Gerente: \n" << std::endl;
                             std::cin >> ger;
                             if (std::cin.fail()){
-                                throw std::invalid_argument("\nVocê digitou algo inválido!\n");
+                                throw std::invalid_argument("\nVocê digitou um ID inválido!\n");
                             }
                             SessaoCreche->set_pos_gerente(ger);
                         }else if (list == 0){
                             std::cout << "Não existe nenhum gerente cadastrado! Tecle 9 para cadastrar um novo gerente!" << std::endl;
                             std::cin >> list;
+                            if (std::cin.fail()){
+                                throw std::invalid_argument("\nVocê digitou algo inválido!\n");
+                            }
                             if (list == 9){
                                 SessaoAdmin->CadastrarGerente();
                             }
@@ -925,6 +928,9 @@ void Administrador::EditarCreche(){
         }else if(a == 2){
             std::cout << "\n\nDigite 0 para voltar ao menu." << std::endl;
             std::cin >> a;
+            if (std::cin.fail()){
+                throw std::invalid_argument("\nVocê digitou algo inválido!\n");
+            }
             std::cout << a << std::endl;
             if (a == 0){
                 SessaoAdmin->Menu();
