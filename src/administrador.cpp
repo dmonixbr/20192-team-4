@@ -40,6 +40,7 @@ std::string Administrador::get_senha(){
 
 //Função de Menu de Administrador
 int Administrador::Menu(){
+    std::cout << "\x1B[2J\x1B[H";
     extern ListaAdmins listaA;
     extern Administrador *SessaoAdmin;
 
@@ -455,11 +456,11 @@ int Administrador::ListarCreches(bool ver){
             opt = 142;
         }
     }while(opt != 0);
+    return 0;
 }
 
 void Administrador::EditarDados(){
     extern ListaAdmins listaA;
-    admins *atual = listaA.primeiro;
     extern Administrador *SessaoAdmin;
     
 

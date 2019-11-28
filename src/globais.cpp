@@ -15,7 +15,6 @@ namespace gmu
 
     //! Função que verifica se o que foi digitado na string é um numero.
     bool MenuFunc::isNumero(std::string s) {
-	bool isDigit = true;
 	    std::string::const_iterator it = s.begin();
         while (it != s.end() && std::isdigit(*it)) 
             ++it;
@@ -24,6 +23,7 @@ namespace gmu
 
 
     void MenuFunc::MenuPrincipal(){
+        std::cout << "\x1B[2J\x1B[H";
         std::cout << "\n\n------Seja Bem Vindo ao Sistema da creche-------"<<std::endl;
                     std::cout << "Digite o numero da funcao que voce quer fazer:" << std::endl;
                     std::cout << std::endl;

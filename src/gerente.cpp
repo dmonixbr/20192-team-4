@@ -105,7 +105,7 @@ void Gerente::EditarCreche(){
     creches *creche_atual = listaC.primeiro;
     int checa_creche = 0;
     int id_gerente = 0;
-    int id_creche;
+    int id_creche =-1;
     int _numero_professores, _numero_coord, _numero_aux_berc, _numero_turmas, _numero_alunos;
     float _per_capta, _manuntencao, _faixa_etaria;
 
@@ -117,9 +117,17 @@ void Gerente::EditarCreche(){
     }
 
     for(int i = 0; i < listaC.tamanho(); i++){
-        if(creche_atual->creche->get_pos_gerente() == id_gerente){
-            checa_creche++;
-            id_creche = i;
+        try{
+            if(creche_atual->creche->get_pos_gerente() == id_gerente){
+                checa_creche++;
+                id_creche = i;
+            }
+            if (id_creche == -1){
+                throw "\n\nOcorreu um erro inesperado :(\n\n O programa será encerrado...\n\n\n";
+            }
+        }catch(const char *e){
+            std::cout << e << "\n";
+            std::exit(0);
         }
         creche_atual = creche_atual->proximo;
     }
@@ -373,7 +381,6 @@ void Gerente::VerDados(){
 
 void Gerente::EditarDados(){
     extern ListaGerentes listaG;
-    gerentes *atual = listaG.primeiro;
     extern Gerente *SessaoGerente;
  
 
