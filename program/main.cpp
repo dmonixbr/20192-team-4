@@ -20,7 +20,7 @@ int main(){
     /*---------------------Criando Administrador super--------------*/
     Administrador *Super = new Administrador();
     Super->set_nome("super");
-    Super->set_cpf("000");
+    Super->set_cpf("01234567890");
     Super->set_senha("super");
     listaA.insere_admin(Super);
     

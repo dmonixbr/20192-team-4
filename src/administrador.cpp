@@ -454,7 +454,7 @@ void Administrador::EditarDados(){
     extern ListaAdmins listaA;
     admins *atual = listaA.primeiro;
     extern Administrador *SessaoAdmin;
-    SessaoAdmin = atual->admin;
+    
 
     std::string cpf = SessaoAdmin->get_cpf(),
                 nome = SessaoAdmin->get_nome(),
@@ -497,6 +497,12 @@ void Administrador::EditarDados(){
                     std::cin.ignore();
                     std::cout << "Digite o novo cpf:" << std::endl;
                     std::getline(std::cin, _cpf);
+                    if((cpf.length() != 11) && (!gmu::MenuFunc::isNumero(_cpf)))  
+		                    throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos e apenas números!");
+                        else if((cpf.length() != 11))  
+		                    throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos!");
+                        else if(!gmu::MenuFunc::isNumero(_cpf))
+                            throw std::invalid_argument("\nCPF Invalido! O CPF é composto apenas de números!");
 
                     bool valida_cpf = gmu::MenuFunc::ValidaCpfAdmin(_cpf);
 

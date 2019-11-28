@@ -375,7 +375,7 @@ void Gerente::EditarDados(){
     extern ListaGerentes listaG;
     gerentes *atual = listaG.primeiro;
     extern Gerente *SessaoGerente;
-    SessaoGerente = atual->gerente;
+ 
 
     std::string cpf = SessaoGerente->get_cpf(),
                 nome = SessaoGerente->get_nome(),
