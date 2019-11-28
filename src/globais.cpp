@@ -98,10 +98,12 @@ namespace gmu
         return true;
     }
 
+    std::string DataBase::INFO ="";
 
     DataBase::DataBase(){
+        
         int status = 0; 
-        status = sqlite3_open(caminho, &banco); 
+        status = sqlite3_open("creche.db", &banco); 
   
         if (status) { 
             std::cerr << "Erro ao abrir o Banco de Dados: " << sqlite3_errmsg(banco) << std::endl; 
@@ -112,10 +114,31 @@ namespace gmu
         sqlite3_close(banco);
     }
 
+    void DataBase::AbrirDB(){
+        std::string sqlA = "SELECT * FROM admin";
+        char* messageError;
+        int status = 0;
+        status = sqlite3_exec(banco, sqlA.c_str(), callback, NULL, NULL); 
+       // std::list<std::string>::iterator it;
+        std::cout << INFO;
+        if (status != SQLITE_OK) 
+        std::cerr << "Erro ao buscar informações do usuário: " << sqlite3_errmsg(banco) << std::endl;
+
+    }
+
     void DataBase::SalvarDB(){
         int i;
         for (i = 0; i<listaA.tamanho(); i++){
-            std::cout << listaA.get_admin(i)->get_nome();
+            std::string sqlA = "INSERT INTO admin (id,cpf, nome, senha) VALUES ('" +  std::to_string(i+1) +"', '" + listaA.primeiro->admin->get_cpf() + "', '" + listaA.primeiro->admin->get_nome() + "', '" +listaA.primeiro->admin->get_senha() + "')";
+            std::cout << sqlA;
+            char* messageError;
+            int status = 0;
+            status = sqlite3_exec(banco, sqlA.c_str(), NULL, 0, &messageError);
+
+            if (status != SQLITE_OK){
+                std::cerr << "Erro ao inserir dados no banco: " << sqlite3_errmsg(banco) << std::endl;
+                sqlite3_free(messageError);
+            }
         }
     } 
 }
