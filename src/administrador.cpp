@@ -940,7 +940,7 @@ void Administrador::EditarCreche(){
     catch(std::invalid_argument &e){
         std::cout << e.what();
         std::cin.clear();
-        std::cin.ignroe();
+        std::cin.ignore();
         SessaoAdmin->EditarCreche();
     }
 }
