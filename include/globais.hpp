@@ -1,4 +1,11 @@
+#ifndef FUNCOES_GLOBAIS_H
+#define FUNCOES_GLOBAIS_H
+
 #include "../include/lista.hpp"
+
+extern "C"{
+    #include "../sqlite/sqlite3.h"
+}
 
 namespace gmu{
 
@@ -11,12 +18,13 @@ namespace gmu{
     };
     class DataBase{
     public:
-    	std::string caminho;
+    	const char* caminho;
     	DataBase();
     	~DataBase();
     	static void SalvarDB();
 
     private:
     	sqlite3* banco;
-    }
+    };
 }
+#endif

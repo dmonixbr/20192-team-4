@@ -1,7 +1,6 @@
 #include "../include/globais.hpp"
 #include "../include/lista.hpp"
 #include <iostream>
-#include "../third_party/sqlite3.h"
 
 extern ListaGerentes listaG;
 extern ListaAdmins listaA;
@@ -116,9 +115,9 @@ namespace gmu
     void DataBase::SalvarDB(){
         int i;
         for (i = 0; i<listaA.tamanho(); i++){
-            std::cout << listaA.get_admin(i).get_nome();
+            std::cout << listaA.get_admin(i)->get_nome();
         }
-    }
+    } 
 }
 
 
