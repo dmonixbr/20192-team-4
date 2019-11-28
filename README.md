@@ -152,7 +152,7 @@ Clique [aqui](https://github.com/pds2/20192-team-4/blob/master/Documenta%C3%A7%C
     > make run
     
 - Selecione a opção 1 e faça o login com os dados do administrador supremo.
-    > cpf: 000 <br>
+    > cpf: 01234567890 <br>
     > senha: super
     
 - Comandos do programa:
