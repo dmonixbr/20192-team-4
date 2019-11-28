@@ -102,6 +102,7 @@ namespace gmu
                 std::cout << e.what();
                 std::cin.clear();
                 std::cin.ignore();
+                std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(2));
                 gmu::MenuFunc::MenuPrincipal();
                 std::cout << "\n\n\n\n" << std::endl;
             }
