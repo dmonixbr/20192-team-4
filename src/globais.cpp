@@ -2,15 +2,29 @@
 #include "../include/lista.hpp"
 #include <iostream>
 
+
 extern ListaGerentes listaG;
 extern ListaAdmins listaA;
 extern ListaAdmins listaC;
 
+
+
+
 namespace gmu
 {
+
+    //! Função que verifica se o que foi digitado na string é um numero.
+    bool MenuFunc::isNumero(std::string s) {
+	bool isDigit = true;
+	    std::string::const_iterator it = s.begin();
+        while (it != s.end() && std::isdigit(*it)) 
+            ++it;
+        return !s.empty() && it == s.end();
+    }
+
+
     void MenuFunc::MenuPrincipal(){
         std::cout << "\n\n------Seja Bem Vindo ao Sistema da creche-------"<<std::endl;
-                while(1){
                     std::cout << "Digite o numero da funcao que voce quer fazer:" << std::endl;
                     std::cout << std::endl;
                     std::cout << "1 - Login como Administrador"<<std::endl; 
@@ -20,8 +34,12 @@ namespace gmu
             try{
                     int aux_acesso;
                     std::cin >> aux_acesso;
+                    if (std::cin.fail()){
+                        throw std::invalid_argument("\nVocê digitou algo INVÁLIDO!!!\n\n");
+                        
+                    }
                 if(aux_acesso != 1 && aux_acesso !=2 && aux_acesso !=0){
-                    throw "Ops, voce digitou um numero errado!";
+                    throw "Ops, voce digitou um numero errado!\n";
                 }
                 else{
                     if(aux_acesso == 1){
@@ -29,6 +47,12 @@ namespace gmu
                         std::cout << "\n\n---------------------------- Login ----------------------------\n\nDigite seu CPF:" << std::endl;
                         std::string cpf;
                         std::cin >> cpf;
+                        if((cpf.length() != 11) && (!isNumero(cpf)))  
+		                    throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos e apenas números!");
+                        else if((cpf.length() != 11))  
+		                    throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos!");
+                        else if(!isNumero(cpf))
+                            throw std::invalid_argument("\nCPF Invalido! O CPF é composto apenas de números!");
                         listaA.primeiro->admin->Login(cpf);
                     }
                     else if(aux_acesso == 2){
@@ -48,24 +72,35 @@ namespace gmu
                     else if(aux_acesso == 0){
                         std::cout << "Muito Obrigado!!!" << std::endl;
                         std::cout << "Tenha um bom dia!!" << std::endl;
-                        return;
+                        std::exit(0);
                     }   
                     else{
-                        throw "Ocorreu um erro inesperado, e para a sua seguranca o programa vai desligar";
+                        std::cerr << "Ocorreu um erro inesperado, e para a sua seguranca o programa vai desligar";
+                    //    continue;
                     }
                 }
             }
             catch(const char *e)
             {
                 std::cerr << e << '\n';
+                gmu::MenuFunc::MenuPrincipal();
+            }
+            catch(std::invalid_argument &e)
+            {
+                std::cout << e.what();
+                std::cin.clear();
+                std::cin.ignore();
+                gmu::MenuFunc::MenuPrincipal();
+                std::cout << "\n\n\n\n" << std::endl;
             }
             catch(...){
                 std::cerr << "Erro inesperado" << '\n';
             }
-            return;
-        }
     }
 
+
+
+    //! Função que verifica se o CPF que deseja ser cadastrado já está em uso para outro gerente
     bool MenuFunc::ValidaCpfGerente(std::string cpf){
 
         for(int i = 0; i < listaG.tamanho();i++){
@@ -77,6 +112,7 @@ namespace gmu
         return true;
     }
 
+    //! Função que verifica se o CPF que deseja ser cadastrado já está em uso para outro administrador
     bool MenuFunc::ValidaCpfAdmin(std::string cpf){
         for(int i = 0; i < listaA.tamanho();i++){
             if(listaA.get_admin(i)->get_cpf() == cpf){
@@ -87,5 +123,6 @@ namespace gmu
         return true;
     }
 }
+
 
 
