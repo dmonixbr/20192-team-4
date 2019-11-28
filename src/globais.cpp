@@ -1,6 +1,7 @@
 #include "../include/globais.hpp"
 #include "../include/lista.hpp"
 #include <iostream>
+#include "../third_party/sqlite3.h"
 
 extern ListaGerentes listaG;
 extern ListaAdmins listaA;
@@ -96,6 +97,27 @@ namespace gmu
             }
         }
         return true;
+    }
+
+
+    DataBase::DataBase(){
+        int status = 0; 
+        status = sqlite3_open(caminho, &banco); 
+  
+        if (status) { 
+            std::cerr << "Erro ao abrir o Banco de Dados: " << sqlite3_errmsg(banco) << std::endl; 
+        } 
+    }
+
+    DataBase::~DataBase(){
+        sqlite3_close(banco);
+    }
+
+    void DataBase::SalvarDB(){
+        int i;
+        for (i = 0; i<listaA.tamanho(); i++){
+            std::cout << listaA.get_admin(i).get_nome();
+        }
     }
 }
 
