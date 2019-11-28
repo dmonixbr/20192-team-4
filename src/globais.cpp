@@ -47,12 +47,15 @@ namespace gmu
                         std::cout << "\n\n---------------------------- Login ----------------------------\n\nDigite seu CPF:" << std::endl;
                         std::string cpf;
                         std::cin >> cpf;
+
+                        //! Função que verifica se o CPF contém apenas numero e 11 digitos
                         if((cpf.length() != 11) && (!isNumero(cpf)))  
 		                    throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos e apenas números!");
                         else if((cpf.length() != 11))  
 		                    throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos!");
                         else if(!isNumero(cpf))
                             throw std::invalid_argument("\nCPF Invalido! O CPF é composto apenas de números!");
+
                         listaA.primeiro->admin->Login(cpf);
                     }
                     else if(aux_acesso == 2){
@@ -66,6 +69,15 @@ namespace gmu
                             std::cout << "\n\n---------------------------- Login ----------------------------\n\nDigite seu CPF:" << std::endl;
                             std::string cpf;
                             std::cin >> cpf;
+
+                            //! Função que verifica se o CPF contém apenas numero e 11 digitos
+                            if((cpf.length() != 11) && (!isNumero(cpf)))  
+		                        throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos e apenas números!");
+                            else if((cpf.length() != 11))  
+		                        throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos!");
+                            else if(!isNumero(cpf))
+                                throw std::invalid_argument("\nCPF Invalido! O CPF é composto apenas de números!");
+                            
                             listaG.primeiro->gerente->Login(cpf);
                         }
                     }

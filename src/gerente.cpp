@@ -420,6 +420,14 @@ void Gerente::EditarDados(){
                     std::cin.ignore();
                     std::cout << "Digite o novo cpf:" << std::endl;
                     std::getline(std::cin, _cpf);
+
+                    if((cpf.length() != 11) && (!gmu::MenuFunc::isNumero(_cpf)))  
+		                throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos e apenas números!");
+                    else if((_cpf.length() != 11))  
+		                throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos!");
+                    else if(!gmu::MenuFunc::isNumero(_cpf))
+                        throw std::invalid_argument("\nCPF Invalido! O CPF é composto apenas de números!");
+        
                     bool validacpf = gmu::MenuFunc::ValidaCpfGerente(_cpf);
                     //validando cpf
                     if(validacpf){

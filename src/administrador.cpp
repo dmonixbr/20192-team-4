@@ -229,7 +229,14 @@ void  Administrador::CadastrarGerente(){
     std::cin.ignore();
     std::getline(std::cin, _cpf_gerente);
 
-    //Laco para verificar validacao de cpf
+    if((cpf.length() != 11) && (!gmu::MenuFunc::isNumero(_cpf_gerente)))  
+		throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos e apenas números!");
+    else if((_cpf_gerente.length() != 11))  
+		throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos!");
+    else if(!gmu::MenuFunc::isNumero(_cpf_gerente))
+        throw std::invalid_argument("\nCPF Invalido! O CPF é composto apenas de números!");
+
+    //! Laco para verificar validacao de cpf
     bool ValidaCpf;
     if (listaG.tamanho() >0){
         ValidaCpf = gmu::MenuFunc::ValidaCpfGerente(_cpf_gerente);
@@ -497,9 +504,10 @@ void Administrador::EditarDados(){
                     std::cin.ignore();
                     std::cout << "Digite o novo cpf:" << std::endl;
                     std::getline(std::cin, _cpf);
+
                     if((cpf.length() != 11) && (!gmu::MenuFunc::isNumero(_cpf)))  
 		                    throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos e apenas números!");
-                        else if((cpf.length() != 11))  
+                        else if((_cpf.length() != 11))  
 		                    throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos!");
                         else if(!gmu::MenuFunc::isNumero(_cpf))
                             throw std::invalid_argument("\nCPF Invalido! O CPF é composto apenas de números!");
@@ -568,6 +576,13 @@ void Administrador::CadastrarAdmin(){
     std::cout << "Digite o CPF do administrador:" << std::endl;
     std::cin.ignore();
     std::getline(std::cin, _cpf_admin);
+
+    if((cpf.length() != 11) && (!gmu::MenuFunc::isNumero(_cpf_admin)))  
+		throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos e apenas números!");
+    else if((_cpf_admin.length() != 11))  
+		throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos!");
+    else if(!gmu::MenuFunc::isNumero(_cpf_admin))
+        throw std::invalid_argument("\nCPF Invalido! O CPF é composto apenas de números!");
 
 
     bool ValidaCpf;
@@ -670,21 +685,21 @@ void Administrador::ListarAdmins(){
 }
 
 void Administrador::EditarGerente(){
-    //inicializando lista de gerente e criando um ponteiro para o gerente que irei editar
+    //! inicializando lista de gerente e criando um ponteiro para o gerente que irei editar
     Gerente *GerenteEditado;
     extern ListaGerentes listaG;
     
-    //Abrindo sessao do admin
+    //! Abrindo sessao do admin
     extern Administrador *SessaoAdmin; 
     extern ListaAdmins listaA; 
 
-    //Caso de excessao se nao houver gerentes cadastrados
+    //! Caso de excessao se nao houver gerentes cadastrados
     if(listaG.primeiro == nullptr){
         std::cout << "Nao existe gerentes para serem editados" << std::endl;
         std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(2));
         SessaoAdmin->Menu();
     }
-    //caso tenham gerentes cadastrados
+    //! caso tenham gerentes cadastrados
     else{
         //Interface da funcao editar gerente
         SessaoAdmin->ListarGerentes();
@@ -750,6 +765,14 @@ void Administrador::EditarGerente(){
                                 std::cout << "\x1B[2J\x1B[H";
                                 std::cout << "Digite o novo cpf: "<<std::endl;
                                 std::getline(std::cin, cpf_aux);
+
+                                if((cpf.length() != 11) && (!gmu::MenuFunc::isNumero(cpf_aux)))  
+		                            throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos e apenas números!");
+                                else if((cpf_aux.length() != 11))  
+		                            throw std::invalid_argument("\nCPF Invalido! O CPF é composto de 11 digitos!");
+                                else if(!gmu::MenuFunc::isNumero(cpf_aux))
+                                    throw std::invalid_argument("\nCPF Invalido! O CPF é composto apenas de números!");
+                                
 
                                 //Valida cpf
                                 bool valida_cpf = gmu::MenuFunc::ValidaCpfGerente(cpf_aux);
