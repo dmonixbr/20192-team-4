@@ -7,5 +7,6 @@ namespace gmu{
             static void MenuPrincipal();
             static bool ValidaCpfGerente(std::string);
             static bool ValidaCpfAdmin(std::string);
+            static bool isNumero(std::string);
     };
 }
