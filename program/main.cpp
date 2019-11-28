@@ -16,7 +16,7 @@ Creche *SessaoCreche;
 
 
 int main(){
-    system("clear");
+    //std::cout << "\x1B[2J\x1B[H";
     /*---------------------Criando Administrador super--------------*/
     Administrador *Super = new Administrador();
     Super->set_nome("super");

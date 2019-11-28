@@ -231,7 +231,7 @@ int Gerente::Menu(){
     extern Gerente *SessaoGerente;
 
     while(1){
-        system("clear");
+        std::cout << "\x1B[2J\x1B[H";
         std::cout << "Digite o numero da funcao que voce quer fazer:" << std::endl;
         std::cout << std::endl;
         std::cout << "1 - Emitir relatorio de minha creche"<<std::endl; 
@@ -248,19 +248,19 @@ int Gerente::Menu(){
             }
             else{
                 if(aux_acesso == 1){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     SessaoGerente->GerarRelatorio();
                 }
                 else if(aux_acesso == 2){
                     SessaoGerente->EditarCreche();
                 }
                 else if(aux_acesso == 3){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     SessaoGerente->EditarDados();
                 }
 
                 else if(aux_acesso == 4){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     SessaoGerente->VerDados();
                 }
 
@@ -292,7 +292,7 @@ void Gerente::Deslogar(){
     if (opt == "y" || opt == "Y"){
         gmu::MenuFunc::MenuPrincipal();
     }else if (opt == "n" || opt == "N"){
-        system("clear");
+        std::cout << "\x1B[2J\x1B[H";
         SessaoGerente->Menu();
     }
     else{
@@ -303,7 +303,7 @@ void Gerente::Deslogar(){
 void Gerente::VerDados(){
     extern ListaGerentes listaG;
     extern Gerente *SessaoGerente;
-    system("clear");
+    std::cout << "\x1B[2J\x1B[H";
     std::cout << "Seja Bem Vindo! \n" << std::endl;
     std::cout << "Ola " << SessaoGerente->get_nome() << "," << std::endl;
 
@@ -350,7 +350,7 @@ void Gerente::EditarDados(){
 
 
     while(1){
-      //0  system("clear");
+      //0  std::cout << "\x1B[2J\x1B[H";
         std::cout <<"Digite o numero do dado que voce deseja editar\n"<<std::endl;
         std::cout << "1 - Editar Nome" << std::endl;
         std::cout << "2 - Editar CPF" << std::endl;
@@ -369,7 +369,7 @@ void Gerente::EditarDados(){
             else{
                 //editar nome
                 if(aux_acesso == 1){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     std::cin.ignore();
                     std::cout << "Digite o novo nome:" << std::endl;
                     std::getline(std::cin, nome);
@@ -379,7 +379,7 @@ void Gerente::EditarDados(){
                     //cpf auxiliar
                     std::string _cpf;
 
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     std::cin.ignore();
                     std::cout << "Digite o novo cpf:" << std::endl;
                     std::getline(std::cin, _cpf);
@@ -397,7 +397,7 @@ void Gerente::EditarDados(){
                 }
                 //editar senha
                 else if(aux_acesso == 3){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     std::cin.ignore();
                     std::cout << "Digite a nova senha: " << std::endl;
                     std::getline(std::cin, senha);
@@ -405,7 +405,7 @@ void Gerente::EditarDados(){
 
                 //editar endereco
                 else if(aux_acesso == 4){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     std::cin.ignore();
                     std::cout << "Digite o novo endereco: " << std::endl;
                     std::getline(std::cin, endereco);
@@ -413,7 +413,7 @@ void Gerente::EditarDados(){
 
                 //editar telefone
                 else if(aux_acesso == 5){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     std::cin.ignore();
                     std::cout << "Digite o novo telefone: " << std::endl;
                     std::getline(std::cin, telefone);
@@ -421,7 +421,7 @@ void Gerente::EditarDados(){
                 
                 //sair e salvar
                 else if(aux_acesso == 6){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     SessaoGerente->set_cpf(cpf);
                     SessaoGerente->set_nome(nome);
                     SessaoGerente->set_senha(senha);
@@ -434,7 +434,7 @@ void Gerente::EditarDados(){
 
                 //sair sem salvar
                 else if(aux_acesso == 0){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     SessaoGerente->Menu();
                     return;
                 }

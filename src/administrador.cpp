@@ -44,7 +44,7 @@ int Administrador::Menu(){
     extern Administrador *SessaoAdmin;
 
     while(1){
-        system("clear");
+        std::cout << "\x1B[2J\x1B[H";
         std::cout << "Digite o numero da funcao que voce quer fazer:" << std::endl;
         std::cout << std::endl;
         std::cout << "1 - Cadastrar uma nova creche"<<std::endl; 
@@ -67,25 +67,25 @@ int Administrador::Menu(){
             }
             else{
                 if(aux_acesso == 1){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     SessaoAdmin->CadastrarCreche();
 
                 }
 
                 else if(aux_acesso == 2){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     SessaoAdmin->ListarCreches(false);
                     return 0;
                 }
 
                 else if(aux_acesso == 3){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     SessaoAdmin->CadastrarGerente();
                     SessaoAdmin->Menu();
                 }
 
                 else if(aux_acesso == 4){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     SessaoAdmin->ListarGerentes();
                     std::string j;
                     std::cout << "Digite qualquer caractere para voltar ao menu" << std::endl;
@@ -114,7 +114,7 @@ int Administrador::Menu(){
                     SessaoAdmin->EditarCreche();
                 }
                 else if(aux_acesso == 10){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     SessaoAdmin->GerarRelatorio();
                 }
 
@@ -153,7 +153,7 @@ void Administrador::Login(std::string _cpf){
             std::cout << "Digite a senha: \n";
             std::cin >> senha;
             if (atual->admin->get_senha() == senha){
-                system("clear");
+                std::cout << "\x1B[2J\x1B[H";
                 SessaoAdmin = atual->admin;
                 std::cout << "\n\nVocê entrou!\n\n" << "Seja bem vindo, " << SessaoAdmin->get_nome() << "!" << std::endl;
                 std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(2));
@@ -209,7 +209,7 @@ void  Administrador::CadastrarGerente(){
     std::string _telefone_gerente;
     std::string _periodo_mandato;
 
-    system("clear");
+    std::cout << "\x1B[2J\x1B[H";
 
     std::cout << "--------------------------------Cadastro de Gerente---------------------------\n\nDigite o CPF do Gerente:" << std::endl;
     std::cin.ignore();
@@ -247,7 +247,7 @@ void  Administrador::CadastrarGerente(){
 
         listaG.insere_gerente(novo_gerente);
 
-        system("clear");
+        std::cout << "\x1B[2J\x1B[H";
         std::cout << "Gerente cadastrado com sucesso! O ID do gerente é: " << listaG.tamanho()-1 << std::endl;
         std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(3));
     }
@@ -268,7 +268,7 @@ void Administrador::CadastrarCreche(){
     std::string validade = "";
     int gerente = -9;
 
-    system("clear");
+    std::cout << "\x1B[2J\x1B[H";
     std::cout << "---------------------------- Cadastrar Creche ----------------------------\n\n" << std::endl;
     std::cin.ignore();
     std::cout << "Digite o nome da creche: \n" << std::endl;
@@ -322,7 +322,7 @@ void Administrador::CadastrarCreche(){
     Creche *creche = new Creche(nome, telefone, endereco, validade, gerente);
     listaC.insere_creche(creche);
 
-    system("clear");
+    std::cout << "\x1B[2J\x1B[H";
     std::cout << "Creche cadastrada com sucesso!" << std::endl;
     std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(2));
 
@@ -331,7 +331,7 @@ void Administrador::CadastrarCreche(){
 
 //listar gerentes
 int Administrador::ListarGerentes(){
-    system("clear");
+    std::cout << "\x1B[2J\x1B[H";
     extern ListaAdmins listaA;
     admins *adm_atual = listaA.primeiro;
     extern Administrador *SessaoAdmin;
@@ -358,7 +358,7 @@ int Administrador::ListarGerentes(){
 
 //listar creches
 int Administrador::ListarCreches(bool ver){
-    system("clear");
+    std::cout << "\x1B[2J\x1B[H";
     extern ListaGerentes listaG;
     extern ListaCreches listaC;
     extern Administrador SessaoAdmin;
@@ -410,7 +410,7 @@ void Administrador::EditarDados(){
 
 
     while(1){
-        system("clear");
+        std::cout << "\x1B[2J\x1B[H";
         std::cout <<"Digite o numero do dado que voce deseja editar\n"<<std::endl;
         std::cout << "1 - Editar Nome" << std::endl;
         std::cout << "2 - Editar CPF" << std::endl;
@@ -426,7 +426,7 @@ void Administrador::EditarDados(){
             else{
                 //editar nome
                 if(aux_acesso == 1){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     std::cin.ignore();
                     std::cout << "Digite o novo nome:" << std::endl;
                     std::getline(std::cin, nome);
@@ -436,7 +436,7 @@ void Administrador::EditarDados(){
                     //cpf auxiliar
                     std::string _cpf;
 
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     std::cin.ignore();
                     std::cout << "Digite o novo cpf:" << std::endl;
                     std::getline(std::cin, _cpf);
@@ -453,7 +453,7 @@ void Administrador::EditarDados(){
                 }
                 //editar senha
                 else if(aux_acesso == 3){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     std::cin.ignore();
                     std::cout << "Digite a nova senha: " << std::endl;
                     std::getline(std::cin, senha);
@@ -461,7 +461,7 @@ void Administrador::EditarDados(){
                 
                 //sair e salvar
                 else if(aux_acesso == 4){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     SessaoAdmin->set_cpf(cpf);
                     SessaoAdmin->set_nome(nome);
                     SessaoAdmin->set_senha(senha);
@@ -471,7 +471,7 @@ void Administrador::EditarDados(){
 
                 //sair sem salvar
                 else if(aux_acesso == 0){
-                    system("clear");
+                    std::cout << "\x1B[2J\x1B[H";
                     SessaoAdmin->Menu();
                     return;
                 }
@@ -493,9 +493,8 @@ void Administrador::CadastrarAdmin(){
     std::string _cpf_admin;
     std::string _nome_admin;
     std::string _senha_admin;
-    int checa_cpf = 0;
 
-    system("clear");
+    std::cout << "\x1B[2J\x1B[H";
     std::cout << "-------------------------- Cadastro de novo administrador do sistema -------------\n" << std::endl;
     std::cout << "Digite o CPF do administrador:" << std::endl;
     std::cin.ignore();
@@ -535,7 +534,7 @@ void Administrador::VerDados(){
     extern ListaAdmins listaA;
     extern Administrador *SessaoAdmin;
 
-    system("clear");
+    std::cout << "\x1B[2J\x1B[H";
     std::cout << "Seja Bem Vindo! \n" << std::endl;
     std::cout << "Ola " << SessaoAdmin->get_nome() << "," << std::endl;
 
@@ -562,7 +561,7 @@ void Administrador::ListarAdmins(){
     extern ListaAdmins listaA; 
     admins *atual = listaA.primeiro; 
  
-    system("clear"); 
+    std::cout << "\x1B[2J\x1B[H"; 
  
     std::cout << "Lista de administradores" << std::endl; 
     std::cout << "-------------------------------------------------------------------------------" << std::endl; 
@@ -624,7 +623,7 @@ void Administrador::EditarGerente(){
             while(1){
 
                 //interface do editar
-                system("clear");
+                std::cout << "\x1B[2J\x1B[H";
                 std::cout << "Ola " << SessaoAdmin->get_nome() << std::endl;
                 std::cout << "Escolha qual dado do gerente \n" << GerenteEditado->get_nome() << " voce quer editar: \n\n" << std::endl;
                 std::cout << "1 - Nome"<<std::endl;
@@ -644,7 +643,7 @@ void Administrador::EditarGerente(){
                     else{
                         //Editar nome
                         if(aux_acesso == 1){
-                            system("clear");
+                            std::cout << "\x1B[2J\x1B[H";
                             std::cin.ignore();
                             std::cout << "Digite o novo nome: "<<std::endl;
                             std::getline(std::cin, _nome);
@@ -653,7 +652,7 @@ void Administrador::EditarGerente(){
                         else if(aux_acesso == 2){
                             std::string cpf_aux;
                             std::cin.ignore();
-                            system("clear");
+                            std::cout << "\x1B[2J\x1B[H";
                             std::cout << "Digite o novo cpf: "<<std::endl;
                             std::getline(std::cin, cpf_aux);
 
@@ -670,28 +669,28 @@ void Administrador::EditarGerente(){
                         //editar periodo de mandato
                         else if(aux_acesso == 3){
                             std::cin.ignore();
-                            system("clear");
+                            std::cout << "\x1B[2J\x1B[H";
                             std::cout << "Digite o novo periodo de mandato: "<<std::endl;
                             std::getline(std::cin, _periodo_mandato);
                         }
                         //Editar endereco
                         else if(aux_acesso == 4){
                             std::cin.ignore();
-                            system("clear");
+                            std::cout << "\x1B[2J\x1B[H";
                             std::cout << "Digite o novo endereco: "<<std::endl;
                             std::getline(std::cin, _endereco);
                         }
                         //Editar Telefone
                         else if(aux_acesso == 5){
                             std::cin.ignore();
-                            system("clear");
+                            std::cout << "\x1B[2J\x1B[H";
                             std::cout << "Digite o novo telefone: "<<std::endl;
                             std::getline(std::cin, _telefone);
                         }
                         //Excluir o gerente
                         else if(aux_acesso == 6){
                             std::cin.ignore();
-                            system("clear");
+                            std::cout << "\x1B[2J\x1B[H";
                             std::string aux_acesso2;
                             std::cout << "Voce confirma que quer excluir o " << GerenteEditado->get_nome() << "?    (y/n)  "<<std::endl;
                             std::getline(std::cin,aux_acesso2);
@@ -718,7 +717,7 @@ void Administrador::EditarGerente(){
                         }
                         //sair e salvar
                         else if(aux_acesso == 7){
-                            system("clear");
+                            std::cout << "\x1B[2J\x1B[H";
                             GerenteEditado->set_nome(_nome);
                             GerenteEditado->set_cpf(_cpf);
                             GerenteEditado->set_periodo_mandato(_periodo_mandato);
@@ -731,7 +730,7 @@ void Administrador::EditarGerente(){
                         }
                         //sair sem salvar
                         else if(aux_acesso == 0){
-                            system("clear");
+                            std::cout << "\x1B[2J\x1B[H";
                             SessaoAdmin->Menu();
                             return;
                         }
@@ -759,7 +758,7 @@ void Administrador::EditarCreche(){
     extern Administrador *SessaoAdmin;
     extern Creche *SessaoCreche;
     extern ListaCreches listaC;
-    system("clear");
+    std::cout << "\x1B[2J\x1B[H";
     std::cout << "--------------------------------------- Editar Creche ---------------------------------------" << std::endl;
     int a = SessaoAdmin->ListarCreches(true);
     if (a == 1){

@@ -25,18 +25,18 @@ namespace gmu
                 }
                 else{
                     if(aux_acesso == 1){
-                        system("clear");
+                        std::cout << "\x1B[2J\x1B[H";
                         std::cout << "\n\n---------------------------- Login ----------------------------\n\nDigite seu CPF:" << std::endl;
                         std::string cpf;
                         std::cin >> cpf;
                         listaA.primeiro->admin->Login(cpf);
                     }
                     else if(aux_acesso == 2){
-                        system("clear");
+                        std::cout << "\x1B[2J\x1B[H";
                         if (listaG.primeiro == nullptr){                        
                             std::cout << "\n\n\nNão existem gerentes cadastrados. Peça para um administrador cadastrar você!\n\n\n" << std::endl;
                             std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(3));
-                            system("clear");
+                            std::cout << "\x1B[2J\x1B[H";
                             gmu::MenuFunc::MenuPrincipal();
                         }else{
                             std::cout << "\n\n---------------------------- Login ----------------------------\n\nDigite seu CPF:" << std::endl;
