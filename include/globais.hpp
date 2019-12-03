@@ -8,7 +8,6 @@ extern "C"{
     #include "../sqlite/sqlite3.h"
 }
 
-namespace gmu{
 
     class MenuFunc{
         public:
@@ -26,19 +25,9 @@ namespace gmu{
     	
         DataBase();
     	~DataBase();
-        static int callback(void* data, int argc, char** argv, char** azColName) { 
-            int i; 
-            //fprintf(stderr, "%s\n", (const char*)data); 
-            for (i = 0; i < argc; i++) { 
-                //printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL" ); 
-               //lista.push_back(argv[i] ? argv[i] : "NULL");
-                INFO = INFO + "\n" + (argv[i] ? argv[i] : "NULL");
-            } 
-            return 0;
-        } 
+        static int callback(void*, int, char**, char**); 
         void AbrirDB();
     	void SalvarDB();
 
     };
-}
 #endif

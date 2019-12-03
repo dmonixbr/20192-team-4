@@ -172,13 +172,13 @@ void Administrador::Login(std::string _cpf){
                 SessaoAdmin->Menu();
             }else{
                 std::cout << "Você digitou a senha incorreta. Tente novamente." << std::endl;
-                gmu::MenuFunc::MenuPrincipal();
+                MenuFunc::MenuPrincipal();
             }
 
         }
         else if (atual->proximo == nullptr){
             std::cout << "Não existe usuário associado à este CPF." << std::endl;
-            gmu::MenuFunc::MenuPrincipal();
+            MenuFunc::MenuPrincipal();
         }
         else{
             atual = atual->proximo;
@@ -195,7 +195,7 @@ void Administrador::Deslogar(){
     std::getline(std::cin, opt);
     extern Administrador *SessaoAdmin;
     if (opt == "y" || opt == "Y"){
-        gmu::MenuFunc::MenuPrincipal();
+        MenuFunc::MenuPrincipal();
     }else if (opt == "n" || opt == "N"){
         SessaoAdmin->Menu();
     }
@@ -232,7 +232,7 @@ void  Administrador::CadastrarGerente(){
     //Laco para verificar validacao de cpf
     bool ValidaCpf;
     if (listaG.tamanho() >0){
-        ValidaCpf = gmu::MenuFunc::ValidaCpfGerente(_cpf_gerente);
+        ValidaCpf = MenuFunc::ValidaCpfGerente(_cpf_gerente);
     }else{
         ValidaCpf = true;
     }
@@ -499,7 +499,7 @@ void Administrador::EditarDados(){
                     std::cout << "Digite o novo cpf:" << std::endl;
                     std::getline(std::cin, _cpf);
 
-                    bool valida_cpf = gmu::MenuFunc::ValidaCpfAdmin(_cpf);
+                    bool valida_cpf = MenuFunc::ValidaCpfAdmin(_cpf);
 
                     if(valida_cpf){
                         cpf = _cpf;
@@ -569,7 +569,7 @@ void Administrador::CadastrarAdmin(){
 
     bool ValidaCpf;
     if (listaA.tamanho() >0){
-        ValidaCpf = gmu::MenuFunc::ValidaCpfAdmin(_cpf_admin);
+        ValidaCpf = MenuFunc::ValidaCpfAdmin(_cpf_admin);
     }else{
         ValidaCpf = true;
     }
@@ -749,7 +749,7 @@ void Administrador::EditarGerente(){
                                 std::getline(std::cin, cpf_aux);
 
                                 //Valida cpf
-                                bool valida_cpf = gmu::MenuFunc::ValidaCpfGerente(cpf_aux);
+                                bool valida_cpf = MenuFunc::ValidaCpfGerente(cpf_aux);
                                 if(valida_cpf){
                                     _cpf = cpf_aux;
                                 }

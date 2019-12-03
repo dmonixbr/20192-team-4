@@ -82,13 +82,13 @@ void Gerente::Login(std::string _cpf){
             }
             else{
                 std::cout << "Voce digitou a senha incorretamente" << std::endl;
-                gmu::MenuFunc::MenuPrincipal();
+                MenuFunc::MenuPrincipal();
             }
 
         }
         else if (atual->proximo == nullptr){
             std::cout << "Não existe usuário associado à este CPF." << std::endl;
-            gmu::MenuFunc::MenuPrincipal();
+            MenuFunc::MenuPrincipal();
         }
         else{
             atual = atual->proximo;
@@ -327,7 +327,7 @@ void Gerente::Deslogar(){
     std::cin >> opt;
     extern Gerente *SessaoGerente;
     if (opt == "y" || opt == "Y"){
-        gmu::MenuFunc::MenuPrincipal();
+        MenuFunc::MenuPrincipal();
     }else if (opt == "n" || opt == "N"){
         system("clear");
         SessaoGerente->Menu();
@@ -420,7 +420,7 @@ void Gerente::EditarDados(){
                     std::cin.ignore();
                     std::cout << "Digite o novo cpf:" << std::endl;
                     std::getline(std::cin, _cpf);
-                    bool validacpf = gmu::MenuFunc::ValidaCpfGerente(_cpf);
+                    bool validacpf = MenuFunc::ValidaCpfGerente(_cpf);
                     //validando cpf
                     if(validacpf){
                         cpf = _cpf;

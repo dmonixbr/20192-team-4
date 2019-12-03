@@ -6,8 +6,7 @@ extern ListaGerentes listaG;
 extern ListaAdmins listaA;
 extern ListaAdmins listaC;
 
-namespace gmu
-{
+
     void MenuFunc::MenuPrincipal(){
         std::cout << "\n\n------Seja Bem Vindo ao Sistema da creche-------"<<std::endl;
                     std::cout << "Digite o numero da funcao que voce quer fazer:" << std::endl;
@@ -40,7 +39,7 @@ namespace gmu
                             std::cout << "\n\n\nNão existem gerentes cadastrados. Peça para um administrador cadastrar você!\n\n\n" << std::endl;
                             std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(3));
                             system("clear");
-                            gmu::MenuFunc::MenuPrincipal();
+                            MenuFunc::MenuPrincipal();
                         }else{
                             std::cout << "\n\n---------------------------- Login ----------------------------\n\nDigite seu CPF:" << std::endl;
                             std::string cpf;
@@ -62,14 +61,14 @@ namespace gmu
             catch(const char *e)
             {
                 std::cerr << e << '\n';
-                gmu::MenuFunc::MenuPrincipal();
+                MenuFunc::MenuPrincipal();
             }
             catch(std::invalid_argument &e)
             {
                 std::cout << e.what();
                 std::cin.clear();
                 std::cin.ignore();
-                gmu::MenuFunc::MenuPrincipal();
+                MenuFunc::MenuPrincipal();
                 std::cout << "\n\n\n\n" << std::endl;
             }
             catch(...){
@@ -115,25 +114,75 @@ namespace gmu
     }
 
     void DataBase::AbrirDB(){
-        std::string sqlA = "SELECT * FROM admin";
+        Administrador *dbAdmin = new Administrador();
+        std::string sqlA = "SELECT * FROM admin ORDER BY id ASC;";
         char* messageError;
         int status = 0;
-        status = sqlite3_exec(banco, sqlA.c_str(), callback, NULL, NULL); 
+        status = sqlite3_exec(banco, sqlA.c_str(), DataBase::callback, NULL, NULL); 
        // std::list<std::string>::iterator it;
-        std::cout << INFO;
+        int posI, posF, posR;
+        std::string dado;
+        do {
+
+            posR = INFO.find("|%", 0);
+            INFO.erase(posR, 2);
+
+            posI = INFO.find("|&", 0);
+            posF = INFO.find("|&", posI + 2);
+            INFO.erase(posI, posF-posI);
+
+            posI = INFO.find("|&", 0);
+            posF = INFO.find("|&", posI + 2);
+            dado = INFO.substr(posI +2, posF-posI-2);
+            INFO.erase(posI, posF-posI);
+            dbAdmin->set_cpf(dado);
+
+            posI = INFO.find("|&", 0);
+            posF = INFO.find("|&", posI + 2);
+            dado = INFO.substr(posI +2, posF-posI-2);
+            INFO.erase(posI, posF-posI);
+            dbAdmin->set_nome(dado);
+
+            posI = INFO.find("|&", 0);
+            posF = INFO.find("|&", posI + 2);
+            dado = INFO.substr(posI +2, posF-posI-4);
+            INFO.erase(posI, posF-posI-2);
+            dbAdmin->set_senha(dado);
+
+            posR = INFO.find("|%", 0);
+            listaA.insere_admin(dbAdmin);
+
+        }while (posR != -1);
+
+
         if (status != SQLITE_OK) 
         std::cerr << "Erro ao buscar informações do usuário: " << sqlite3_errmsg(banco) << std::endl;
 
+    }
+
+    int DataBase::callback(void* data, int argc, char** argv, char** azColName){
+        int i; 
+        std::string id;
+        //fprintf(stderr, "%s\n", (const char*)data);
+        for (i = 0; i < argc; i++) {
+        id = azColName[i]; 
+            //printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL" ); 
+           //lista.push_back(argv[i] ? argv[i] : "NULL");
+            DataBase::INFO = DataBase::INFO + (id == "id" ? "|%|&" : "|&") + (argv[i] ? argv[i] : "NULL");
+        } 
+        return 0;
     }
 
     void DataBase::SalvarDB(){
         int i;
         for (i = 0; i<listaA.tamanho(); i++){
             std::string sqlA = "INSERT INTO admin (id,cpf, nome, senha) VALUES ('" +  std::to_string(i+1) +"', '" + listaA.primeiro->admin->get_cpf() + "', '" + listaA.primeiro->admin->get_nome() + "', '" +listaA.primeiro->admin->get_senha() + "')";
+            std::string sqlB = "INSERT INTO admin (id, cpf, nome, senha) VALUES('2', '13788805512', 'daniel', '123456789');";
             std::cout << sqlA;
             char* messageError;
             int status = 0;
             status = sqlite3_exec(banco, sqlA.c_str(), NULL, 0, &messageError);
+            status = sqlite3_exec(banco, sqlB.c_str(), NULL, 0, &messageError);
 
             if (status != SQLITE_OK){
                 std::cerr << "Erro ao inserir dados no banco: " << sqlite3_errmsg(banco) << std::endl;
@@ -141,6 +190,6 @@ namespace gmu
             }
         }
     } 
-}
+
 
 

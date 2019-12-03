@@ -24,9 +24,9 @@ int main(){
     Super->set_senha("super");
     listaA.insere_admin(Super);
     
-    gmu::DataBase db = gmu::DataBase();
-    db.SalvarDB();
+    DataBase db = DataBase();
+  //  db.SalvarDB();
     db.AbrirDB();
     
-    gmu::MenuFunc::MenuPrincipal();
+    MenuFunc::MenuPrincipal();
 }

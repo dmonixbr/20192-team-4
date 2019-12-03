@@ -13,8 +13,8 @@ SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(SOURCES:.$(SRCEXT)=.o)) build/sqlite3.o
 TSTSOURCES := $(shell find $(TSTDIR) -type f -name *.$(SRCEXT))
 
-DBASE := -c sqlite/sqlite3.c -ldl -o build/sqlite.o 
-DSHELL := -c sqlite/shell.c -ldl -o build/shell.c 
+DBASE := -c sqlite/sqlite3.c -ldl -o build/sqlite3.o 
+DSHELL := -c sqlite/shell.c -ldl -o build/shell.o 
 
 CFLAGS := -g -Wall -O3 -std=c++11 -pthread -Wl,--no-as-needed -ldl -lsqlite3 
 INC := -I include/ -I third_party/ -I sqlite/
